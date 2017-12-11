@@ -10,8 +10,9 @@ and open the template in the editor.
         <title></title>
     </head>
     <body>
+        yo this is sick
         <?php
-        // put your code here
+        // put
         ?>
     </body>
 </html>
