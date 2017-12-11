@@ -14,7 +14,8 @@ and open the template in the editor.
         // put your code here
         ?>
         <div>
+            <h1>TEST MAFAK</h1>
         </div>
-        ?>
+        
     </body>
 </html>
