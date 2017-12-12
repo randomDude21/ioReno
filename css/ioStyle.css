@@ -4,12 +4,25 @@
     margin-top: 8px;
 }
 
+.main-img {
+    max-width: 100%;
+    opacity: 0.5;
+    border-radius: 5px;
+}
+
+.main-infobox {
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 1%;
+    border-radius: 10px;
+}
+
 a.navbar-brand {
     padding: 0;
 }
 
 .footer {
     background-color: #424242;
+
     height: 120px;
     text-align: center;
 }
@@ -60,4 +73,11 @@ footer p{
     margin-bottom: 4%;
 }
 
+
+.img-caption {
+    position: absolute;
+    top: 30%;
+    font-size: 30px;
+
+}
 
