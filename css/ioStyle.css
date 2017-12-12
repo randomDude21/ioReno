@@ -1,0 +1,13 @@
+.logo {
+    height: 37px;
+    width: 93px;
+    margin-top: 8px;
+}
+
+a.navbar-brand {
+    padding: 0;
+}
+
+.footer {
+    background-color: #424242;
+}
