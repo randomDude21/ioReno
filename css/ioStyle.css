@@ -10,4 +10,54 @@ a.navbar-brand {
 
 .footer {
     background-color: #424242;
+    height: 120px;
+    text-align: center;
 }
+
+html,body{
+    height:100%;
+    width:100%;
+    margin:0px;
+}
+
+.body_all{
+    height:100%;
+    width:100%;
+    margin:0px;
+}
+
+footer a{
+    margin-left: 100px;
+    margin-right:100px;
+    color:#e7e7e7;
+    text-decoration:none;
+    font-family: sans-serif;
+}
+
+footer a:hover{
+    color:white;
+    text-decoration:none;
+    font-family: sans-serif;
+}
+
+footer p{
+    color:#666666;
+    margin:1.9%;
+}
+
+#body_about{
+    font-family: sans-serif;
+    text-align: center;
+    height:100%;
+    margin:5%;
+}
+
+#body_about h1,h2{
+    margin:2%;
+}
+
+#body_about #first_p{
+    margin-bottom: 4%;
+}
+
+
