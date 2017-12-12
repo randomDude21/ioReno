@@ -9,7 +9,7 @@
             <div class="container-fluid">
                 <div class="img-caption main-infobox text-center">
                      <h2>Looking for a Contractor?</h2>
-                     <a href="customer.php" class="btn btn-default" role="button">Sign Up</a>
+                     <a href="signup_customer.php" class="btn btn-default" role="button">Sign Up</a>
                 </div>                
             </div>   
         </div>
