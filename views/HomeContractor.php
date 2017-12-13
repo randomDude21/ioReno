@@ -10,6 +10,7 @@ and open the template in the editor.
         <title></title>
     </head>
     <body>
+        https://v4-alpha.getbootstrap.com/components/card/
         <?php
         // put your code here
         ?>
