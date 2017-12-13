@@ -24,7 +24,7 @@ class Database {
         //returns all the rows in the contractor table 
 	public function getContractors()
         {
-            $conn=connect();
+            $conn=$this->connect();
             $sql= "SELECT * FROM contractor";
             $get_result= $conn->query($sql) or die("Can't connect to the contractor table");
             $contractors=array();
@@ -43,7 +43,7 @@ class Database {
         //return all the rows in the customer table
         public function getCustomers()
         {
-            $conn=connect();
+            $conn=$this->connect();
             $sql= "SELECT * FROM customer";
             $get_result= $conn->query($sql) or die("Can't connect to the customer table");
             $customers=array();
@@ -62,7 +62,7 @@ class Database {
         //returns all the rows in the payments table 
           public function getPayments()
         {
-            $conn=connect();
+            $conn=$this->connect();
             $sql= "SELECT * FROM payments";
             $get_result= $conn->query($sql) or die("Can't connect to the payments table");
             $payments=array();
@@ -81,7 +81,7 @@ class Database {
         //returns all the rows in the project table 
           public function getProjects()
         {
-            $conn=connect();
+            $conn=$this->connect();
             $sql= "SELECT * FROM project";
             $get_result= $conn->query($sql) or die("Can't connect to the project table");
             $projects=array();
@@ -99,7 +99,7 @@ class Database {
         //return all the rows in the proposal table
          public function getProposals()
         {
-            $conn=connect();
+            $conn=$this->connect();
             $sql= "SELECT * FROM proposal";
             $get_result= $conn->query($sql) or die("Can't connect to the proposal table");
             $proposals=array();
@@ -117,7 +117,7 @@ class Database {
         //return one record from the contractor table based on ID 
         public function getContractor($coNum)
         {
-            $conn=connect();
+            $conn=$this->connect();
             $sql= "SELECT * FROM contractor WHERE Contractor_CO_Num = ".$coNum;
             $get_result= $conn->query($sql) or die("Can't connect to the contractor table");
             $cons=$get_result->fetch_assoc();
@@ -131,7 +131,7 @@ class Database {
         //return one record from the contracator table based on Email
         public function getContractorE($email)
         {
-            $conn=connect();
+            $conn=$this->connect();
             $sql= "SELECT * FROM contractor WHERE Contractor_Email = ".$email;
             $get_result= $conn->query($sql) or die("Can't connect to the contractor table");
             $cons=$get_result->fetch_assoc();
@@ -146,7 +146,7 @@ class Database {
         //return one row in the customer table
         public function getCustomer($id)
         {
-            $conn=connect();
+            $conn=$this->connect();
             $sql= "SELECT * FROM customer WHERE Customer_ID = ".$id;
             $get_result= $conn->query($sql) or die("Can't connect to the customer table");
             $cust=$get_result->fetch_assoc();
@@ -161,7 +161,7 @@ class Database {
         //return a record of the customer table based on email
         public function getCustomerE($email)
         {
-            $conn=connect();
+            $conn=$this->connect();
             $sql= "SELECT * FROM customer WHERE Customer_Email = ".$email;
             $get_result= $conn->query($sql) or die("Can't connect to the customer table");
             $cust=$get_result->fetch_assoc();
@@ -177,7 +177,7 @@ class Database {
         //returns all the rows in the payments table 
           public function getPayment($id)
         {
-            $conn=connect();
+            $conn=$this->connect();
             $sql= "SELECT * FROM payments WHERE Payment_ID = ".$id;
             $get_result= $conn->query($sql) or die("Can't connect to the payments table");
             $pay=$get_result->fetch_assoc();
@@ -193,7 +193,7 @@ class Database {
         //returns all the rows in the project table 
           public function getProject($id)
         {
-            $conn=connect();
+            $conn=$this->connect();
             $sql= "SELECT * FROM project WHERE Project_ID = ".$id;
             $get_result= $conn->query($sql) or die("Can't connect to the project table");
             $pro=$get_result->fetch_assoc();
@@ -208,7 +208,7 @@ class Database {
         //return all the rows in the proposal table
          public function getProposal($id)
         {
-            $conn=connect();
+            $conn=$this->connect();
             $sql= "SELECT * FROM proposal WHERE Proposal_ID = ".$id;
             $get_result= $conn->query($sql) or die("Can't connect to the proposal table");
             $prop=$get_result->fetch_assoc();
@@ -222,7 +222,7 @@ class Database {
         //insert a record in the contractor table
         public function insertContractor(Contractor $contractor)
         {
-            $conn= connect();
+            $conn= $this->connect();
             $sql=$conn->prepare("INSERT INTO Contractor VALUES (?,?,?,?,?,?,?)");
            
             $coNum=$contractor->get_coNum();
@@ -264,7 +264,7 @@ class Database {
           //insert a record in the payment table
         public  function insertPayment(Payment $payment)
         {
-            $conn= connect();
+            $conn= $this->connect();
             $sql=$conn->prepare("INSERT INTO payments VALUES (?,?,?,?,?,?)");
             
             $id=$payment->get_id();
@@ -284,7 +284,7 @@ class Database {
         //insert a record in the project table
            public function insertProject(Project $project)
         {
-            $conn= connect();
+            $conn= $this->connect();
             $sql=$conn->prepare("INSERT INTO project VALUES (?,?,?,?)");
             
             $id=$project->get_id();
@@ -301,7 +301,7 @@ class Database {
           //insert a record in the project table
            public function insertProposal(Proposal $proposal)
         {
-            $conn= connect();
+            $conn= $this->connect();
             $sql=$conn->prepare("INSERT INTO proposal VALUES (?,?,?,?)");
             $id=$proposal->get_id();
             $coNum=$proposal->get_coNum();
@@ -317,7 +317,7 @@ class Database {
         //delete a record based on ID from the table contractor
         public function deleteContractor(Contractor $contractor)
         {
-            $conn=connect();
+            $conn=$this->connect();
             $sql="DELETE FROM contractor WHERE Contractor_CO_Num = ".$contractor->get_coNum();
             $conn->query($sql) or die ("Can't connect to the contractor table");
             $conn->close();
@@ -326,7 +326,7 @@ class Database {
         //delete a record based on ID from the customer table
          public function deleteCustomer(Customer $customer)
         {
-            $conn=connect();
+            $conn=$this->connect();
             $sql="DELETE FROM customer WHERE Customer_ID = ".$customer->get_id();
             $conn->query($sql) or die ("Can't connect to the customer table");
              $conn->close();
@@ -335,7 +335,7 @@ class Database {
         //delete a record based on ID from the payment table
          public function deletePayment(Payment $payment)
         {
-            $conn=connect();
+            $conn=$this->connect();
             $sql="DELETE FROM payments WHERE Payment_ID = ".$payment->get_id();
             $conn->query($sql) or die ("Can't connect to the payment table");
              $conn->close();
@@ -344,7 +344,7 @@ class Database {
         //delete a record based on ID from the project table
          public function deleteProject(Project $project)
         {
-            $conn=connect();
+            $conn=$this->connect();
             $sql="DELETE FROM project WHERE Project_ID = ".$project->get_id();
             $conn->query($sql) or die ("Can't connect to the project table");
              $conn->close();
@@ -353,7 +353,7 @@ class Database {
         //delete a record based on ID from the proposal table
           public function deleteProposal(Proposal $proposal)
         {
-            $conn=connect();
+            $conn=$this->connect();
             $sql="DELETE FROM project WHERE Proposal_ID = ".$proposal->get_id();
             $conn->query($sql) or die ("Can't connect to the proposal table");
              $conn->close();
@@ -363,7 +363,7 @@ class Database {
         //update a record based on ID from the contractor table
         public function updateContractor(Contractor $contractor)
         {
-            $conn=connect();
+            $conn=$this->connect();
             $stmt=$conn->prepare("UPDATE contractor SET Contractor_CO_Name = ?, Contractor_Phone = ?, Contractor_Email = ?, "
                     . "Contractor_Contact_Name = ?, Contractor_Password = ?, Contractor_Date_Registered = ? WHERE Contractor_CO_Num = ?");
             $coNum=$contractor->get_coNum();
@@ -382,7 +382,7 @@ class Database {
         }
           public function updateCustomer(Customer $customer)
         {
-            $conn=connect();
+            $conn=$this->connect();
             $stmt=$conn->prepare("UPDATE customer SET Customer_Name = ?, Customer_Email = ?, Customer_Phone = ?, "
                     . "Customer_Password = ?, Customer_Date_Registered = ? WHERE Customer_ID = ?");
             $id=$customer->get_id();
@@ -400,7 +400,7 @@ class Database {
         }
          public function updatePayment(Payment $payment)
         {
-            $conn=connect();
+            $conn=$this->connect();
             $stmt=$conn->prepare("UPDATE payments SET Contractor_CO_Num = ?, Payment_Amount = ?, Proposal_ID = ?, "
                     . "Payment_Status = ?, Payment_Date_Registered = ? WHERE Payment_ID = ?");
             $coNum=$payment->get_coNum();
@@ -418,7 +418,7 @@ class Database {
         }
          public function updateProject(Project $project)
         {
-            $conn=connect();
+            $conn=$this->connect();
             $stmt=$conn->prepare("UPDATE project SET Customer_Email = ?, Project_Description = ?, "
                     . "Project_Budget = ? WHERE Project_ID = ?");
             $id=$project->get_id();
@@ -434,7 +434,7 @@ class Database {
         }
          public function updateProposal(Proposal $proposal)
         {
-            $conn=connect();
+            $conn=$this->connect();
             $stmt=$conn->prepare("UPDATE proposal SET Contractor_CO_Num = ?, Project_ID = ?, "
                     . "Project_Estimate = ? WHERE Proposal_ID = ?");
             $id=$proposal->get_id();

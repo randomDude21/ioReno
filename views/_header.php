@@ -42,11 +42,11 @@
               <form class="navbar-form navbar-right form-inline" role="form" action="../php/login.php" method="post">
               <div class="form-group">
                 <label class="sr-only" for="Email">Email</label>
-                <input type="email" class="form-control" id="Email" placeholder="Email" autofocus required />
+                <input type="email" class="form-control" id="Email" name="Email" placeholder="Email" autofocus required />
               </div>
               <div class="form-group">
                 <label class="sr-only" for="Password">Password</label>
-                <input type="password" class="form-control" id="Password" placeholder="Password" required />
+                <input type="password" class="form-control" id="Password" name="Password" placeholder="Password" required />
               </div>
               <button type="submit" class="btn btn-success">Sign in</button>
             </form>

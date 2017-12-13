@@ -1,5 +1,5 @@
 <?php
-require "C:\\ioReno\\Classes\\Database.php";
+require "..\\Classes\\Database.php";
 
 
 $name = $_POST["username"];
