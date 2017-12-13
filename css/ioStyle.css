@@ -1,23 +1,63 @@
+
+
+
+/*make button go to the middle*/
+#image_Home_customer{
+    background-image: url("../images/reno1.jpg");
+    background-color: rgba(255,255,255,0.6);
+    background-blend-mode: lighten;
+
+    width: 50%; /*turn to 100% to be responsive(mobile)*/
+    height: 100%; /*turn to auto to be responsive(mobile)*/
+    float:left;
+}
+
+#image_Home_customer:hover {
+    background-color: rgba(255,255,255,0);
+}
+
+
+#image_Home_contractor{
+    background-image: url("../images/reno2.jpg");
+    background-color: rgba(255,255,255,0.6);
+    background-blend-mode: lighten;
+    width: 50%; /*turn to 100% to be responsive(mobile)*/
+    height: 100%; /*turn to auto to be responsive(mobile)*/
+    float:right;
+}
+
+#image_Home_contractor:hover {
+    background-color: rgba(255,255,255,0);
+}
+
+/*---------------------------*/
+
+
+
+/*---------------------------*/
+
+
 .logo {
     height: 37px;
     width: 93px;
     margin-top: 8px;
 }
 
-.main-img {
-    max-width: 100%;
-    opacity: 0.5;
-    border-radius: 5px;
-}
-
 .main-infobox {
+    width:40%;
     background-color: rgba(255, 255, 255, 0.7);
-    padding: 1%;
-    border-radius: 10px;
+    box-shadow: 0px 0px 40px #888888;
+    border-radius: 5px;
+    margin: auto ;
+    margin-top:50%;
 }
 
 a.navbar-brand {
     padding: 0;
+}
+
+#nav{
+    margin-bottom: 0px;
 }
 
 /* make body 100% of the webpage */
@@ -30,7 +70,6 @@ html,body{
 .body_all{
     height:100%;
     width:100%;
-    margin:0px;
 }
 /* ------------------------------- */
 
@@ -38,9 +77,9 @@ html,body{
 
 .footer {
     background-color: #424242;
-    position:static;
-    height: 120px;
     text-align: center;
+    height:120px;
+    position: relative;
 }
 
 footer a{
@@ -117,3 +156,31 @@ color: #FFF;
 font-size: 24px;
 }
 
+/*when screen is smaller than 480px*/
+@media only screen and (max-width:480px){
+#image_Home_customer{
+    background-image: url("../images/reno1.jpg");
+    background-color: rgba(255,255,255,0.6);
+    background-blend-mode: lighten;
+
+    width: 100%; /*turn to 100% to be responsive(mobile)*/
+    height: 50%; /*turn to auto to be responsive(mobile)*/
+}
+
+#image_Home_contractor{
+    background-image: url("../images/reno2.jpg");
+    background-color: rgba(255,255,255,0.6);
+    background-blend-mode: lighten;
+    width: 100%; /*turn to 100% to be responsive(mobile)*/
+    height: 50%; /*turn to auto to be responsive(mobile)*/
+}
+.main-infobox {
+    width:40%;
+    background-color: rgba(255, 255, 255, 0.7);
+    box-shadow: 0px 0px 40px #888888;
+    border-radius: 5px;
+    margin: auto ;
+    margin-top:30%;
+}
+
+}
