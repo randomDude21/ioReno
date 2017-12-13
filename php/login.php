@@ -1,7 +1,6 @@
 <?php
 require "../Classes/Database.php";
-require "../Classes/Contractor.php";
-require "../Classes/Customer.php";
+
 $db=new Database();
 if($db->getCustomerE($_POST['Email'])!= null)
 {
