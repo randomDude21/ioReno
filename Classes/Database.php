@@ -279,6 +279,41 @@ class Database {
             $sql->close();
             $conn->close();
         }
+        public static function deleteContractor(Contractor $contractor)
+        {
+            $conn=connect();
+            $sql="DELETE FROM contractor WHERE Contractor_CO_Num = ".$contractor->get_coNum();
+            $conn->query($sql) or die ("Can't connect to the contractor table");
+            
+        }
+         public static function deleteCustomer(Customer $customer)
+        {
+            $conn=connect();
+            $sql="DELETE FROM customer WHERE Customer_ID = ".$customer->get_id();
+            $conn->query($sql) or die ("Can't connect to the customer table");
+            
+        }
+         public static function deletePayment(Payment $payment)
+        {
+            $conn=connect();
+            $sql="DELETE FROM payments WHERE Payment_ID = ".$payment->get_id();
+            $conn->query($sql) or die ("Can't connect to the payment table");
+            
+        }
+         public static function deleteProject(Project $project)
+        {
+            $conn=connect();
+            $sql="DELETE FROM project WHERE Project_ID = ".$project->get_id();
+            $conn->query($sql) or die ("Can't connect to the project table");
+            
+        }
+          public static function deleteProposal(Proposal $proposal)
+        {
+            $conn=connect();
+            $sql="DELETE FROM project WHERE Proposal_ID = ".$proposal->get_id();
+            $conn->query($sql) or die ("Can't connect to the proposal table");
+            
+        }
 }
         
         
