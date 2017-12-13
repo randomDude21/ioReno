@@ -7,6 +7,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <link href="../css/ioStyle.css" rel="stylesheet" type="text/css"/>
+  <script src="../js/gen_validatorv4.js" type="text/javascript"></script>
         <title>IOReno</title>
     </head>
     <body>
@@ -21,7 +22,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-            <a class="navbar-brand" href="#"><img src="../images/logo.PNG" alt="IOReno Logo" class="logo"></a>
+            <a class="navbar-brand" href="index.php"><img src="../images/logo.PNG" alt="IOReno Logo" class="logo"></a>
         </div>
     
         <!-- Collect the nav links, forms, and other content for toggling -->
