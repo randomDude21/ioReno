@@ -6,13 +6,14 @@ include("_header.php");
     <div class="container-fluid">
         <div class="panel panel-default">
             <div class="panel-heading">Create an Account</div>
-            <form class="form-horizontal register-form" action='insert_customer.php' id="registerCustForm" method="POST">
+            <form class="form-horizontal register-form" action='../php/insert_customer.php' id="registerCustForm" method="POST">
                 <fieldset>
                     <div class="control-group">
                         <!-- Username -->
                         <label class="control-label"  for="username">Name</label>
                         <div class="controls">
                             <input type="text" id="username" name="username" placeholder="" class="input-xlarge" required="required">
+                            <span><?php echo $_SESSION["nameErr"]; ?></span>
                             <p class="help-block">Please enter your full name</p>
                         </div>
                     </div>
@@ -22,6 +23,7 @@ include("_header.php");
                         <label class="control-label" for="email">E-mail</label>
                         <div class="controls">
                             <input type="text" id="email" name="email" placeholder="" class="input-xlarge" required="required">
+                            <span><?php echo $emailErr ?></span>
                             <p class="help-block">Please provide your E-mail</p>
                         </div>
                     </div>
@@ -56,15 +58,11 @@ include("_header.php");
                     <div class="control-group">
                         <!-- Button -->
                         <div class="controls">
-                            <input type="submit" class="btn btn-success" value="Register">
+                            <input type="submit" name="submit" class="btn btn-success" value="Register">
                         </div>
                     </div>
                 </fieldset>
             </form>    
-            <script type="text/javascript">
-                var frmValidator = new Validator("registerCustForm");
-                frmValidator.addValidation("username", "req", "Please enter your full name");
-            </script>
         </div>
 
     </div>
