@@ -20,13 +20,7 @@ a.navbar-brand {
     padding: 0;
 }
 
-.footer {
-    background-color: #424242;
-
-    height: 120px;
-    text-align: center;
-}
-
+/* make body 100% of the webpage */
 html,body{
     height:100%;
     width:100%;
@@ -38,10 +32,20 @@ html,body{
     width:100%;
     margin:0px;
 }
+/* ------------------------------- */
+
+/* footer  css */
+
+.footer {
+    background-color: #424242;
+    position:static;
+    height: 120px;
+    text-align: center;
+}
 
 footer a{
-    margin-left: 100px;
-    margin-right:100px;
+    margin-left: 6%;
+    margin-right:6%;
     color:#e7e7e7;
     text-decoration:none;
     font-family: sans-serif;
@@ -58,11 +62,12 @@ footer p{
     margin:1.9%;
 }
 
+/* about page css */
+
 #body_about{
     font-family: sans-serif;
     text-align: center;
-    height:100%;
-    margin:5%;
+    
 }
 
 #body_about h1,h2{
@@ -74,6 +79,7 @@ footer p{
 }
 
 
+/* ------------------------ */
 .img-caption {
     position: absolute;
     top: 30%;
@@ -81,7 +87,39 @@ footer p{
 
 }
 
+
 .register-form {
     padding-left: 10px;
     padding-bottom: 10px;
 }
+
+
+/* contact us page css */
+
+
+#head_contact{
+    background-image: url("../images/reno1.jpg");
+    background-color: rgba(255,255,255,0.6);
+    background-blend-mode: lighten;
+    height:22.5%;
+    background-position-y: 500px;
+}
+#head_contact h1{
+    margin-left:10%;
+    margin-right:10%;
+    color:#424242;
+}
+.jumbotron {
+background: #358CCE;
+color: #FFF;
+border-radius: 0px;
+}
+.jumbotron-sm { padding-top: 24px;
+padding-bottom: 24px; }
+.jumbotron small {
+color: #FFF;
+}
+.h1 small {
+font-size: 24px;
+}
+
