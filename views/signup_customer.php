@@ -13,7 +13,6 @@ include("_header.php");
                         <label class="control-label"  for="username">Name</label>
                         <div class="controls">
                             <input type="text" id="username" name="username" placeholder="" class="input-xlarge" required="required">
-                            <span><?php echo $_SESSION["nameErr"]; ?></span>
                             <p class="help-block">Please enter your full name</p>
                         </div>
                     </div>
@@ -23,7 +22,6 @@ include("_header.php");
                         <label class="control-label" for="email">E-mail</label>
                         <div class="controls">
                             <input type="text" id="email" name="email" placeholder="" class="input-xlarge" required="required">
-                            <span><?php echo $emailErr ?></span>
                             <p class="help-block">Please provide your E-mail</p>
                         </div>
                     </div>
