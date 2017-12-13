@@ -39,7 +39,7 @@
             </li>
           </ul>
           <div class="collapse nav navbar-nav nav-collapse slide-down" id="nav-collapse2">
-            <form class="navbar-form navbar-right form-inline" role="form">
+              <form class="navbar-form navbar-right form-inline" role="form" action="../php/login.php" method="post">
               <div class="form-group">
                 <label class="sr-only" for="Email">Email</label>
                 <input type="email" class="form-control" id="Email" placeholder="Email" autofocus required />
