@@ -17,7 +17,7 @@ class Project {
     {
         return $this->id;
     }
-    public function get_emil()
+    public function get_email()
     {
         return $this->email;
     }
