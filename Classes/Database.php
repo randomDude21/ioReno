@@ -210,20 +210,23 @@ class Database {
             $conn->close();
         }
           //insert a record in the customer table
-        public static function insertCustomer(Customer $customer)
+        public function insertCustomer(Customer $customer)
         {
-            $conn= connect();
+            $conn= $this->connect();
             $sql=$conn->prepare("INSERT INTO Customer VALUES (?,?,?,?,?,?)");
-            $sql->bind_param("isssss", $id, $name, $email, $phone, $pass, $date);
+            if($sql==false)
+                echo "prepare \n";
             $id=$customer->get_id();
             $name=$customer->get_name();
             $email=$customer->get_email();
             $phone=$customer->get_phone();
             $pass=$customer->get_password();
             $date=$customer->get_date();
+            $sql->bind_param("isssss", $id, $name, $email, $phone, $pass, $date);
             
-            $sql->execute();
-            
+            $status=$sql->execute();
+            if(!$status)
+                echo trigger_error ($sql->error, E_USER_ERROR);
             $sql->close();
             $conn->close();
         }
