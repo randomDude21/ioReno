@@ -13,7 +13,7 @@ include("_header.php");
                         <label class="control-label"  for="username">Name</label>
                         <div class="controls">
                             <input type="text" id="username" name="username" placeholder="" class="input-xlarge" required="required">
-                            <span><?php echo $_SESSION["nameErr"]; ?></span>
+                            <span name="nameErr"><?php if (isset($_SESSION['nameErr'])) echo("{$_SESSION['nameErr']}"); $_SESSION['nameErr'] = ""; ?></span>
                             <p class="help-block">Please enter your full name</p>
                         </div>
                     </div>
@@ -23,7 +23,7 @@ include("_header.php");
                         <label class="control-label" for="email">E-mail</label>
                         <div class="controls">
                             <input type="text" id="email" name="email" placeholder="" class="input-xlarge" required="required">
-                            <span><?php echo $emailErr ?></span>
+                            <span name="nameErr"><?php if (isset($_SESSION['emailErr'])) echo("{$_SESSION['emailErr']}"); $_SESSION['emailErr'] = ""; ?></span>
                             <p class="help-block">Please provide your E-mail</p>
                         </div>
                     </div>
@@ -33,6 +33,7 @@ include("_header.php");
                         <label class="control-label" for="phone">Phone Number</label>
                         <div class="controls">
                             <input type="tel" id="phone" name="phone" placeholder="" class="input-xlarge" required="required">
+                            <span name="nameErr"><?php if (isset($_SESSION['phoneErr'])) echo("{$_SESSION['phoneErr']}"); $_SESSION['phoneErr'] = ""; ?></span>
                             <p class="help-block">Please provide your phone number</p>
                         </div>
                     </div>
