@@ -8,6 +8,7 @@ if($db->getCustomerE($_POST['Email'])!= null)
     if($customer->get_password()== sha1($_POST['Password']))
     {
         $_SESSION["message"]="";
+        $_SESSION["login"]=true;
         header("location:../views/HomeCustomer.php");
     }
     else
@@ -22,6 +23,7 @@ else if($db->getContractorE($_POST['Email'])!= null)
     if ($contractor->get_password()== sha1($_POST['Password']))
     {
         $_SESSION["message"]="";
+        $_SESSION["login"]=true;
         header("location:../views/HomeContractor.php");
     }
     else

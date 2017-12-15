@@ -17,7 +17,7 @@ class Database {
         //to connect from all the other methods
 	public static function connect()
         {
-            $conn=@new mysqli('localhost', 'root', '', 'ioreno');
+            $conn= new mysqli('localhost', 'root', '', 'ioreno');
             return $conn;
         }
 
@@ -34,8 +34,7 @@ class Database {
                         $cons["Contractor_Email"], $cons["Contractor_Contact_Name"], $cons["Contractor_Password"], $cons["Contractor_Date_Registered"]);
                 $contractors=$contractor;
             }
-              $get_result->free();
-            $sql->close();
+            $get_result->free();
             $conn->close();
             return $contractors;
         }
@@ -53,8 +52,7 @@ class Database {
                         $cust["Customer_Phone"], $cust["Customer_Password"], $cust["Customer_Date_Registered"]);
                 $customers=$customer;
             }
-              $get_result->free();
-            $sql->close();
+            $get_result->free();
             $conn->close();
             return $customers;
         }
@@ -72,8 +70,7 @@ class Database {
                         $pay["Proposal_ID"], $pay["Payment_Status"], $pay["PAYMENT_DATE"]);
                 $payments=$payment;
             }
-              $get_result->free();
-            $sql->close();
+            $get_result->free();
             $conn->close();
             return $payments;
         }
@@ -90,8 +87,7 @@ class Database {
                 $project= new Project($pro["Project_ID"], $pro["Customer_Email"], $pro["Project_Description"], $pro["Project_Budget"]);
                 $projects=$project;
             }
-              $get_result->free();
-            $sql->close();
+            $get_result->free();
             $conn->close();
             return $projects;
         }
@@ -108,8 +104,7 @@ class Database {
                 $proposal= new Proposal($prop["Proposal_ID"], $prop["Contractor_CO_Num"], $prop["Project_ID"], $prop["Project_Estimate"]);
                 $proposals=$proposal;
             }
-              $get_result->free();
-            $sql->close();
+            $get_result->free();
             $conn->close();
             return $proposals;
         }
@@ -120,27 +115,44 @@ class Database {
             $conn=$this->connect();
             $sql= "SELECT * FROM contractor WHERE Contractor_CO_Num = ".$coNum;
             $get_result= $conn->query($sql) or die("Can't connect to the contractor table");
-            $cons=$get_result->fetch_assoc();
-                $contractor= new Contractor($cons["Contractor_CO_Num"], $cons["Contractor_CO_Name"], $cons["Contractor_Phone"], 
-                        $cons["Contractor_Email"], $cons["Contractor_Contact_Name"], $cons["Contractor_Password"], $cons["Contractor_Date_Registered"]);
-               $get_result->free();
-            $sql->close();
-            $conn->close(); 
-            return $contractor;
+            if($get_result!=false)
+            {
+                $cons=$get_result->fetch_assoc();
+                    $contractor= new Contractor($cons["Contractor_CO_Num"], $cons["Contractor_CO_Name"], $cons["Contractor_Phone"], 
+                            $cons["Contractor_Email"], $cons["Contractor_Contact_Name"], $cons["Contractor_Password"], $cons["Contractor_Date_Registered"]);
+                    
+                $get_result->free();
+                $conn->close(); 
+                return $contractor;
+            }
+            else
+            {
+                return null;
+            }
         }
         //return one record from the contracator table based on Email
         public function getContractorE($email)
         {
             $conn=$this->connect();
-            $sql= "SELECT * FROM contractor WHERE Contractor_Email = ".$email;
-            $get_result= $conn->query($sql) or die("Can't connect to the contractor table");
-            $cons=$get_result->fetch_assoc();
-                $contractor= new Contractor($cons["Contractor_CO_Num"], $cons["Contractor_CO_Name"], $cons["Contractor_Phone"], 
-                        $cons["Contractor_Email"], $cons["Contractor_Contact_Name"], $cons["Contractor_Password"], $cons["Contractor_Date_Registered"]);
-               $get_result->free();
-            $sql->close();
-            $conn->close(); 
-            return $contractor;
+            //$sql= "SELECT * FROM Customer WHERE Customer_Email = ?";
+            //$get_result= $conn->query($sql) or die ("Can't connect to the customer table");
+            if($sql = $conn->prepare("SELECT Contractor_CO_Num, Contractor_CO_Name, Contractor_Phone, Contractor_Email, "
+                    . "Contractor_Contact_Name, Contractor_Password, Contractor_Date_Registered FROM Contractor WHERE Contractor_Email = ?"))
+            {
+                $sql->bind_param("s", $email);
+                $sql->execute();
+                $sql->bind_result($coNum, $coName, $phone, $email, $name, $password, $date);
+                $sql->fetch();
+                $contractor= new Contractor($coNum, $coName, $phone, $email, $name, $password, $date);
+
+                $sql->free();
+                $conn->close();
+                return $contractor;
+            }
+            else
+            {
+                return null;
+            }
         }
         
         //return one row in the customer table
@@ -149,28 +161,37 @@ class Database {
             $conn=$this->connect();
             $sql= "SELECT * FROM Customer WHERE Customer_ID = ".$id;
             $get_result= $conn->query($sql) or die("Can't connect to the customer table");
-            $cust=$get_result->fetch_assoc();
+            if($get_result!=false)
+            {
+                $cust=$get_result->fetch_assoc();
                 $customer= new Customer($cust["Customer_ID"], $cust["Customer_Name"], $cust["Customer_Email"], 
-                        $cust["Customer_Phone"], $cust["Customer_Password"], $cust["Customer_Date_Registered"]);
-           
-              $get_result->free();
-            $sql->close();
-            $conn->close();
-            return $customer;
+                            $cust["Customer_Phone"], $cust["Customer_Password"], $cust["Customer_Date_Registered"]);
+
+                $get_result->free();
+                $conn->close();
+                return $customer;
+            }
+            else
+            {
+                return null;
+            }
         }
         //return a record of the customer table based on email
         public function getCustomerE($email)
         {
             $conn=$this->connect();
-            $sql= "SELECT * FROM Customer WHERE Customer_Email = '".$email."'";
-            $get_result= $conn->query($sql) or die ("Can't connect to the customer table");
-            if($get_result!=false)
+            //$sql= "SELECT * FROM Customer WHERE Customer_Email = ?";
+            //$get_result= $conn->query($sql) or die ("Can't connect to the customer table");
+            if($sql = $conn->prepare("SELECT Customer_ID, Customer_Name, Customer_Email, Customer_Phone, Customer_Password, "
+                    . "Customer_Date_Registered FROM Customer WHERE Customer_Email = ?"))
             {
-                $cust=$get_result->fetch_array();
-                $customer= new Customer($cust["Customer_ID"], $cust["Customer_Name"], $cust["Customer_Email"], 
-                            $cust["Customer_Phone"], $cust["Customer_Password"], $cust["Customer_Date_Registered"]);
+                $sql->bind_param("s", $email);
+                $sql->execute();
+                $sql->bind_result($id, $name, $email, $phone, $password, $date);
+                $sql->fetch();
+                $customer= new Customer($id, $name, $email, $phone, $password, $date);
 
-                $get_result->free();
+                $sql->close();
                 $conn->close();
                 return $customer;
             }
@@ -186,14 +207,20 @@ class Database {
             $conn=$this->connect();
             $sql= "SELECT * FROM payments WHERE Payment_ID = ".$id;
             $get_result= $conn->query($sql) or die("Can't connect to the payments table");
-            $pay=$get_result->fetch_assoc();
+            if($get_result!=false)
+            {
+                $pay=$get_result->fetch_assoc();
                 $payment= new Payment($pay["Payment_ID"], $pay["Contractor_CO_Num"], $pay["Payment_Amount"], 
-                        $pay["Proposal_ID"], $pay["Payment_Status"], $pay["PAYMENT_DATE"]);
-      
-            return $payment;
-            $get_result->free();
-            $sql->close();
-            $conn->close();
+                            $pay["Proposal_ID"], $pay["Payment_Status"], $pay["PAYMENT_DATE"]);
+                $get_result->free();
+                $conn->close();
+                return $payment;
+                
+            }
+            else
+            {
+                return null;
+            }
         }
         
         //returns all the rows in the project table 
@@ -202,13 +229,19 @@ class Database {
             $conn=$this->connect();
             $sql= "SELECT * FROM project WHERE Project_ID = ".$id;
             $get_result= $conn->query($sql) or die("Can't connect to the project table");
-            $pro=$get_result->fetch_assoc();
-            $project= new Project($pro["Project_ID"], $pro["Customer_Email"], $pro["Project_Description"], $pro["Project_Budget"]);
-                
-            $get_result->free();
-            $sql->close();
-            $conn->close();
-            return $project;
+            if ($get_result!=false)
+            {
+                $pro=$get_result->fetch_assoc();
+                $project= new Project($pro["Project_ID"], $pro["Customer_Email"], $pro["Project_Description"], $pro["Project_Budget"]);
+
+                $get_result->free();
+                $conn->close();
+                return $project;
+            }
+            else
+            {
+                return null;
+            }
            
         }
         
@@ -218,12 +251,19 @@ class Database {
             $conn=$this->connect();
             $sql= "SELECT * FROM proposal WHERE Proposal_ID = ".$id;
             $get_result= $conn->query($sql) or die("Can't connect to the proposal table");
-            $prop=$get_result->fetch_assoc();
+            if($get_result!=false)
+            {
+                $prop=$get_result->fetch_assoc();
                 $proposal= new Proposal($prop["Proposal_ID"], $prop["Contractor_CO_Num"], $prop["Project_ID"], $prop["Project_Estimate"]);
-              
-            return $proposal;
-            $sql->close();
-            $conn->close();
+                
+                $sql->close();
+                $conn->close();
+                return $proposal;
+            }
+            else
+            {
+                return null;
+            }
         }
         
         //insert a record in the contractor table
@@ -336,7 +376,7 @@ class Database {
             $conn=$this->connect();
             $sql="DELETE FROM customer WHERE Customer_ID = ".$customer->get_id();
             $conn->query($sql) or die ("Can't connect to the customer table");
-             $conn->close();
+            $conn->close();
             
         }
         //delete a record based on ID from the payment table
@@ -345,7 +385,7 @@ class Database {
             $conn=$this->connect();
             $sql="DELETE FROM payments WHERE Payment_ID = ".$payment->get_id();
             $conn->query($sql) or die ("Can't connect to the payment table");
-             $conn->close();
+            $conn->close();
             
         }
         //delete a record based on ID from the project table
@@ -363,7 +403,7 @@ class Database {
             $conn=$this->connect();
             $sql="DELETE FROM project WHERE Proposal_ID = ".$proposal->get_id();
             $conn->query($sql) or die ("Can't connect to the proposal table");
-             $conn->close();
+            $conn->close();
             
         }
         
@@ -454,6 +494,25 @@ class Database {
             $stmt->close();
             $conn->close();
             
+        }
+        public function getCustomerProject($email)
+        {
+            $conn= $this->connect();
+            $sql="SELECT * FROM Project WHERE Customer_Email = '".$email."'";
+            $result=$conn->query($sql);
+             if ($get_result!=false)
+            {
+                $pro=$get_result->fetch_assoc();
+                $project= new Project($pro["Project_ID"], $pro["Customer_Email"], $pro["Project_Description"], $pro["Project_Budget"]);
+
+                $get_result->free();
+                $conn->close();
+                return $project;
+            }
+            else
+            {
+                return null;
+            }
         }
 }
         
