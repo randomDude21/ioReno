@@ -18,6 +18,31 @@ class Customer {
         $this->password=$pass;
         $this->date=$d;
     }
+     public function set_id($i)
+    {
+        $this->id=$i;
+    }
+    public function set_name($n)
+    {
+        $this->name=$n;
+    }
+    public function set_email($e)
+    {
+        $this->email=$e;
+    }
+    public function set_phone($p)
+    {
+        $this->phone=$p;
+    }
+    public function set_password($p)
+    {
+        $this->password=$p;
+    }
+    public function set_date($d)
+    {
+        $this->date=$d;
+    }
+    
     public function get_id()
     {
         return $this->id;

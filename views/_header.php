@@ -12,7 +12,7 @@
     </head>
     <body>
         <header>
- <nav class="navbar navbar-default">
+ <nav id="nav" class="navbar navbar-default">
       <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
@@ -23,10 +23,15 @@
             <span class="icon-bar"></span>
           </button>
             <a class="navbar-brand" href="index.php"><img src="../images/logo.PNG" alt="IOReno Logo" class="logo"></a>
-        </div>
+           
+        </div
     
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="navbar-collapse-2">
+             <?php 
+                if(isset($_SESSION["message"]))
+                    echo "<p>".$_COOKIE["message"]."</p>";
+            ?>
           <ul class="nav navbar-nav navbar-right">
             <li><a href="index.php">Home</a></li>
             <li><a href="about.php">About</a></li>
@@ -39,14 +44,14 @@
             </li>
           </ul>
           <div class="collapse nav navbar-nav nav-collapse slide-down" id="nav-collapse2">
-            <form class="navbar-form navbar-right form-inline" role="form">
+              <form class="navbar-form navbar-right form-inline" role="form" action="../php/login.php" method="post">
               <div class="form-group">
                 <label class="sr-only" for="Email">Email</label>
-                <input type="email" class="form-control" id="Email" placeholder="Email" autofocus required />
+                <input type="email" class="form-control" id="Email" name="Email" placeholder="Email" autofocus required />
               </div>
               <div class="form-group">
                 <label class="sr-only" for="Password">Password</label>
-                <input type="password" class="form-control" id="Password" placeholder="Password" required />
+                <input type="password" class="form-control" id="Password" name="Password" placeholder="Password" required />
               </div>
               <button type="submit" class="btn btn-success">Sign in</button>
             </form>

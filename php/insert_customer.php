@@ -3,6 +3,7 @@ require "..\\Classes\\Database.php";
 session_start();
 
 
+
 echo "HEY!";
 $name = $_POST["username"];
 $email = $_POST["email"];

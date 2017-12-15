@@ -1,6 +1,5 @@
 </div>
         <footer class="footer">
-            <hr>
             <a href="about.php">About</a>
             <a href="terms.php">Terms of Use</a>
             <a href="contact.php">Contact</a>
