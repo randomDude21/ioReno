@@ -8,7 +8,7 @@ echo "HEY!";
 $name = $_POST["username"];
 $email = $_POST["email"];
 $phone = $_POST["phone"];
-$password = sha1($_POST["password"]);
+$password = sha1($_POST["email"].$_POST["password"]);
 $date = date('Y-m-d', time());
 $nextUrl = '../views/customer_home.php';
 
