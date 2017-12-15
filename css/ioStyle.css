@@ -162,6 +162,13 @@ color: #FFF;
 font-size: 24px;
 }
 
+.alert, .alert-success, .alert-danger {
+    width: 50%;
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
 /*when screen is smaller than 480px*/
 @media only screen and (max-width:480px){
 #image_Home_customer{
@@ -188,5 +195,8 @@ font-size: 24px;
     margin: auto ;
     margin-top:30%;
 }
+
+.alert, .alert-success, .alert-danger {
+    width: 100%;
 
 }

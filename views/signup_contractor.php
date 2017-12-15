@@ -5,19 +5,34 @@ include("_header.php");
 
     <div class="container-fluid">
         <div class="panel panel-default">
-            <div class="panel-heading">Create an Account</div>
-            <form class="form-horizontal register-form" action='../php/insert_customer.php' id="registerCustForm" method="POST">
+            <div class="panel-heading">Register your Company</div>
+            <form class="form-horizontal register-form" action='../php/insert_contractor.php' id="registerCustForm" method="POST">
                 <fieldset>
                     <div class="control-group">
                         <!-- Username -->
-                        <label class="control-label"  for="username">Name</label>
+                        <label class="control-label"  for="username">Your name</label>
                         <div class="controls">
                             <input type="text" id="username" name="username" placeholder="" class="input-xlarge" required="required">
                             <span name="nameErr"><?php if (isset($_SESSION['nameErr'])) echo("{$_SESSION['nameErr']}"); $_SESSION['nameErr'] = ""; ?></span>
                             <p class="help-block">Please enter your full name</p>
                         </div>
                     </div>
-
+                    <div class="control-group">
+                        <!-- Username -->
+                        <label class="control-label"  for="companyName">Company name</label>
+                        <div class="controls">
+                            <input type="text" id="username" name="companyName" placeholder="" class="input-xlarge" required="required">                           
+                            <p class="help-block">Please enter your company's name</p>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <!-- Username -->
+                        <label class="control-label"  for="companyNumber">Company number</label>
+                        <div class="controls">
+                            <input type="text" id="username" name="companyNumber" placeholder="" class="input-xlarge" required="required">                           
+                            <p class="help-block">Please enter your company number (Quebec Entreprise Number)</p>
+                        </div>
+                    </div>
                     <div class="control-group">
                         <!-- E-mail -->
                         <label class="control-label" for="email">E-mail</label>
