@@ -23,10 +23,15 @@
             <span class="icon-bar"></span>
           </button>
             <a class="navbar-brand" href="index.php"><img src="../images/logo.PNG" alt="IOReno Logo" class="logo"></a>
-        </div>
+           
+        </div
     
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="navbar-collapse-2">
+             <?php 
+                if(isset($_SESSION["message"]))
+                    echo "<p>".$_COOKIE["message"]."</p>";
+            ?>
           <ul class="nav navbar-nav navbar-right">
             <li><a href="index.php">Home</a></li>
             <li><a href="about.php">About</a></li>

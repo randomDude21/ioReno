@@ -147,7 +147,7 @@ class Database {
         public function getCustomer($id)
         {
             $conn=$this->connect();
-            $sql= "SELECT * FROM customer WHERE Customer_ID = ".$id;
+            $sql= "SELECT * FROM Customer WHERE Customer_ID = ".$id;
             $get_result= $conn->query($sql) or die("Can't connect to the customer table");
             $cust=$get_result->fetch_assoc();
                 $customer= new Customer($cust["Customer_ID"], $cust["Customer_Name"], $cust["Customer_Email"], 
@@ -162,16 +162,22 @@ class Database {
         public function getCustomerE($email)
         {
             $conn=$this->connect();
-            $sql= "SELECT * FROM customer WHERE Customer_Email = ".$email;
-            $get_result= $conn->query($sql) or die("Can't connect to the customer table");
-            $cust=$get_result->fetch_assoc();
+            $sql= "SELECT * FROM Customer WHERE Customer_Email = '".$email."'";
+            $get_result= $conn->query($sql) or die ("Can't connect to the customer table");
+            if($get_result!=false)
+            {
+                $cust=$get_result->fetch_array();
                 $customer= new Customer($cust["Customer_ID"], $cust["Customer_Name"], $cust["Customer_Email"], 
-                        $cust["Customer_Phone"], $cust["Customer_Password"], $cust["Customer_Date_Registered"]);
-           
-              $get_result->free();
-            $sql->close();
-            $conn->close();
-            return $customer;
+                            $cust["Customer_Phone"], $cust["Customer_Password"], $cust["Customer_Date_Registered"]);
+
+                $get_result->free();
+                $conn->close();
+                return $customer;
+            }
+            else
+            {
+                return null;
+            }
         }
         
         //returns all the rows in the payments table 
@@ -197,12 +203,13 @@ class Database {
             $sql= "SELECT * FROM project WHERE Project_ID = ".$id;
             $get_result= $conn->query($sql) or die("Can't connect to the project table");
             $pro=$get_result->fetch_assoc();
-                $project= new Project($pro["Project_ID"], $pro["Customer_Email"], $pro["Project_Description"], $pro["Project_Budget"]);
-         
-            return $project;
+            $project= new Project($pro["Project_ID"], $pro["Customer_Email"], $pro["Project_Description"], $pro["Project_Budget"]);
+                
             $get_result->free();
             $sql->close();
             $conn->close();
+            return $project;
+           
         }
         
         //return all the rows in the proposal table
