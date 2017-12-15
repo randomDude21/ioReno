@@ -271,7 +271,7 @@ class Database {
         {
             $conn= $this->connect();
             $sql=$conn->prepare("INSERT INTO Contractor VALUES (?,?,?,?,?,?,?)");
-           
+        
             $coNum=$contractor->get_coNum();
             $coName=$contractor->get_coName();
             $phone=$contractor->get_phone();
@@ -281,8 +281,9 @@ class Database {
             $date=$contractor->get_date();
             $sql->bind_param("issssss", $coNum, $coName, $phone, $email, $name, $pass, $date);
             
-            $sql->execute();
-            
+            $status = $sql->execute();
+            if(!$status)
+                echo trigger_error ($sql->error, E_USER_ERROR);
             $sql->close();
             $conn->close();
         }
