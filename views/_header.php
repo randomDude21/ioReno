@@ -56,3 +56,4 @@
     </nav><!-- /.navbar -->
         </header>
         <div class="body_all">
+<?php session_start(); ?>
