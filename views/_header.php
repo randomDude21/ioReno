@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -28,10 +29,14 @@
     
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="navbar-collapse-2">
+            <span>
              <?php 
                 if(isset($_SESSION["message"]))
-                    echo "<p>".$_COOKIE["message"]."</p>";
+                {  
+                    echo ("{$_SESSION["message"]}");
+                }
             ?>
+            </span>
           <ul class="nav navbar-nav navbar-right">
             <li><a href="index.php">Home</a></li>
             <li><a href="about.php">About</a></li>
@@ -61,4 +66,3 @@
     </nav><!-- /.navbar -->
         </header>
         <div class="body_all">
-<?php session_start(); ?>
