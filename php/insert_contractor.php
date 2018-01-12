@@ -1,12 +1,22 @@
 <?php
 require "..\\Classes\\Database.php";
 session_start();
-
+$db = new Database();
 $name = $_POST["username"];
+$_SESSION["username"] = $name;
+
 $companyName = $_POST["companyName"];
+$_SESSION["compname"] = $companyName;
+
 $companyNumber = $_POST["companyNumber"];
+$_SESSION["compnum"] = $companyNumber;
+
 $email = $_POST["email"];
+$_SESSION["email"] = $email;
+
 $phone = $_POST["phone"];
+$_SESSION["phone"] = $phone;
+
 $password = sha1($_POST["password"]);
 $passwordConfirm = sha1($_POST["passwordConfirm"]);
 $passwordEmail = sha1($_POST["email"].$_POST["password"]);
@@ -16,9 +26,10 @@ $nextUrl = '../views/index.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (!is_numeric($companyNumber)) {
         $_SESSION['companyErr1'] = "Company number format is invalid (numbers only)";
+        
         $nextUrl = '../views/signup_contractor.php';
     }
-    if (in_array($companyNumber, getContractorsNum())){
+    if (in_array($companyNumber, $db->getContractorsNum())){
         $_SESSION['companyErr2'] = "Company with that number already exists";
         $nextUrl = '../views/signup_contractor.php';
     }
@@ -43,7 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 if ($nextUrl == '../views/index.php') {
     $contractor = new Contractor($companyNumber, $companyName, $phone, $email, $name, $passwordEmail, $date);
-    $db = new Database();
+    
     $db->insertContractor($contractor);
     $_SESSION["registerMessage"] = "Thank you for registering your company with IOReno!" . "<br>" .
                                     "We will review your information and send a notify you when you are approved.";

@@ -5,8 +5,14 @@ session_start();
 
 
 $name = $_POST["username"];
+$_SESSION["username"] = $name;
+
 $email = $_POST["email"];
+$_SESSION["email"] = $email;
+
 $phone = $_POST["phone"];
+$_SESSION["phone"] = $phone;
+
 $password = sha1($_POST["password"]);
 $passwordConfirm = sha1($_POST["passwordConfirm"]);
 $passwordEmail = sha1($_POST["email"].$_POST["password"]);

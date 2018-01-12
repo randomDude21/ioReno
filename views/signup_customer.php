@@ -12,7 +12,7 @@ include("_header.php");
                         <!-- Username -->
                         <label class="control-label"  for="username">Name</label>
                         <div class="controls">
-                            <input type="text" id="username" name="username" placeholder="" class="input-xlarge" required="required">
+                            <input type="text" id="username" name="username" placeholder="" class="input-xlarge" required="required" required="required" value="<?php if (isset($_SESSION['username'])) echo $_SESSION['username']; $_SESSION["username"] = null; ?>">
                             <span name="nameErr"><?php if (isset($_SESSION['nameErr'])) echo("{$_SESSION['nameErr']}"); $_SESSION['nameErr'] = ""; ?></span>
                             <p class="help-block">Please enter your full name</p>
                         </div>
@@ -22,7 +22,7 @@ include("_header.php");
                         <!-- E-mail -->
                         <label class="control-label" for="email">E-mail</label>
                         <div class="controls">
-                            <input type="text" id="email" name="email" placeholder="" class="input-xlarge" required="required">
+                            <input type="text" id="email" name="email" placeholder="" class="input-xlarge" required="required" value="<?php if (isset($_SESSION['email'])) echo $_SESSION['email']; $_SESSION["email"] = null; ?>">
                             <span name="nameErr"><?php if (isset($_SESSION['emailErr'])) echo("{$_SESSION['emailErr']}"); $_SESSION['emailErr'] = ""; ?></span>
                             <p class="help-block">Please provide your E-mail</p>
                         </div>
@@ -32,7 +32,7 @@ include("_header.php");
                         <!-- Phone -->
                         <label class="control-label" for="phone">Phone Number</label>
                         <div class="controls">
-                            <input type="tel" id="phone" name="phone" placeholder="" class="input-xlarge" required="required">
+                            <input type="tel" id="phone" name="phone" placeholder="" class="input-xlarge" required="required" value="<?php if (isset($_SESSION['phone'])) echo $_SESSION['phone']; $_SESSION["phone"] = null; ?>">
                             <span name="nameErr"><?php if (isset($_SESSION['phoneErr'])) echo("{$_SESSION['phoneErr']}"); $_SESSION['phoneErr'] = ""; ?></span>
                             <p class="help-block">Please provide your phone number</p>
                         </div>
