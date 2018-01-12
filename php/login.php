@@ -22,6 +22,7 @@ if($db->getCustomerE($_POST['Email'])!= null)
 }
 else if($db->getContractorE($_POST['Email'])!= null)
 {
+    echo 'post email is not null';
     $contractor=$db->getContractorE($_POST['Email']);
     if ($contractor->get_password()== sha1($_POST["Email"].$_POST['Password']))
     {
@@ -38,6 +39,6 @@ else if($db->getContractorE($_POST['Email'])!= null)
 else
 {
     $_SESSION["invalidLogin"]="Invalid login attempt";
-    header("location:../views/index.php");
+    //header("location:../views/index.php");
 }
 ?>

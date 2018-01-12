@@ -38,6 +38,21 @@ class Database {
             $conn->close();
             return $contractors;
         }
+        public function getContractorsNum()
+        {
+            $conn=$this->connect();
+            $sql= "SELECT Contractor_CO_Num FROM contractor";
+            $get_result= $conn->query($sql) or die("Can't connect to the contractor table");
+            $contractors=array();
+            while ($cons = $get_result->fetch_array())
+            {
+                
+                $contractors=$cons["Contractor_CO_Num"];
+            }
+            $get_result->free();
+            $conn->close();
+            return $contractors;
+        }
         
         //return all the rows in the customer table
         public function getCustomers()
@@ -154,6 +169,7 @@ class Database {
                 return null;
             }
         }
+        
         
         //return one row in the customer table
         public function getCustomer($id)
