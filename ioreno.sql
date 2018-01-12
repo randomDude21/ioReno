@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.2
--- http://www.phpmyadmin.net
+-- version 4.6.4
+-- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 15, 2017 at 05:36 PM
--- Server version: 5.7.9
--- PHP Version: 7.0.0
+-- Generation Time: Jan 12, 2018 at 06:21 PM
+-- Server version: 5.7.14
+-- PHP Version: 5.6.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -26,17 +26,15 @@ SET time_zone = "+00:00";
 -- Table structure for table `contractor`
 --
 
-DROP TABLE IF EXISTS `contractor`;
-CREATE TABLE IF NOT EXISTS `contractor` (
-  `Contractor_CO_Num` int(5) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `contractor` (
+  `Contractor_CO_Num` int(5) NOT NULL,
   `Contractor_CO_Name` varchar(40) NOT NULL,
-  `Contractor_Phone` varchar(12) NOT NULL,
+  `Contractor_Phone` varchar(10) NOT NULL,
   `Contractor_Email` varchar(30) NOT NULL,
   `Contractor_Contact_Name` varchar(30) NOT NULL,
   `Contractor_Password` varchar(40) NOT NULL,
-  `Contractor_Date_Registered` date NOT NULL,
-  PRIMARY KEY (`Contractor_CO_Num`)
-) ENGINE=MyISAM AUTO_INCREMENT=71 DEFAULT CHARSET=latin1;
+  `Contractor_Date_Registered` date NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `contractor`
@@ -59,24 +57,7 @@ INSERT INTO `contractor` (`Contractor_CO_Num`, `Contractor_CO_Name`, `Contractor
 (33, 'Sunruse Paiting', '5149396000', 'ben@sunrisepaint.ca', 'Ben Chalmers', '********', '2017-12-11'),
 (40, 'Cavallino Construction', '5146179770', 'nathan@cavallino.ca', 'Nathan Cavallino', '********', '2017-12-11'),
 (51, 'LY Construction Inc', '5148272628', 'leo@lyconstruction.ca', 'Leo Chong', '********', '2017-12-11'),
-(53, 'adsf', '512-221-5321', 'itsnickzomg@gmail.com', 'Pickle rick', '3da541559918a808c2402bba5012f6c60b27661c', '2017-12-15'),
-(54, 'af3a3fasd', '512-221-5321', 'itsnickzomg@gmail.com', 'Pickle rick', '3da541559918a808c2402bba5012f6c60b27661c', '2017-12-15'),
-(55, 'af3a3fasd', '512-221-5321', 'asdf@a.com', 'asdf', '3da541559918a808c2402bba5012f6c60b27661c', '2017-12-15'),
-(56, 'adsf', '512-221-5321', 'itsnickzomg@gmail.com', 'Pickle rick', '3da541559918a808c2402bba5012f6c60b27661c', '2017-12-15'),
-(57, 'adsf', '512-221-5321', 'itsnickzomg@gmail.com', 'Pickle rick', '3da541559918a808c2402bba5012f6c60b27661c', '2017-12-15'),
-(58, 'adsf', '512-221-5321', 'itsnickzomg@gmail.com', 'Pickle rick', '3da541559918a808c2402bba5012f6c60b27661c', '2017-12-15'),
-(59, 'adsf', '512-221-5321', 'itsnickzomg@gmail.com', 'asdf', '3da541559918a808c2402bba5012f6c60b27661c', '2017-12-15'),
-(60, 'adsf', '512-221-5321', 'itsnickzomg@gmail.com', 'Pickle rick', '3da541559918a808c2402bba5012f6c60b27661c', '2017-12-15'),
-(61, 'af3a3fasd', '512-221-5321', 'itsnickzomg@gmail.com', 'Pickle rick', '3da541559918a808c2402bba5012f6c60b27661c', '2017-12-15'),
-(62, 'adsf', '512-221-5321', 'itsnickzomg@gmail.com', 'Pickle rick', '3da541559918a808c2402bba5012f6c60b27661c', '2017-12-15'),
-(63, 'adsf', '512-221-5321', 'itsnickzomg@gmail.com', 'Pickle rick', '3da541559918a808c2402bba5012f6c60b27661c', '2017-12-15'),
-(64, 'adsf', '512-221-5321', 'itsnickzomg@gmail.com', 'asdf', '3da541559918a808c2402bba5012f6c60b27661c', '2017-12-15'),
-(65, 'asdfasd', '512-221-5321', 'itsnickzomg@gmail.com', 'Pickle rick', '3da541559918a808c2402bba5012f6c60b27661c', '2017-12-15'),
-(66, 'af3a3fasd', '512-221-5321', 'itsnickzomg@gmail.com', 'Pickle rick', '3da541559918a808c2402bba5012f6c60b27661c', '2017-12-15'),
-(67, 'adsf', '512-221-5321', 'itsnickzomg@gmail.com', 'asdf', '3da541559918a808c2402bba5012f6c60b27661c', '2017-12-15'),
-(68, 'af3a3fasd', '512-221-5321', 'itsnickzomg@gmail.com', 'Pickle rick', '3da541559918a808c2402bba5012f6c60b27661c', '2017-12-15'),
-(69, 'adsf', '512-221-5321', 'itsnickzomg@gmail.com', 'asdf', '3da541559918a808c2402bba5012f6c60b27661c', '2017-12-15'),
-(70, 'af3a3fasd', '512-221-5321', 'itsnickzomg@gmail.com', 'Pickle rick', '3da541559918a808c2402bba5012f6c60b27661c', '2017-12-15');
+(12345, ' Dunder Mifflin', '1234567890', 'mscott@dundermifflin.com', 'Michael Scott', '33a9e269dd782e92489a8e547b7ed582e0e1d42b', '2018-01-12');
 
 -- --------------------------------------------------------
 
@@ -84,16 +65,14 @@ INSERT INTO `contractor` (`Contractor_CO_Num`, `Contractor_CO_Name`, `Contractor
 -- Table structure for table `customer`
 --
 
-DROP TABLE IF EXISTS `customer`;
-CREATE TABLE IF NOT EXISTS `customer` (
-  `Customer_ID` int(5) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `customer` (
+  `Customer_ID` int(5) NOT NULL,
   `Customer_Name` varchar(40) NOT NULL,
-  `Customer_Email` varchar(30) NOT NULL,
+  `Customer_Email` varchar(60) NOT NULL,
   `Customer_Phone` varchar(30) DEFAULT NULL,
-  `Customer_Password` varchar(40) NOT NULL,
-  `Customer_Date_Registered` date NOT NULL,
-  PRIMARY KEY (`Customer_ID`)
-) ENGINE=MyISAM AUTO_INCREMENT=41 DEFAULT CHARSET=latin1;
+  `Customer_Password` varchar(60) NOT NULL,
+  `Customer_Date_Registered` date NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `customer`
@@ -115,29 +94,10 @@ INSERT INTO `customer` (`Customer_ID`, `Customer_Name`, `Customer_Email`, `Custo
 (13, 'Joey Minna', 'jminna@gmail.com', '5145584432', '********', '2017-12-11'),
 (14, 'Seymour Skinner', 'sskinner@gmail.com', '5143217896', '********', '2017-12-11'),
 (15, 'Lewis Hamilton', 'lhamilton@gmail.com', '5144443254', '********', '2017-12-11'),
-(18, 'asdfsadfasd', 'asdfasdf', 'sdafasdf', 'e615fea0972f6eccb870cfe67e146a8e21f3ee7d', '2017-12-13'),
-(19, 'f23f', 'asdf', 'asdf', '3da541559918a808c2402bba5012f6c60b27661c', '2017-12-13'),
-(20, 'asdf3412', 'f23f', 'asdf213', '05fffcffa13e50ab025dd683cfaf752405353b72', '2017-12-13'),
-(21, 'f23f', 'dasf1', 'asdf', '3da541559918a808c2402bba5012f6c60b27661c', '2017-12-13'),
-(22, 'f213f', 'asdf23', '3f23', '45c585f6ce309302d09dabba6ed8240372567dd0', '2017-12-13'),
-(23, 'f23', 'asdf', 'asdf', '3da541559918a808c2402bba5012f6c60b27661c', '2017-12-13'),
-(24, 'asdf223', 'asdf', 'asdf', '3da541559918a808c2402bba5012f6c60b27661c', '2017-12-13'),
-(25, 'dasf33', 'asdfasdf', 'asdf', '3da541559918a808c2402bba5012f6c60b27661c', '2017-12-13'),
-(26, 'f23f', 'asdf23', 'asdf', '3da541559918a808c2402bba5012f6c60b27661c', '2017-12-13'),
-(27, 'f23', 'awdf', 'asdf', '3da541559918a808c2402bba5012f6c60b27661c', '2017-12-13'),
-(28, '1222211', 'asdfasdf', 'asdf', '3da541559918a808c2402bba5012f6c60b27661c', '2017-12-13'),
-(29, 'dfasdf232', '2fsad', 'asdf', '3da541559918a808c2402bba5012f6c60b27661c', '2017-12-13'),
-(30, '3423', '2342', '2342', '0ec09ef9836da03f1add21e3ef607627e687e790', '2017-12-13'),
-(31, 'asdf324', '234', '234', '0ec09ef9836da03f1add21e3ef607627e687e790', '2017-12-13'),
-(32, 'asdf', 'asdf', 'asdf', '3da541559918a808c2402bba5012f6c60b27661c', '2017-12-13'),
-(33, 'NICKKKKKK', 'CNIASDLF', 'SADFK', '3da541559918a808c2402bba5012f6c60b27661c', '2017-12-13'),
-(34, '34r23', 'asdf23', 'asdf', '3da541559918a808c2402bba5012f6c60b27661c', '2017-12-15'),
-(35, 'asdf', 'asdf@a.com', 'asf', '3da541559918a808c2402bba5012f6c60b27661c', '2017-12-15'),
-(36, 'asdf', 'itsnickzomg@gmail.com', 'asdf', '3da541559918a808c2402bba5012f6c60b27661c', '2017-12-15'),
-(37, 'Pickle rick', 'itsnickzomg@gmail.com', '512-221-5321', '3da541559918a808c2402bba5012f6c60b27661c', '2017-12-15'),
-(38, 'asdf', 'itsnickzomg@gmail.com', 'asdf', '3da541559918a808c2402bba5012f6c60b27661c', '2017-12-15'),
-(39, 'Pickle rick', 'itsnickzomg@gmail.com', '512-221-5321', '3da541559918a808c2402bba5012f6c60b27661c', '2017-12-15'),
-(40, 'asdf', 'itsnickzomg@gmail.com', '512-221-5321', '3da541559918a808c2402bba5012f6c60b27661c', '2017-12-15');
+(16, 'ddd', 'ddd', 'ddd', '9c969ddf454079e3d439973bbab63ea6233e4087', '2017-12-13'),
+(17, 'ddd', 'ddd@d.d', 'ddd', '9c969ddf454079e3d439973bbab63ea6233e4087', '2017-12-13'),
+(18, 'aa', 'a@a.a', 'aa', '86f7e437faa5a7fce15d1ddcb9eaeaea377667b8', '2017-12-14'),
+(19, 'awq', 'asd@a.a', '555-145-1234', 'f10e2821bbbea527ea02200352313bc059445190', '2017-12-15');
 
 -- --------------------------------------------------------
 
@@ -145,18 +105,14 @@ INSERT INTO `customer` (`Customer_ID`, `Customer_Name`, `Customer_Email`, `Custo
 -- Table structure for table `payments`
 --
 
-DROP TABLE IF EXISTS `payments`;
-CREATE TABLE IF NOT EXISTS `payments` (
-  `Payment_ID` int(5) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `payments` (
+  `Payment_ID` int(5) NOT NULL,
   `Contractor_CO_Num` int(5) NOT NULL,
   `Payment_Amount` double NOT NULL,
   `Proposal_ID` int(5) NOT NULL,
   `Payment_Status` tinyint(1) DEFAULT NULL,
-  `PAYMENT_DATE` date NOT NULL,
-  PRIMARY KEY (`Payment_ID`),
-  KEY `Contractor_CO_Num` (`Contractor_CO_Num`),
-  KEY `Proposal_ID` (`Proposal_ID`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+  `PAYMENT_DATE` date NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `payments`
@@ -175,15 +131,12 @@ INSERT INTO `payments` (`Payment_ID`, `Contractor_CO_Num`, `Payment_Amount`, `Pr
 -- Table structure for table `project`
 --
 
-DROP TABLE IF EXISTS `project`;
-CREATE TABLE IF NOT EXISTS `project` (
-  `Project_ID` int(5) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `project` (
+  `Project_ID` int(5) NOT NULL,
   `Customer_Email` varchar(30) NOT NULL,
   `Project_Description` varchar(255) NOT NULL,
-  `Project_Budget` double(7,2) NOT NULL,
-  PRIMARY KEY (`Project_ID`),
-  KEY `Customer_Email` (`Customer_Email`)
-) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
+  `Project_Budget` double(7,2) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `project`
@@ -212,16 +165,12 @@ INSERT INTO `project` (`Project_ID`, `Customer_Email`, `Project_Description`, `P
 -- Table structure for table `proposal`
 --
 
-DROP TABLE IF EXISTS `proposal`;
-CREATE TABLE IF NOT EXISTS `proposal` (
-  `Proposal_ID` int(5) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `proposal` (
+  `Proposal_ID` int(5) NOT NULL,
   `Contractor_CO_Num` int(5) NOT NULL,
   `Project_ID` int(5) NOT NULL,
-  `Project_Estimate` double(7,2) NOT NULL,
-  PRIMARY KEY (`Proposal_ID`),
-  KEY `Contractor_CO_Num` (`Contractor_CO_Num`),
-  KEY `Project_ID` (`Project_ID`)
-) ENGINE=MyISAM AUTO_INCREMENT=36 DEFAULT CHARSET=latin1;
+  `Project_Estimate` double(7,2) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `proposal`
@@ -264,6 +213,74 @@ INSERT INTO `proposal` (`Proposal_ID`, `Contractor_CO_Num`, `Project_ID`, `Proje
 (34, 4, 4, 8250.00),
 (35, 5, 5, 9800.00);
 
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `contractor`
+--
+ALTER TABLE `contractor`
+  ADD PRIMARY KEY (`Contractor_CO_Num`);
+
+--
+-- Indexes for table `customer`
+--
+ALTER TABLE `customer`
+  ADD PRIMARY KEY (`Customer_ID`);
+
+--
+-- Indexes for table `payments`
+--
+ALTER TABLE `payments`
+  ADD PRIMARY KEY (`Payment_ID`),
+  ADD KEY `Contractor_CO_Num` (`Contractor_CO_Num`),
+  ADD KEY `Proposal_ID` (`Proposal_ID`);
+
+--
+-- Indexes for table `project`
+--
+ALTER TABLE `project`
+  ADD PRIMARY KEY (`Project_ID`),
+  ADD KEY `Customer_Email` (`Customer_Email`);
+
+--
+-- Indexes for table `proposal`
+--
+ALTER TABLE `proposal`
+  ADD PRIMARY KEY (`Proposal_ID`),
+  ADD KEY `Contractor_CO_Num` (`Contractor_CO_Num`),
+  ADD KEY `Project_ID` (`Project_ID`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `contractor`
+--
+ALTER TABLE `contractor`
+  MODIFY `Contractor_CO_Num` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12346;
+--
+-- AUTO_INCREMENT for table `customer`
+--
+ALTER TABLE `customer`
+  MODIFY `Customer_ID` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+--
+-- AUTO_INCREMENT for table `payments`
+--
+ALTER TABLE `payments`
+  MODIFY `Payment_ID` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+--
+-- AUTO_INCREMENT for table `project`
+--
+ALTER TABLE `project`
+  MODIFY `Project_ID` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+--
+-- AUTO_INCREMENT for table `proposal`
+--
+ALTER TABLE `proposal`
+  MODIFY `Proposal_ID` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
