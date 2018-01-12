@@ -11,7 +11,7 @@ $password = sha1($_POST["password"]);
 $passwordConfirm = sha1($_POST["passwordConfirm"]);
 $passwordEmail = sha1($_POST["email"].$_POST["password"]);
 $date = date('Y-m-d', time());
-$nextUrl = '../views/customer_home.php';
+$nextUrl = '../views/HomeCustomer.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (!preg_match("/^[a-zA-Z ]*$/",$name)) {
@@ -33,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     
 }
-if ($nextUrl == '../views/customer_home.php') {
+if ($nextUrl == '../views/HomeCustomer.php') {
     $customer = new Customer(0, $name, $email, $phone, $passwordEmail, $date);
     $db = new Database();
     $db->insertCustomer($customer);
