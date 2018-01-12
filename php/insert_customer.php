@@ -34,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
 }
 if ($nextUrl == '../views/customer_home.php') {
-    $customer = new Customer(0, $name, $email, $phone, $password, $date);
+    $customer = new Customer(0, $name, $email, $phone, $passwordEmail, $date);
     $db = new Database();
     $db->insertCustomer($customer);
     header('Location: ' . $nextUrl);

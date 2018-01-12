@@ -160,7 +160,7 @@ class Database {
                 $sql->fetch();
                 $contractor= new Contractor($coNum, $coName, $phone, $email, $name, $password, $date);
 
-                $sql->free();
+                $sql->close();
                 $conn->close();
                 return $contractor;
             }
@@ -205,11 +205,18 @@ class Database {
                 $sql->execute();
                 $sql->bind_result($id, $name, $email, $phone, $password, $date);
                 $sql->fetch();
-                $customer= new Customer($id, $name, $email, $phone, $password, $date);
-
-                $sql->close();
-                $conn->close();
-                return $customer;
+                if (empty($email))
+                {
+                    return null;
+                }
+                else
+                {
+                    $customer= new Customer($id, $name, $email, $phone, $password, $date);
+                    
+                    $sql->close();
+                    $conn->close();
+                    return $customer;
+                }
             }
             else
             {

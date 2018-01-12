@@ -9,6 +9,7 @@ $email = $_POST["email"];
 $phone = $_POST["phone"];
 $password = sha1($_POST["password"]);
 $passwordConfirm = sha1($_POST["passwordConfirm"]);
+$passwordEmail = sha1($_POST["email"].$_POST["password"]);
 $date = date('Y-m-d', time());
 $nextUrl = '../views/index.php';
 
@@ -32,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
 }
 if ($nextUrl == '../views/index.php') {
-    $contractor = new Contractor($companyNumber, $companyName, $phone, $email, $name, $password, $date);
+    $contractor = new Contractor($companyNumber, $companyName, $phone, $email, $name, $passwordEmail, $date);
     $db = new Database();
     $db->insertContractor($contractor);
     $_SESSION["registerMessage"] = "Thank you for registering your company with IOReno!" . "<br>" .
