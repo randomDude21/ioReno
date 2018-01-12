@@ -14,6 +14,15 @@ $date = date('Y-m-d', time());
 $nextUrl = '../views/index.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (!is_numeric($companyNumber)) {
+        $_SESSION['companyErr1'] = "Company number format is invalid (numbers only)";
+        $nextUrl = '../views/signup_contractor.php';
+    }
+    if (in_array($companyNumber, get_company_numbers())){
+        $_SESSION['companyErr2'] = "Company with that number already exists";
+        $nextUrl = '../views/signup_contractor.php';
+    }
+    
     if (!preg_match("/^[a-zA-Z ]*$/",$name)) {
         $_SESSION['nameErr'] = "Only letters and white space allowed"; 
         $nextUrl = '../views/signup_contractor.php';
