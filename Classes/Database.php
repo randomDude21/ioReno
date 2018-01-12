@@ -158,11 +158,18 @@ class Database {
                 $sql->execute();
                 $sql->bind_result($coNum, $coName, $phone, $email, $name, $password, $date);
                 $sql->fetch();
-                $contractor= new Contractor($coNum, $coName, $phone, $email, $name, $password, $date);
+                if (empty($email))
+                {
+                    return null;
+                }
+                else
+                {
+                    $contractor= new Contractor($coNum, $coName, $phone, $email, $name, $password, $date);
 
-                $sql->close();
-                $conn->close();
-                return $contractor;
+                    $sql->close();
+                    $conn->close();
+                    return $contractor;
+                }
             }
             else
             {
