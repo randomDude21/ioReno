@@ -44,10 +44,11 @@ class Database {
             $sql= "SELECT Contractor_CO_Num FROM contractor";
             $get_result= $conn->query($sql) or die("Can't connect to the contractor table");
             $contractors=array();
+            $i = 0;
             while ($cons = $get_result->fetch_array())
-            {
-                
-                $contractors=$cons["Contractor_CO_Num"];
+            {                
+                $contractors[$i] = $cons["Contractor_CO_Num"];
+                $i++;
             }
             $get_result->free();
             $conn->close();
