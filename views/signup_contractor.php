@@ -29,7 +29,9 @@ include("_header.php");
                         <!-- Username -->
                         <label class="control-label"  for="companyNumber">Company number</label>
                         <div class="controls">
-                            <input type="text" id="username" name="companyNumber" placeholder="" class="input-xlarge" required="required">                           
+                            <input type="text" id="username" name="companyNumber" placeholder="" class="input-xlarge" required="required">
+                            <span name="companyErr1"><?php if (isset($_SESSION['companyErr1'])) echo("{$_SESSION['companyErr1']}"); $_SESSION['companyErr1'] = ""; ?></span>
+                            <span name="companyErr2"><?php if (isset($_SESSION['companyErr2'])) echo("{$_SESSION['companyErr2']}"); $_SESSION['companyErr2'] = ""; ?></span>
                             <p class="help-block">Please enter your company number (Quebec Entreprise Number)</p>
                         </div>
                     </div>

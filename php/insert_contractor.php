@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['companyErr1'] = "Company number format is invalid (numbers only)";
         $nextUrl = '../views/signup_contractor.php';
     }
-    if (in_array($companyNumber, get_company_numbers())){
+    if (in_array($companyNumber, getContractorsNum())){
         $_SESSION['companyErr2'] = "Company with that number already exists";
         $nextUrl = '../views/signup_contractor.php';
     }
