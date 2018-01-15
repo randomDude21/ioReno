@@ -3,14 +3,20 @@
 class Project {
     private $id;
     private $email;
+    private $title;
     private $description;
     private $budget;
+    private $address;
+    private $images;
     
-    function __construct($i, $e, $d, $b) {
-        $this->id=$i;
-        $this->email=$e;
-        $this->description=$d;
-        $this->budget=$b;
+    function __construct($id, $email, $title, $description, $budget, $address, $images) {
+        $this->id = $id;
+        $this->email = $email;
+        $this->title = $title;
+        $this->description = $description;
+        $this->budget = $budget;
+        $this->address = $address;
+        $this->images = $images;
     }
     
     public function get_id()
@@ -29,6 +35,16 @@ class Project {
     {
         return $this->budget;
     }
-    
+    function getTitle() {
+        return $this->title;
+    }
+
+    function getImages() {
+        return $this->images;
+    }
+
+    function getAddress() {
+        return $this->address;
+    }
    }
 ?>

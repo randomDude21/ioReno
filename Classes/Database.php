@@ -364,15 +364,20 @@ class Database {
            public function insertProject(Project $project)
         {
             $conn= $this->connect();
-            $sql=$conn->prepare("INSERT INTO project VALUES (?,?,?,?)");
+            $sql=$conn->prepare("INSERT INTO project VALUES (?,?,?,?,?,?,?)");
             
             $id=$project->get_id();
             $email=$project->get_email();
             $description=$project->get_description();
+            $title= $project->getTitle();
+            $address = $project->getAddress();
+            $images = $project->getImages();
             $budget=$project->get_budget();
-            $sql->bind_param("issd", $id, $email, $description, $budget);
+            $sql->bind_param("issdssb", $id, $email, $description, $budget, $title, $address, $images);
             
-            $sql->execute();
+            $status=$sql->execute();
+            if(!$status)
+                echo trigger_error ($sql->error, E_USER_ERROR);
             
             $sql->close();
             $conn->close();
