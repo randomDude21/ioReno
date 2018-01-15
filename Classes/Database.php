@@ -531,15 +531,20 @@ class Database {
         {
             $conn= $this->connect();
             $sql="SELECT * FROM Project WHERE Customer_Email = '".$email."'";
-            $result=$conn->query($sql);
-             if ($get_result!=false)
+            $get_result=$conn->query($sql);
+            $projects=array();
+            if ($get_result)
             {
-                $pro=$get_result->fetch_assoc();
-                $project= new Project($pro["Project_ID"], $pro["Customer_Email"], $pro["Project_Description"], $pro["Project_Budget"]);
-
+                $i=0;
+                while ($pro = $get_result->fetch_array())
+                {
+                    $project= new Project($pro["Project_ID"], $pro["Customer_Email"], $pro["Project_Description"], $pro["Project_Budget"]);
+                    $projects[$i]=$project;
+                    $i++;
+                }
                 $get_result->free();
                 $conn->close();
-                return $project;
+                return $projects;
             }
             else
             {

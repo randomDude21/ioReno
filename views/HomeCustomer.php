@@ -63,9 +63,33 @@ require "../Classes/Database.php";
             </nav><!-- /.navbar -->
         </header>
         <div class="body_all">
-            <div style="margin-top: 30px; margin-left: 45px">
+            <div style="margin-top: 40px; margin-left: 65px">
                 <a href="createProject.php" class="btn btn-primary" role="button"><strong>Create a new project</strong></a>
            </div>
+            <div style="margin-top: 50px; margin-left: 65px">
+                Your projects:<br>
+                <table>
+                <?php
+                     
+                     $projects=$db->getCustomerProject($customer->get_email());
+                     if($projects!=null)
+                     {
+                        foreach ($projects as $pro)
+                        {
+                            echo '<tr><td>'.$pro->get_description().'</td><td>'.$pro->get_budget().'</td>'
+                                    . '<td><a href="seeEstimates.php" class="btn btn-info" role="button"><strong>See estimates</strong></a>'
+                                    . '<td><a href="editProject.php" class="btn btn-info" role="button"><strong>Edit</strong></a>'
+                                    . '<td><a href="deleteProject.php" class="btn btn-danger" role="button"><strong>Delete</strong></a></td>'
+                                    . '</tr>';
+                        }
+                     }
+                     else
+                     {
+                         echo "You don't have any project yet";
+                     }
+                ?>
+                </table>
+            </div>
 <?php
     include("_footer.php");
 ?>
