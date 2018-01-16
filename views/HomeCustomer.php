@@ -87,7 +87,7 @@ require "../Classes/Database.php";
                             echo '<tr><td>'.$pro->get_description().'</td><td>'.$pro->get_budget().'</td>'
                                     . '<td><a href="seeEstimates.php?id='.$pro->get_id().'"" class="btn btn-info" role="button"><strong>See estimates</strong></a>'
                                     . '<td><a href="editProject.php?id='.$pro->get_id().'" class="btn btn-info" role="button"><strong>Edit</strong></a>'
-                                    . '<td><a href="deleteProject.php?id='.$pro->get_id().'"" class="btn btn-danger" role="button"><strong>Delete</strong></a></td>'
+                                    . '<td><form><a href="../php/deleteProject.php?id='.$pro->get_id().'"" class="btn btn-danger" role="button"><strong>Delete</strong></a></td>'
                                     . '</tr>';
                         }
                      }
@@ -95,9 +95,9 @@ require "../Classes/Database.php";
                      {
                          echo "You don't have any project yet";
                      }
+                     
                 ?>
                 </table>
             </div>
 <?php
     include("_footer.php");
-?>
