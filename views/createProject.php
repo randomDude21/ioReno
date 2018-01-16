@@ -10,7 +10,7 @@
     <div class="panel panel-default">
         <div class="panel-heading"><h1>Post a Project</h1></div>
         <div class="panel-body">
-            <form class="form-horizontal register-form" action='../php/insert_project.php' id="registerCustForm" method="POST">
+            <form class="form-horizontal register-form" action='../php/insert_project.php' id="registerCustForm" method="POST" enctype="multipart/form-data">
                 <fieldset>
                     <div class="control-group">
                         <!-- Username -->
@@ -54,7 +54,7 @@
                     <div class="control-group">
                         <label class="control-label" for="images">Images</label>
                         <div class="custom-file">
-                            <input type="file" name="files[]" class="custom-file-input" id="customFile" multiple="multiple">
+                            <input type="file" name="image" class="custom-file-input" id="image">
                             <p class="help-block">Select images to upload</p>
                         </div>
                     </div>
