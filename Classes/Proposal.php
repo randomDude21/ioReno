@@ -18,15 +18,15 @@ class Proposal {
     }
     public function get_coNum()
     {
-        $this->coNum;
+        return $this->coNum;
     }
     public function get_project()
     {
-        $this->project;
+        return $this->project;
     }
     public function get_estimate()
     {
-        $this->estimate;
+        return $this->estimate;
     }
 }
 ?>
