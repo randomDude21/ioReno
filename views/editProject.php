@@ -64,7 +64,6 @@ require "../Classes/Database.php";
         </header>
         <div class="body_all">
             <div style="margin-top: 40px; margin-left: 65px">
-                <a href="createProject.php" class="btn btn-primary" role="button"><strong>Create a new project</strong></a>
            </div>
             <div style="margin-top: 50px; margin-left: 65px">
                   <?php
@@ -83,8 +82,8 @@ require "../Classes/Database.php";
                          if($project!=null)
                          {
 
-                                echo '<tr><td>Project Description</td><td><input type="text" id="desc" value="'.$project->get_description().'"></td></tr>'
-                                        . '<tr><td>Project budget</td><td><input type="text" id="budget" value="'.$project->get_budget().'"></td></tr>';
+                                echo '<tr><td>Project Description</td><td><input type="text" name="desc" value="'.$project->get_description().'"></td></tr>'
+                                        . '<tr><td>Project budget</td><td><input type="text" name="budget" value="'.$project->get_budget().'"></td></tr>';
 
                          }
                          else
@@ -94,7 +93,11 @@ require "../Classes/Database.php";
                          $_SESSION['project']=$project->get_id();
                     ?>
                     </table>
-                    <button type="submit" value="Confirm Changes"/>
+                    <div style="margin-top: 20px">
+                        <a href="HomeCustomer.php" class="btn btn-danger" role="button"><strong>Go back</strong></a>
+
+                        <input type="submit" class="btn btn-success" value="Confirm Changes"/>
+                    </div>
                 </form>
             </div>
 <?php

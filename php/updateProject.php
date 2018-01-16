@@ -24,6 +24,7 @@ if($flag)
 }
 else
 {
-    header("location:../views/editProject.php");
+    
+    header("location:../views/editProject.php?id=".$project->get_id());
 }
 ?>
