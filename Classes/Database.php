@@ -129,7 +129,7 @@ class Database {
         public function getContractor($coNum)
         {
             $conn=$this->connect();
-            $sql= "SELECT * FROM contractor WHERE Contractor_CO_Num = ".$coNum;
+            $sql= "SELECT * FROM Contractor WHERE Contractor_CO_Num = ".$coNum;
             $get_result= $conn->query($sql) or die("Can't connect to the contractor table");
             if($get_result!=false)
             {
@@ -545,6 +545,30 @@ class Database {
                 $get_result->free();
                 $conn->close();
                 return $projects;
+            }
+            else
+            {
+                return null;
+            }
+        }
+          public function getProjectProposals($id)
+        {
+            $conn= $this->connect();
+            $sql="SELECT * FROM Proposal WHERE Project_ID = '".$id."'";
+            $get_result=$conn->query($sql);
+            $proposals=array();
+            if ($get_result)
+            {
+                $i=0;
+                while ($pro = $get_result->fetch_array())
+                {
+                    $proposal= new Proposal($pro["Proposal_ID"], $pro["Contractor_CO_Num"], $pro["Project_ID"], $pro["Project_Estimate"]);
+                    $proposals[$i]=$proposal;
+                    $i++;
+                }
+                $get_result->free();
+                $conn->close();
+                return $proposals;
             }
             else
             {
