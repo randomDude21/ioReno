@@ -505,7 +505,7 @@ class Database {
             $description=$project->get_description();
             $budget=$project->get_budget();
             
-            $stmt->bind_param('issd', $email, $description, $budget, $id);
+            $stmt->bind_param('ssdi', $email, $description, $budget, $id);
             $stmt->execute();
             $stmt->close();
             $conn->close();
@@ -521,7 +521,7 @@ class Database {
             $project=$proposal->get_project();
             $estimate=$proposal->get_estimate();
             
-            $stmt->bind_param('issd', $coNum, $project, $estimate, $id);
+            $stmt->bind_param('iidi', $coNum, $project, $estimate, $id);
             $stmt->execute();
             $stmt->close();
             $conn->close();

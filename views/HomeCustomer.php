@@ -67,6 +67,14 @@ require "../Classes/Database.php";
                 <a href="createProject.php" class="btn btn-primary" role="button"><strong>Create a new project</strong></a>
            </div>
             <div style="margin-top: 50px; margin-left: 65px">
+                <?php
+                 if (isset($_SESSION["update"])) {
+                        echo "<div class=\"alert alert-success text-center\">" .
+                        "<strong>Success! </strong>" . $_SESSION["update"] .
+                        "</div>";
+                        $_SESSION["update"] = null;
+                    }
+                    ?>
                 Your projects:<br>
                 <table>
                 <?php
@@ -78,7 +86,7 @@ require "../Classes/Database.php";
                         {
                             echo '<tr><td>'.$pro->get_description().'</td><td>'.$pro->get_budget().'</td>'
                                     . '<td><a href="seeEstimates.php" class="btn btn-info" role="button"><strong>See estimates</strong></a>'
-                                    . '<td><a href="editProject.php" class="btn btn-info" role="button"><strong>Edit</strong></a>'
+                                    . '<td><a href="editProject.php?id='.$pro->get_id().'" class="btn btn-info" role="button"><strong>Edit</strong></a>'
                                     . '<td><a href="deleteProject.php" class="btn btn-danger" role="button"><strong>Delete</strong></a></td>'
                                     . '</tr>';
                         }
