@@ -504,7 +504,7 @@ class Database {
         {
             $conn=$this->connect();
             $stmt=$conn->prepare("UPDATE project SET Customer_Email = ?, Project_Description = ?, "
-                    . "Project_Budget = ?, title = ?, address = ?, images = ?, WHERE Project_ID = ?");
+                    . "Project_Budget = ?, title = ?, address = ?, images = ? WHERE Project_ID = ?");
             $id=$project->get_id();
             $email=$project->get_email();
             $description=$project->get_description();

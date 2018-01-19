@@ -82,7 +82,9 @@ require "../Classes/Database.php";
                          if($project!=null)
                          {
 
-                                echo '<tr><td>Project Description</td><td><input type="text" name="desc" value="'.$project->get_description().'"></td></tr>'
+                                echo '<tr><td>Project Title</td><td><input type="text" name="title" value="'.$project->getTitle().'"></td></tr>'
+                                        . '<tr><td>Project Description</td><td><textarea class="form-control" name="desc">'.$project->get_description().'</textarea></td></tr>'
+                                        . '<tr><td>Address</td><td><input type="text" name="address" value="'.$project->getAddress().'"></td></tr>'
                                         . '<tr><td>Project budget</td><td><input type="text" name="budget" value="'.$project->get_budget().'"></td></tr>';
 
                          }
