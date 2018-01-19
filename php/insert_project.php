@@ -2,12 +2,28 @@
 
 require "..\\Classes\\Database.php";
 session_start();
+$nextUrl = "../views/HomeCustomer.php";
 
 $title = $_POST["title"];
+$_SESSION["title"] = $title;
+
 $budget = $_POST["budget"];
+$_SESSION["budget"] = $budget;
+
 $description = $_POST["description"];
+$_SESSION["description"] = $description;
+
 $address = $_POST["address"];
+$_SESSION["address"] = $address;
+
 $email = $_SESSION["customer"]; //get email from session login;
+
+
+if (!is_numeric($budget)) {
+    $_SESSION["budgetErr"] = "Budget is not numeric";
+    $nextUrl = "../views/createProject.php";
+}
+
 
 $extension = array("jpeg", "jpg", "png", "gif");
 $image = $_FILES["image"]["name"];
@@ -24,7 +40,6 @@ if (isset($FILES["image"])) {
         echo "file is not an image!";
         $uploadOk = 0;
     }
-    
 }
 if ($_FILES["image"]["size"] > 500000) {
     echo "File size too large";

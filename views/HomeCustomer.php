@@ -1,11 +1,16 @@
 <?php
+    if (!isset($_SESSION["login"])) {
+        header("location: index.php");
+    }
+    include("_header.php");
     if (isset($_SESSION["update"])) {
         echo "<div class=\"alert alert-success text-center\">" .
         "<strong>Success! </strong>" . $_SESSION["update"] .
         "</div>";
         $_SESSION["update"] = null;
     }
-    include("_header.php");
+    
+    
         ?>
     <h1>Your projects:</h1><br>
     <div class="row">

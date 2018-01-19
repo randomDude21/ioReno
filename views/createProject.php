@@ -1,8 +1,9 @@
 <?php
-    include("_header.php");
     if (!$_SESSION["login"]){
         header("Location: index.php");
     }
+    include("_header.php");
+    
 ?>
 
 <div class="container-fluid">
@@ -26,7 +27,8 @@
                         <div class="controls">
                             <div class="input-group"> 
                                 <span class="input-group-addon">$</span>
-                                <input type="number" name="budget" value="1000" min="0" step="1" data-number-to-fixed="2" data-number-stepfactor="100" class="form-control currency" id="budget" />
+                                <input type="number" name="budget" value="<?php if (isset($_SESSION['budget'])) echo $_SESSION['budget']; $_SESSION["budget"] = null; ?>" min="0" step="1" data-number-to-fixed="2" data-number-stepfactor="100" class="form-control currency" id="budget" />
+                                <span name="nameErr"><?php if (isset($_SESSION['budgetErr'])) echo("{$_SESSION['budgetErr']}"); $_SESSION['budgetErr'] = ""; ?></span>
                             </div> 
 
                             <p class="help-block">Enter your budget for the project</p>
@@ -37,7 +39,7 @@
                         <!-- E-mail -->
                         <label class="control-label" for="description">Project Description</label>
                         <div class="controls">
-                            <textarea class="form-control" name="description" rows="5" id="description"></textarea>
+                            <textarea class="form-control" required="required" name="description" rows="5" id="description"><?php if (isset($_SESSION['budget'])) echo $_SESSION['budget']; $_SESSION["budget"] = null; ?></textarea>
                             <p class="help-block">Describe your project, provide as many details as possible</p>
                         </div>
                     </div>
