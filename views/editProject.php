@@ -1,4 +1,7 @@
 <?php session_start(); 
+if (!$_SESSION["login"]){
+        header("Location: index.php");
+    }
 require "../Classes/Database.php";
     if (!$_SESSION["login"])
     {
