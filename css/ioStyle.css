@@ -36,6 +36,15 @@
 
 /*---------------------------*/
 
+.shadow_fade {
+  transition: box-shadow .3s;
+  border: 1px solid #ccc;
+  background: #fff;
+}
+.shadow_fade:hover {
+  box-shadow: 0 0 150px rgba(33,33,33,.2); 
+}
+
 
 .logo {
     height: 37px;
@@ -50,6 +59,11 @@
     border-radius: 5px;
     margin: auto ;
     margin-top:50%;
+    margin-bottom: 50%;
+}
+
+.main-infobox h2{
+    font-size: 19px;
 }
 
 a.navbar-brand {
@@ -60,26 +74,32 @@ a.navbar-brand {
     margin-bottom: 0px;
 }
 
+.filler_bottom{
+    padding-bottom: 20%;
+}
+
 /* make body 100% of the webpage */
 html,body{
-    height:100%;
-    width:100%;
+    min-height:100%;
+    min-width:100%;
     margin:0px;
 }
 
 .body_all{
-    height:100%;
-    width:100%;
+    min-height:100%;
+    min-width:100%;
 }
 /* ------------------------------- */
 
 /* footer  css */
 
+.body_all h1{
+    border-bottom: 1px solid #eee;
+}
+
 .footer {
     background-color: #424242;
     text-align: center;
-    height:120px;
-    position: relative;
 }
 
 footer a{
@@ -169,8 +189,9 @@ font-size: 24px;
     margin-bottom: 10px;
 }
 
-/*when screen is smaller than 480px*/
+/*----------------------------------when screen is smaller than 480px--------------------------------*/
 @media only screen and (max-width:480px){
+    
 #image_Home_customer{
     background-image: url("../images/reno1.jpg");
     background-color: rgba(255,255,255,0.6);
@@ -180,6 +201,17 @@ font-size: 24px;
     height: 50%; /*turn to auto to be responsive(mobile)*/
 }
 
+    #image_Home_customer h2 {
+        margin-top:3%;
+        font-size: 94%;
+    }
+    
+    
+    #image_Home_contractor h2 {
+        margin-top:3%;
+        font-size: 94%;
+    }
+    
 #image_Home_contractor{
     background-image: url("../images/reno2.jpg");
     background-color: rgba(255,255,255,0.6);
@@ -194,6 +226,7 @@ font-size: 24px;
     border-radius: 5px;
     margin: auto ;
     margin-top:30%;
+    margin-bottom:30%;
 }
 
 .alert, .alert-success, .alert-danger {

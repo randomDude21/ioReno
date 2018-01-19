@@ -4,73 +4,85 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        
+        <!-- Bootstrap -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+        <!-- Bootstrap -->
+        
+        <!-- Own stylesheet -->
         <link href="../css/ioStyle.css" rel="stylesheet" type="text/css"/>
-        <script src="../js/gen_validatorv4.js" type="text/javascript"></script>
+        <!-- Own Stylesheet -->
+        
         <title>IOReno</title>
     </head>
-    <body>
+    <body class="container-fluid"  style="padding:0px;margin:0px;">
         <header>
-            <nav id="nav" class="navbar navbar-default">
-                <div class="container">
-                    <!-- Brand and toggle get grouped for better mobile display -->
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-2">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        <a class="navbar-brand" href="index.php"><img src="../images/logo.PNG" alt="IOReno Logo" class="logo"></a>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
+<nav class="navbar navbar-expand-xl navbar-light bg-light">
+  <a class="navbar-brand" href="index.php"><img src="../images/logo.PNG" alt="IOReno" class="logo"></a>
+    <?php
+            if (isset($_SESSION["registerMessage"])) {
+                echo "<div style=\"margin-left:10px;margin-right:10px;margin-top:0;margin-bottom:0;width:150px;\" class=\"alert alert-success text-center\">" .
+                "<strong>Success! </strong>" . $_SESSION["registerMessage"] .
+                "</div>";
+                $_SESSION["registerMessage"] = null;
+            }
+            if (isset($_SESSION["invalidLogin"])) {
+                echo "<div style=\"margin-left:10px;margin-right:10px;margin-top:0;margin-bottom:0;width:150px;\" class=\"alert alert-danger text-center\">" .
+                "<strong>Error! </strong>" . $_SESSION["invalidLogin"] .
+                "</div>";
+                $_SESSION["invalidLogin"] = null;
+            }
+        ?>
+  <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
-                    </div
-
-                    <!-- Collect the nav links, forms, and other content for toggling -->
-                    <div class="collapse navbar-collapse" id="navbar-collapse-2">
-
-                        <ul class="nav navbar-nav navbar-right">
-                            <li><a href="index.php">Home</a></li>
-                            <li><a href="about.php">About</a></li>
-                            <li><a href="#">Services</a></li>
-
-                            <li><a href="contact.php">Contact</a></li>
-
-                            <li>
-                                <a class="btn btn-default btn-outline btn-circle collapsed"  data-toggle="collapse" href="#nav-collapse2" aria-expanded="false" aria-controls="nav-collapse2">Sign in</a>
-                            </li>
-                        </ul>
-                        <div class="collapse nav navbar-nav nav-collapse slide-down" id="nav-collapse2">
-                            <form class="navbar-form navbar-right form-inline" role="form" action="../php/login.php" method="post">
-                                <div class="form-group">
-                                    <label class="sr-only" for="Email">Email</label>
-                                    <input type="email" class="form-control" id="Email" name="Email" placeholder="Email" autofocus required />
-                                </div>
-                                <div class="form-group">
-                                    <label class="sr-only" for="Password">Password</label>
-                                    <input type="password" class="form-control" id="Password" name="Password" placeholder="Password" required />
-                                </div>
-                                <button type="submit" class="btn btn-success">Sign in</button>
-                            </form>
-
-                        </div>
-                    </div><!-- /.navbar-collapse -->
-                    <?php
-                    if (isset($_SESSION["registerMessage"])) {
-                        echo "<div class=\"alert alert-success text-center\">" .
-                        "<strong>Success! </strong>" . $_SESSION["registerMessage"] .
-                        "</div>";
-                        $_SESSION["registerMessage"] = null;
-                    }
-                    if (isset($_SESSION["invalidLogin"])) {
-                        echo "<div class=\"alert alert-danger text-center\">" .
-                        "<strong>Error! </strong>" . $_SESSION["invalidLogin"] .
-                        "</div>";
-                        $_SESSION["invalidLogin"] = null;
-                    }
-                    ?>
-                </div><!-- /.container -->
-            </nav><!-- /.navbar -->
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="about.php">About</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Services</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="contact.php">Contact</a>
+      </li>
+<!--
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Dropdown
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li>
+-->
+    </ul>
+      
+    <form class="form-inline my-2 my-lg-0" role="form" action="../php/login.php" method="post">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">@</span>
+          </div>
+          <input style="margin-right: 20px;" type="text" class="form-control" id="Email" name="Email" placeholder="Email" aria-label="Email" aria-describedby="basic-addon1" required>
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">***</span>
+          </div>
+          <input style="margin-right: 20px;" class="form-control" type="password" id="Password" name="Password" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1" required>
+        </div>
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Sign In</button>
+    </form>
+  </div>
+</nav>
         </header>
-        <div class="body_all">
+        <div class="body_all container-fluid" style="padding:0px;margin:0px;">
