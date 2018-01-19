@@ -60,10 +60,7 @@ include("_header.php");
             </form>    
     </div>
 </div>
-<?php
-var_dump($_SESSION['password']);
-var_dump($_SESSION['passwordConfirm']);
-?>
+
 <?php
 include("_footer.php");
 ?>
