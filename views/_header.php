@@ -1,14 +1,11 @@
 <?php session_start();
 require "../Classes/Database.php";
-    if (!$_SESSION["login"])
-    {
-        header("location:../views/index.php");
-    }
     if (isset($_SESSION["customer"]))
     {
         $db=new Database();
         $customer=$db->getCustomerE($_SESSION["customer"]);
     }
+    
 ?>
 <!DOCTYPE html>
 <html>
@@ -70,7 +67,7 @@ require "../Classes/Database.php";
                         <li class="nav-item">
                             <a class="nav-link" href="contact.php">Contact</a>
                         </li>
-                    <?php if($customer!=NULL){
+                    <?php if(isset($customer)){
                     ?>
                         <li>
                             <a href="HomeCustomer.php"><strong>Welcome,  
