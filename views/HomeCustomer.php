@@ -95,7 +95,7 @@ require "../Classes/Database.php";
                             <div class="card shadow_fade" style="width: 18rem; margin:10px">
                               <img class="card-img-top" src="../images/gt.jpg" alt="Card image cap">
                               <div class="card-body">
-                                <h5 class="card-title"><?php echo $pro->get_budget()?></h5>
+                                  <h5 class="card-title"><?php echo $pro->get_budget(); echo $pro->get_id()?></h5>
                                 <p class="card-text"><?php echo $pro->get_description()?></p>
                                 <ul class="list-group list-group-flush">
                                     <li class="list-group-item">
@@ -103,14 +103,14 @@ require "../Classes/Database.php";
                                         <a href="<?php echo '../php/editProject.php?id='.$pro->get_id()?>" class="btn btn-warning btn-sm">Edit</a>    
                                     </li>
                                     <li class="list-group-item">
-                                        <a href="" class="btn btn-danger btn-sm btn-block" data-toggle="modal" data-target="#deleteConfirmation">Delete</a>
+                                        <a href="" class="btn btn-danger btn-sm btn-block" data-toggle="modal" data-target="#deleteConfirmation<?php echo $pro->get_id(); ?>">Delete</a>
                                     </li>
                                 </ul>
                                 
                               </div>
                             </div>
                                 <!-- Modal -->
-                            <div class="modal fade" id="deleteConfirmation" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                <div class="modal fade" id="deleteConfirmation<?php echo $pro->get_id() ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                               <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                   <div class="modal-header">
@@ -120,11 +120,11 @@ require "../Classes/Database.php";
                                     </button>
                                   </div>
                                   <div class="modal-body">
-                                    Once you delete your project you cannot retrieve it ever again.
+                                    Once you delete your project you cannot retrieve it ever again. <?php echo $pro->get_id() ?>
                                   </div>
                                   <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                    <a href="<?php echo '../php/deleteProject.php?id='.$pro->get_id()?>" class="btn btn-primary">Delete</a>
+                                    <a href="<?php echo '../php/deleteProject.php?id='.$pro->get_id();?>" class="btn btn-primary">Delete</a>
                                   </div>
                                 </div>
                               </div>

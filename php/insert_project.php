@@ -7,7 +7,7 @@ $title = $_POST["title"];
 $budget = $_POST["budget"];
 $description = $_POST["description"];
 $address = $_POST["address"];
-$email = "test"; //get email from session login;
+$email = $_SESSION["customer"]; //get email from session login;
 
 $extension = array("jpeg", "jpg", "png", "gif");
 $image = $_FILES["image"]["name"];
