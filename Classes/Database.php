@@ -263,7 +263,7 @@ class Database {
             if ($get_result!=false)
             {
                 $pro=$get_result->fetch_assoc();
-                $project= new Project($pro["Project_ID"], $pro["Customer_Email"], $pro["Project_Description"], $pro["Project_Budget"]);
+                $project= new Project($pro["Project_ID"], $pro["Customer_Email"], $pro["title"], $pro["Project_Description"], $pro["Project_Budget"], $pro["address"], $pro["images"]);
 
                 $get_result->free();
                 $conn->close();
@@ -546,7 +546,7 @@ class Database {
                 $i=0;
                 while ($pro = $get_result->fetch_array())
                 {
-                    $project= new Project($pro["Project_ID"], $pro["Customer_Email"], $pro["Project_Description"], $pro["Project_Budget"]);
+                    $project= new Project($pro["Project_ID"], $pro["Customer_Email"], $pro["title"], $pro["Project_Description"], $pro["Project_Budget"], $pro["address"], $pro["images"]);
                     $projects[$i]=$project;
                     $i++;
                 }
