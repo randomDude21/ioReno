@@ -95,12 +95,12 @@ require "../Classes/Database.php";
                             <div class="card shadow_fade" style="width: 18rem; margin:10px">
                               <img class="card-img-top" src="../images/gt.jpg" alt="Card image cap">
                               <div class="card-body">
-                                <h5 class="card-title"><?php echo $pro->get_budget()?></h5>
-                                <p class="card-text"><?php echo $pro->get_description()?></p>
+                                <h5 class="card-title"><?php echo $pro->getTitle()?></h5>
+                                <p class="card-text"><?php echo $pro->get_budget()."$"?></p>
                                 <ul class="list-group list-group-flush">
                                     <li class="list-group-item">
-                                        <a href="<?php echo '../php/seeEstimates.php?id='.$pro->get_id()?>" class="btn btn-primary btn-sm">See Estimates</a>
-                                        <a href="<?php echo '../php/editProject.php?id='.$pro->get_id()?>" class="btn btn-warning btn-sm">Edit</a>    
+                                        <a href="<?php echo '../views/seeEstimates.php?id='.$pro->get_id()?>" class="btn btn-primary btn-sm">See Estimates</a>
+                                        <a href="<?php echo '../views/editProject.php?id='.$pro->get_id()?>" class="btn btn-warning btn-sm">Edit</a>    
                                     </li>
                                     <li class="list-group-item">
                                         <a href="" class="btn btn-danger btn-sm btn-block" data-toggle="modal" data-target="#deleteConfirmation">Delete</a>
