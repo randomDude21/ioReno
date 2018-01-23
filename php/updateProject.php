@@ -17,7 +17,7 @@ if (empty($_POST['desc']))
 }
 if($flag)
 {
-    $pro=new Project($project->get_id(),$project->get_email(), $_POST['desc'], $_POST['budget']);
+    $pro=new Project($project->get_id(),$project->get_email(),$_POST['title'], $_POST['desc'], $_POST['budget'], $_POST['address'], null);
     $db->updateProject($pro);
     $_SESSION['update']='Your project has been succesfully updated';
     header("location: ../views/HomeCustomer.php" );
