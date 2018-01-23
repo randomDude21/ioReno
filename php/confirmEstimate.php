@@ -5,7 +5,6 @@ $db=new Database();
 $contractor=$db->getContractorE($_SESSION['contractor']);
 $project=$db->getProject($_SESSION['project']);
 $flag=true;
- $_SESSION['error']='';
 if(!is_numeric($_POST['estimate'])||(double)$_POST['estimate']<0)
 {
     $flag=false;
