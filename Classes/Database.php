@@ -180,6 +180,23 @@ class Database {
             }
         }
         
+        public function getContractorEmails()
+        {
+            $conn=$this->connect();
+            $sql= "SELECT contractor_email FROM contractor";
+            $get_result= $conn->query($sql) or die("Can't connect to the CONTRACTOR table");
+            $contractorEmails=array();
+            $i = 0;
+            while ($emails = $get_result->fetch_array())
+            {                
+                $contractorEmails[$i] = $emails["contractor_email"];
+                $i++;
+            }
+            $get_result->free();
+            $conn->close();
+            return $contractorEmails;
+        }
+        
         
         //return one row in the customer table
         public function getCustomer($id)
@@ -232,6 +249,23 @@ class Database {
             {
                 return null;
             }
+        }
+        
+        public function getCustomerEmails()
+        {
+            $conn=$this->connect();
+            $sql= "SELECT customer_email FROM customer";
+            $get_result= $conn->query($sql) or die("Can't connect to the CUSTOMER table");
+            $customerEmails=array();
+            $i = 0;
+            while ($emails = $get_result->fetch_array())
+            {                
+                $customerEmails[$i] = $emails["customer_email"];
+                $i++;
+            }
+            $get_result->free();
+            $conn->close();
+            return $customerEmails;
         }
         
         //returns all the rows in the payments table 

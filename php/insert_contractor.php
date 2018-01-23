@@ -42,6 +42,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['emailErr'] = "Invalid format and please re-enter valid email"; 
         $nextUrl = '../views/signup_contractor.php';
     }
+    
+    if (in_array($email, $db->getContractorEmails()) || in_array($email, $db->getCustomerEmails())) {
+        $_SESSION['emailErr2'] = "A user already exists with that email"; 
+        $nextUrl = '../views/signup_contractor.php';
+    }
     if (!preg_match("/^(\d[\s-]?)?[\(\[\s-]{0,2}?\d{3}[\)\]\s-]{0,2}?\d{3}[\s-]?\d{4}$/i", $phone)){
         $_SESSION['phoneErr'] = "Invalid phone number"; 
         $nextUrl = '../views/signup_contractor.php';
