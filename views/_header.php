@@ -1,4 +1,4 @@
-<?php session_start();
+<?php 
 require "../Classes/Database.php";
     if (isset($_SESSION["customer"]))
     {

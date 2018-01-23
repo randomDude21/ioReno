@@ -98,10 +98,12 @@ class Database {
             $sql= "SELECT * FROM project";
             $get_result= $conn->query($sql) or die("Can't connect to the project table");
             $projects=array();
+            $i=0;
             while ($pro = $get_result->fetch_array())
             {
-                $project= new Project($pro["Project_ID"], $pro["Customer_Email"], $pro["Project_Description"], $pro["Project_Budget"]);
-                $projects=$project;
+                $project= new Project($pro["Project_ID"], $pro["Customer_Email"], $pro["title"], $pro["Project_Description"], $pro["Project_Budget"], $pro["address"], null);
+                $projects[$i]=$project;
+                $i++;
             }
             $get_result->free();
             $conn->close();

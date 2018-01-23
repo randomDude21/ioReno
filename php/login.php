@@ -29,6 +29,7 @@ else if($db->getContractorE($_POST['Email'])!= null)
     {
         $_SESSION["invalidLogin"]="";
         $_SESSION["login"]=true;
+        $_SESSION['contractor']=$contractor->get_email();
         header("location:../views/HomeContractor.php");
     }
     else
