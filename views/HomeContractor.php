@@ -3,7 +3,12 @@ if (!$_SESSION["login"]){
         header("Location: index.php");
     }
     include("_header.php");
-   
+    if (isset($_SESSION["update"])) {
+        echo "<div class=\"alert alert-success text-center\">" .
+        "<strong>Success! </strong>" . $_SESSION["update"] .
+        "</div>";
+        $_SESSION["update"] = null;
+    }
     $db=new Database();
     $projects = $db->getProjects();
     if($projects!=null)

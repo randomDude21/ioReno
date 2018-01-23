@@ -8,7 +8,7 @@ if($db->getCustomerE($_POST['Email'])!= null)
     if($customer->get_password()== sha1($_POST["Email"].$_POST['Password']))
     {
 
-        $_SESSION["invalidLogin"]="";
+        $_SESSION["invalidLogin"]=null;
 
         $_SESSION["login"]=true;
         $_SESSION["customer"]= $customer->get_email();
@@ -27,7 +27,7 @@ else if($db->getContractorE($_POST['Email'])!= null)
     $contractor=$db->getContractorE($_POST['Email']);
     if ($contractor->get_password()== sha1($_POST["Email"].$_POST['Password']))
     {
-        $_SESSION["invalidLogin"]="";
+        $_SESSION["invalidLogin"]=null;
         $_SESSION["login"]=true;
         $_SESSION['contractor']=$contractor->get_email();
         header("location:../views/HomeContractor.php");
