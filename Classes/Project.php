@@ -5,15 +5,17 @@ class Project {
     private $email;
     private $title;
     private $description;
+    private $type;
     private $budget;
     private $address;
     private $images;
     
-    function __construct($id, $email, $title, $description, $budget, $address, $images) {
+    function __construct($id, $email, $title, $description, $type, $budget, $address, $images) {
         $this->id = $id;
         $this->email = $email;
         $this->title = $title;
         $this->description = $description;
+        $this->type = $type;
         $this->budget = $budget;
         $this->address = $address;
         $this->images = $images;
@@ -45,6 +47,10 @@ class Project {
 
     function getAddress() {
         return $this->address;
+    }
+    
+    function get_type() {
+        return $this->type;
     }
    }
 ?>

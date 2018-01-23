@@ -1,7 +1,8 @@
 <?php
-session_start();
+    session_start();
     if (!isset($_SESSION["login"])) {
         header("location: index.php");
+        echo "NOT LOGIN";
     }
     include("_header.php");
     if (isset($_SESSION["update"])) {
