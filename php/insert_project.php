@@ -10,6 +10,8 @@ $_SESSION["title"] = $title;
 $budget = $_POST["budget"];
 $_SESSION["budget"] = $budget;
 
+$projectType = $_POST["projectType"];
+
 $description = $_POST["description"];
 $_SESSION["description"] = $description;
 
@@ -50,14 +52,22 @@ if (!in_array($imageFileType, $extension)) {
     $uploadOk = 0;
 }
 if ($uploadOk == 0) {
-    echo "File not uploaded!";
+    $imgData = file_get_contents("../images/placeholder.png");
 }
 else {
-$imgData = addslashes(file_get_contents($_FILES["image"]["tmp_name"]));
-$project = new Project(0, $email, $title, $description, $budget, $address, $imgData);
+    $imgData = file_get_contents($_FILES["image"]["tmp_name"]);
+}
+
+
+$project = new Project(0, $email, $title, $description, $projectType, $budget, $address, $imgData);
 $db = new Database();
 $db->insertProject($project);
+$_SESSION["title"] = null;
+$_SESSION["budget"] = null;
+$_SESSION["description"] = null;
+$_SESSION["address"] = null;
+
 header("Location: " . "../views/HomeCustomer.php");
-}
+
 
 

@@ -364,17 +364,18 @@ class Database {
            public function insertProject(Project $project)
         {
             $conn= $this->connect();
-            $sql=$conn->prepare("INSERT INTO project VALUES (?,?,?,?,?,?,?)");
+            $sql=$conn->prepare("INSERT INTO project VALUES (?,?,?,?,?,?,?,?)");
             
             $id=$project->get_id();
             $email=$project->get_email();
             $description=$project->get_description();
+            $projectType = $project->get_type();
             $title= $project->getTitle();
             $address = $project->getAddress();
             $images = $project->getImages();
             $budget=$project->get_budget();
-            $sql->bind_param("issdssb", $id, $email, $description, $budget, $title, $address, $images);
-            $sql->send_long_data(6, $images);
+            $sql->bind_param("isssdssb", $id, $email, $description, $projectType, $budget, $title, $address, $images);
+            $sql->send_long_data(7, $images);
             $status=$sql->execute();
             if(!$status)
                 echo trigger_error ($sql->error, E_USER_ERROR);
@@ -546,7 +547,7 @@ class Database {
                 $i=0;
                 while ($pro = $get_result->fetch_array())
                 {
-                    $project= new Project($pro["Project_ID"], $pro["Customer_Email"], $pro["title"], $pro["Project_Description"], $pro["Project_Budget"], $pro["address"], $pro["images"]);
+                    $project= new Project($pro["Project_ID"], $pro["Customer_Email"], $pro["title"], $pro["Project_Description"], $pro["projectType"], $pro["Project_Budget"], $pro["address"], $pro["images"]);
                     $projects[$i]=$project;
                     $i++;
                 }

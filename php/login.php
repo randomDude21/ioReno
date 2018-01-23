@@ -10,8 +10,8 @@ if($db->getCustomerE($_POST['Email'])!= null)
 
         $_SESSION["invalidLogin"]="";
 
-        $_SESSION["login"]=true;
-        $_SESSION["customer"]= $customer->get_email();
+        $_SESSION["login"] = true;
+        $_SESSION["customer"] = $customer->get_email();
 
         header("location:../views/HomeCustomer.php");
     }
