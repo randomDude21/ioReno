@@ -1,4 +1,4 @@
-<?php session_start();
+<?php 
 require "../Classes/Database.php";
     if (isset($_SESSION["customer"]))
     {
@@ -17,7 +17,7 @@ require "../Classes/Database.php";
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
     <!-- Bootstrap -->
-
+    <script src="../js/bootstrap.min.js" type="text/javascript"></script>
     <!-- Own stylesheet -->
     <link href="../css/ioStyle.css" rel="stylesheet" type="text/css" />
     <!-- Own Stylesheet -->

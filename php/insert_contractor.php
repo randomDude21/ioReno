@@ -42,6 +42,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['emailErr'] = "Invalid format and please re-enter valid email"; 
         $nextUrl = '../views/signup_contractor.php';
     }
+    
+    if (in_array($email, $db->getContractorEmails()) || in_array($email, $db->getCustomerEmails())) {
+        $_SESSION['emailErr2'] = "A user already exists with that email"; 
+        $nextUrl = '../views/signup_contractor.php';
+    }
     if (!preg_match("/^(\d[\s-]?)?[\(\[\s-]{0,2}?\d{3}[\)\]\s-]{0,2}?\d{3}[\s-]?\d{4}$/i", $phone)){
         $_SESSION['phoneErr'] = "Invalid phone number"; 
         $nextUrl = '../views/signup_contractor.php';
@@ -56,6 +61,11 @@ if ($nextUrl == '../views/index.php') {
     $contractor = new Contractor($companyNumber, $companyName, $phone, $email, $name, $passwordEmail, $date);
     
     $db->insertContractor($contractor);
+    $_SESSION["username"] = null;
+    $_SESSION["compname"] = null;
+    $_SESSION["compnum"] = null;
+    $_SESSION["email"] = null;
+    $_SESSION["phone"] = null;
     $_SESSION["registerMessage"] = "Thank you for registering your company with IOReno!" . "<br>" .
                                     "We will review your information and send a notify you when you are approved.";
     header('Location: ' . $nextUrl);

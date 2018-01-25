@@ -90,7 +90,7 @@ class Database {
             $conn->close();
             return $payments;
         }
-        
+       
         //returns all the rows in the project table 
           public function getProjects()
         {
@@ -98,10 +98,12 @@ class Database {
             $sql= "SELECT * FROM project";
             $get_result= $conn->query($sql) or die("Can't connect to the project table");
             $projects=array();
+            $i=0;
             while ($pro = $get_result->fetch_array())
             {
-                $project= new Project($pro["Project_ID"], $pro["Customer_Email"], $pro["Project_Description"], $pro["Project_Budget"]);
-                $projects=$project;
+                $project= new Project($pro["Project_ID"], $pro["Customer_Email"], $pro["title"], $pro["Project_Description"], $pro["projectType"], $pro["Project_Budget"], $pro["address"], null);
+                $projects[$i]=$project;
+                $i++;
             }
             $get_result->free();
             $conn->close();
@@ -178,6 +180,23 @@ class Database {
             }
         }
         
+        public function getContractorEmails()
+        {
+            $conn=$this->connect();
+            $sql= "SELECT contractor_email FROM contractor";
+            $get_result= $conn->query($sql) or die("Can't connect to the CONTRACTOR table");
+            $contractorEmails=array();
+            $i = 0;
+            while ($emails = $get_result->fetch_array())
+            {                
+                $contractorEmails[$i] = $emails["contractor_email"];
+                $i++;
+            }
+            $get_result->free();
+            $conn->close();
+            return $contractorEmails;
+        }
+        
         
         //return one row in the customer table
         public function getCustomer($id)
@@ -232,6 +251,23 @@ class Database {
             }
         }
         
+        public function getCustomerEmails()
+        {
+            $conn=$this->connect();
+            $sql= "SELECT customer_email FROM customer";
+            $get_result= $conn->query($sql) or die("Can't connect to the CUSTOMER table");
+            $customerEmails=array();
+            $i = 0;
+            while ($emails = $get_result->fetch_array())
+            {                
+                $customerEmails[$i] = $emails["customer_email"];
+                $i++;
+            }
+            $get_result->free();
+            $conn->close();
+            return $customerEmails;
+        }
+        
         //returns all the rows in the payments table 
           public function getPayment($id)
         {
@@ -263,7 +299,7 @@ class Database {
             if ($get_result!=false)
             {
                 $pro=$get_result->fetch_assoc();
-                $project= new Project($pro["Project_ID"], $pro["Customer_Email"], $pro["title"], $pro["Project_Description"], $pro["Project_Budget"], $pro["address"], $pro["images"]);
+                $project= new Project($pro["Project_ID"], $pro["Customer_Email"], $pro["title"], $pro["Project_Description"], $pro["projectType"], $pro["Project_Budget"], $pro["address"], $pro["images"]);
 
                 $get_result->free();
                 $conn->close();
@@ -364,17 +400,18 @@ class Database {
            public function insertProject(Project $project)
         {
             $conn= $this->connect();
-            $sql=$conn->prepare("INSERT INTO project VALUES (?,?,?,?,?,?,?)");
+            $sql=$conn->prepare("INSERT INTO project VALUES (?,?,?,?,?,?,?,?)");
             
             $id=$project->get_id();
             $email=$project->get_email();
             $description=$project->get_description();
+            $projectType = $project->get_type();
             $title= $project->getTitle();
             $address = $project->getAddress();
             $images = $project->getImages();
             $budget=$project->get_budget();
-            $sql->bind_param("issdssb", $id, $email, $description, $budget, $title, $address, $images);
-            $sql->send_long_data(6, $images);
+            $sql->bind_param("isssdssb", $id, $email, $description, $projectType, $budget, $title, $address, $images);
+            $sql->send_long_data(7, $images);
             $status=$sql->execute();
             if(!$status)
                 echo trigger_error ($sql->error, E_USER_ERROR);
@@ -503,16 +540,17 @@ class Database {
          public function updateProject(Project $project)
         {
             $conn=$this->connect();
-            $stmt=$conn->prepare("UPDATE project SET Customer_Email = ?, Project_Description = ?, "
+            $stmt=$conn->prepare("UPDATE project SET Customer_Email = ?, Project_Description = ?, projectType = ? "
                     . "Project_Budget = ?, title = ?, address = ?, images = ? WHERE Project_ID = ?");
             $id=$project->get_id();
             $email=$project->get_email();
             $description=$project->get_description();
+            $type=$project->get_type();
             $budget=$project->get_budget();
             $title = $project->getTitle();
             $address = $project->getAddress();
             $images = $project->getImages();
-            $stmt->bind_param('ssdssbi', $email, $description, $budget, $title, $address, $images, $id);
+            $stmt->bind_param('ssdssbi', $email, $description, $type, $budget, $title, $address, $images, $id);
 
             $stmt->execute();
             $stmt->close();
@@ -546,7 +584,7 @@ class Database {
                 $i=0;
                 while ($pro = $get_result->fetch_array())
                 {
-                    $project= new Project($pro["Project_ID"], $pro["Customer_Email"], $pro["title"], $pro["Project_Description"], $pro["Project_Budget"], $pro["address"], $pro["images"]);
+                    $project= new Project($pro["Project_ID"], $pro["Customer_Email"], $pro["title"], $pro["Project_Description"], $pro["projectType"], $pro["Project_Budget"], $pro["address"], $pro["images"]);
                     $projects[$i]=$project;
                     $i++;
                 }
