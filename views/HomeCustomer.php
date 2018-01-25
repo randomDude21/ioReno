@@ -24,7 +24,7 @@
         foreach ($projects as $pro)
         { ?>
             <div class="card shadow_fade" style="width: 18rem; margin:10px">
-                <img class="card-img-top" src="../images/gt.jpg" alt="Card image cap">
+                <img class="card-img-top" src="<?php echo $pro->getImages() ?>" alt="Card image cap">
                 <div class="card-body">
                     <h5 class="card-title">
                         <?php echo $pro->getTitle()?>
