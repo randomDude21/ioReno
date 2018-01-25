@@ -109,4 +109,4 @@ require "../Classes/Database.php";
                 </div>
         </nav>
     </header>
-    <div class="body_all container-fluid" style="padding:0px;margin:0px;">
+    <div class="body_all container-fluid" style="padding:0px;">
