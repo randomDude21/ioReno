@@ -90,7 +90,7 @@ class Database {
             $conn->close();
             return $payments;
         }
-        
+       
         //returns all the rows in the project table 
           public function getProjects()
         {
@@ -101,7 +101,7 @@ class Database {
             $i=0;
             while ($pro = $get_result->fetch_array())
             {
-                $project= new Project($pro["Project_ID"], $pro["Customer_Email"], $pro["title"], $pro["Project_Description"], $pro["Project_Budget"], $pro["address"], $pro["city"], null);
+                $project= new Project($pro["Project_ID"], $pro["Customer_Email"], $pro["title"], $pro["Project_Description"], $pro["projectType"], $pro["Project_Budget"], $pro["address"], $pro["city"], null);
                 $projects[$i]=$project;
                 $i++;
             }
@@ -299,6 +299,7 @@ class Database {
             if ($get_result!=false)
             {
                 $pro=$get_result->fetch_assoc();
+
                 $project= new Project($pro["Project_ID"], $pro["Customer_Email"], $pro["title"], $pro["Project_Description"], $pro["projectType"], $pro["Project_Budget"], $pro["address"], $pro["city"], $pro["images"]);
 
                 $get_result->free();
@@ -542,16 +543,17 @@ class Database {
         {
             $conn=$this->connect();
             $stmt=$conn->prepare("UPDATE project SET Customer_Email = ?, Project_Description = ?, "
-                    . "Project_Budget = ?, title = ?, address = ?, city = ?, images = ? WHERE Project_ID = ?");
+                    . "projectType = ?, Project_Budget = ?, title = ?, address = ?, city = ?, images = ? WHERE Project_ID = ?");
             $id=$project->get_id();
             $email=$project->get_email();
             $description=$project->get_description();
+            $type=$project->get_type();
             $budget=$project->get_budget();
             $title = $project->getTitle();
             $address = $project->getAddress();
             $city = $project->get_city();
             $images = $project->getImages();
-            $stmt->bind_param('ssdsssbi', $email, $description, $budget, $title, $address, $city, $images, $id);
+            $stmt->bind_param('ssdssbi', $email, $description, $type, $budget, $title, $address, $city, $images, $id);
 
             $stmt->execute();
             $stmt->close();
