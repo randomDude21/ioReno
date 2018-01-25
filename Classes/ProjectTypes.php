@@ -4,6 +4,12 @@
         "Kitchen",
         "Tiling",
         "Wood Work",
-        "Landscaping"
+        "Landscaping",
+        "Plumbing",
+        "Masonry",
+        "Painting",
+        "Drywalling",
+        "Electrical Work",
+        "Other"
     );
 ?>

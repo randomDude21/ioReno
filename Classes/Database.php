@@ -101,7 +101,7 @@ class Database {
             $i=0;
             while ($pro = $get_result->fetch_array())
             {
-                $project= new Project($pro["Project_ID"], $pro["Customer_Email"], $pro["title"], $pro["Project_Description"], $pro["projectType"], $pro["Project_Budget"], $pro["address"], null);
+                $project= new Project($pro["Project_ID"], $pro["Customer_Email"], $pro["title"], $pro["Project_Description"], $pro["projectType"], $pro["Project_Budget"], $pro["address"], $pro["city"], null);
                 $projects[$i]=$project;
                 $i++;
             }
@@ -299,7 +299,8 @@ class Database {
             if ($get_result!=false)
             {
                 $pro=$get_result->fetch_assoc();
-                $project= new Project($pro["Project_ID"], $pro["Customer_Email"], $pro["title"], $pro["Project_Description"], $pro["projectType"], $pro["Project_Budget"], $pro["address"], $pro["images"]);
+
+                $project= new Project($pro["Project_ID"], $pro["Customer_Email"], $pro["title"], $pro["Project_Description"], $pro["projectType"], $pro["Project_Budget"], $pro["address"], $pro["city"], $pro["images"]);
 
                 $get_result->free();
                 $conn->close();
@@ -400,7 +401,7 @@ class Database {
            public function insertProject(Project $project)
         {
             $conn= $this->connect();
-            $sql=$conn->prepare("INSERT INTO project VALUES (?,?,?,?,?,?,?,?)");
+            $sql=$conn->prepare("INSERT INTO project VALUES (?,?,?,?,?,?,?,?,?)");
             
             $id=$project->get_id();
             $email=$project->get_email();
@@ -408,10 +409,11 @@ class Database {
             $projectType = $project->get_type();
             $title= $project->getTitle();
             $address = $project->getAddress();
+            $city = $project->get_city();
             $images = $project->getImages();
             $budget=$project->get_budget();
-            $sql->bind_param("isssdssb", $id, $email, $description, $projectType, $budget, $title, $address, $images);
-            $sql->send_long_data(7, $images);
+            $sql->bind_param("isssdsssb", $id, $email, $description, $projectType, $budget, $title, $address, $city, $images);
+            $sql->send_long_data(8, $images);
             $status=$sql->execute();
             if(!$status)
                 echo trigger_error ($sql->error, E_USER_ERROR);
@@ -540,8 +542,8 @@ class Database {
          public function updateProject(Project $project)
         {
             $conn=$this->connect();
-            $stmt=$conn->prepare("UPDATE project SET Customer_Email = ?, Project_Description = ?, projectType = ? "
-                    . "Project_Budget = ?, title = ?, address = ?, images = ? WHERE Project_ID = ?");
+            $stmt=$conn->prepare("UPDATE project SET Customer_Email = ?, Project_Description = ?, "
+                    . "projectType = ?, Project_Budget = ?, title = ?, address = ?, city = ?, images = ? WHERE Project_ID = ?");
             $id=$project->get_id();
             $email=$project->get_email();
             $description=$project->get_description();
@@ -549,8 +551,9 @@ class Database {
             $budget=$project->get_budget();
             $title = $project->getTitle();
             $address = $project->getAddress();
+            $city = $project->get_city();
             $images = $project->getImages();
-            $stmt->bind_param('ssdssbi', $email, $description, $type, $budget, $title, $address, $images, $id);
+            $stmt->bind_param('sssdsssbi', $email, $description, $type, $budget, $title, $address, $city, $images, $id);
 
             $stmt->execute();
             $stmt->close();
@@ -584,7 +587,7 @@ class Database {
                 $i=0;
                 while ($pro = $get_result->fetch_array())
                 {
-                    $project= new Project($pro["Project_ID"], $pro["Customer_Email"], $pro["title"], $pro["Project_Description"], $pro["projectType"], $pro["Project_Budget"], $pro["address"], $pro["images"]);
+                    $project= new Project($pro["Project_ID"], $pro["Customer_Email"], $pro["title"], $pro["Project_Description"], $pro["projectType"], $pro["Project_Budget"], $pro["address"], $pro["city"], $pro["images"]);
                     $projects[$i]=$project;
                     $i++;
                 }

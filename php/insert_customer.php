@@ -48,6 +48,9 @@ if ($nextUrl == '../views/HomeCustomer.php') {
     $customer = new Customer(0, $name, $email, $phone, $passwordEmail, $date);
     $db = new Database();
     $db->insertCustomer($customer);
+    $_SESSION["login"] = true;
+    $_SESSION["customer"] = $email;
+    
     $_SESSION["username"] = null;
     $_SESSION["email"] = null;
     $_SESSION["phone"] = null;   

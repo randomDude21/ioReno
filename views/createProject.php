@@ -49,6 +49,7 @@
                                         }
                                         ?>
                             </select>
+
                         <p class="help-block">Select the best fitting project type</p>
                     </div>
 
@@ -63,23 +64,35 @@
                     </div>
                 </div>
 
-                <div class="control-group">
-                    <!-- Phone -->
-                    <label class="control-label" for="address">Address</label>
-                    <div class="controls">
-                        <input type="text" id="address" name="address" placeholder="" class="input-xlarge form-control" required="required" value="<?php if (isset($_SESSION['address'])) echo $_SESSION['address']; $_SESSION[" address "] = null; ?>">
-                        <span name="addressErr"><?php if (isset($_SESSION['addressErr'])) echo("{$_SESSION['addressErr']}"); $_SESSION['addressErr'] = ""; ?></span>
-                        <p class="help-block">Please provide the address of the project site</p>
+
+                    <div class="control-group">
+                        <!-- Address -->
+                        <label class="control-label" for="address">Address</label>
+                        <div class="controls">
+                            <input type="text" id="address" name="address" placeholder="" class="input-xlarge form-control" required="required" value="<?php if (isset($_SESSION['address'])) echo $_SESSION['address']; $_SESSION["address"] = null; ?>">
+                            <span name="addressErr"><?php if (isset($_SESSION['addressErr'])) echo("{$_SESSION['addressErr']}"); $_SESSION['addressErr'] = ""; ?></span>
+                            <p class="help-block">Please provide the address of the project site</p>
+                        </div>
                     </div>
-                </div>
-                <div class="control-group">
-                    <!-- Image -->
-                    <label class="control-label" for="image">Images</label>
-                    <div class="custom-file">
-                        <input type="file" name="image" class="custom-file-input" id="image">
-                        <label class="custom-file-label" for="image">Choose File</label>
+                    
+                    <div class="control-group">
+                        <!-- City -->
+                        <label class="control-label" for="city">City</label>
+                        <div class="controls">
+                            <input type="text" id="city" name="city" placeholder="" class="input-xlarge form-control" required="required" value="<?php if (isset($_SESSION['city'])) echo $_SESSION['city']; $_SESSION["city"] = null; ?>">
+                            <span name="cityErr"><?php if (isset($_SESSION['cityErr'])) echo("{$_SESSION['cityErr']}"); $_SESSION['cityErr'] = ""; ?></span>
+                            <p class="help-block">Please provide the city of the project site</p>
+                        </div>
                     </div>
-                    <p class="help-block">Select images to upload</p>
+                    
+                    <div class="control-group">
+                        <!-- Image -->
+                        <label class="control-label" for="image">Images</label>
+                        <div class="custom-file">
+                            <input type="file" name="image" class="custom-file-input" id="image">
+                            <label class="custom-file-label" for="image">Choose File</span>
+                        </div>
+                        <p class="help-block">Select images to upload</p>
                     </div>
         
                     <div class="control-group">
@@ -90,7 +103,6 @@
                     </div>
                 </fieldset>
             </form>
-        
         </div>
  
 <?php
