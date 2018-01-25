@@ -7,42 +7,40 @@
     
 ?>
 
-<div class="container-fluid">
-    
-    <div class="panel panel-default">
-        <div class="panel-heading"><h1>Post a Project</h1></div>
-        <div class="panel-body">
-            <form class="form-horizontal register-form" action='../php/insert_project.php' id="registerCustForm" method="POST" enctype="multipart/form-data">
-                <fieldset>
-                    <div class="control-group">
-                        <!-- Username -->
-                        <label class="control-label"  for="title">Project Title</label>
-                        <div class="controls">
-                            <input type="text"  class="form-control" id="title" name="title" placeholder="" class="input-xlarge"required="required" value="<?php if (isset($_SESSION['title'])) echo $_SESSION['title']; $_SESSION["title"] = null; ?>">
-                            
-                            <p class="help-block">Enter a title for your project</p>
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <label class="control-label"  for="budget">Budget</label>
-                        <div class="controls">
-                            <div class="input-group"> 
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text">$</span>
-                                </div>
-                                <input type="number" required="required" name="budget" value="<?php if (isset($_SESSION['budget'])) echo $_SESSION['budget']; $_SESSION["budget"] = null; ?>" min="0" step="1" data-number-to-fixed="2" data-number-stepfactor="100" class="form-control currency" id="budget" />
-                                <span name="nameErr"><?php if (isset($_SESSION['budgetErr'])) echo("{$_SESSION['budgetErr']}"); $_SESSION['budgetErr'] = ""; ?></span>
-                            </div> 
+    <div class="container-fluid">
 
-                            <p class="help-block">Enter your budget for the project</p>
-                        </div>
-                    </div>
+        <h1>Post a Project</h1>
+        <form class="register-form" action='../php/insert_project.php' id="registerCustForm" method="POST" enctype="multipart/form-data">
+            <fieldset>
+                <div class="control-group">
+                    <!-- Username -->
+                    <label class="control-label" for="title">Project Title</label>
+                    <div class="controls">
+                        <input type="text" class="form-control" id="title" name="title" placeholder="" class="input-xlarge" required="required" value="<?php if (isset($_SESSION['title'])) echo $_SESSION['title']; $_SESSION[" title "] = null; ?>">
 
-                    <div class="control-group">
-                        <!-- E-mail -->
-                        <label class="control-label" for="projectType">Project Type</label>
-                        <div class="form-group">
-                            <select class="form-control" id="projectType" name="projectType">
+                        <p class="help-block">Enter a title for your project</p>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="budget">Budget</label>
+                    <div class="controls">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">$</span>
+                            </div>
+                            <input type="number" required="required" name="budget" value="<?php if (isset($_SESSION['budget'])) echo $_SESSION['budget']; $_SESSION[" budget "] = null; ?>" min="0" step="1" data-number-to-fixed="2" data-number-stepfactor="100" class="form-control currency" id="budget" />
+                            <span name="nameErr"><?php if (isset($_SESSION['budgetErr'])) echo("{$_SESSION['budgetErr']}"); $_SESSION['budgetErr'] = ""; ?></span>
+                        </div>
+
+                        <p class="help-block">Enter your budget for the project</p>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <!-- E-mail -->
+                    <label class="control-label" for="projectType">Project Type</label>
+                    <div class="form-group">
+                        <select class="form-control" id="projectType" name="projectType">
                                 <?php
                                 include("../Classes/ProjectTypes.php");
                                 foreach ($projectTypes as $val) {
@@ -51,20 +49,21 @@
                                         }
                                         ?>
                             </select>
-                            <p class="help-block">Select the best fitting project type</p>
-                        </div>
-                        
+
+                        <p class="help-block">Select the best fitting project type</p>
                     </div>
-                    
-                    
-                    <div class="control-group">
-                        <!-- E-mail -->
-                        <label class="control-label" for="description">Project Description</label>
-                        <div class="controls">
-                            <textarea class="form-control" required="required" name="description" rows="5" id="description"><?php if (isset($_SESSION['description'])) echo $_SESSION['description']; $_SESSION["description"] = null; ?></textarea>
-                            <p class="help-block">Describe your project, provide as many details as possible</p>
-                        </div>
+
+                </div>
+
+                <div class="control-group">
+                    <!-- E-mail -->
+                    <label class="control-label" for="description">Project Description</label>
+                    <div class="controls">
+                        <textarea class="form-control" required="required" name="description" rows="5" id="description"><?php if (isset($_SESSION['description'])) echo $_SESSION['description']; $_SESSION["description"] = null; ?></textarea>
+                        <p class="help-block">Describe your project, provide as many details as possible</p>
                     </div>
+                </div>
+
 
                     <div class="control-group">
                         <!-- Address -->
@@ -92,8 +91,8 @@
                         <div class="custom-file">
                             <input type="file" name="image" class="custom-file-input" id="image">
                             <label class="custom-file-label" for="image">Choose File</span>
-                            <p class="help-block">Select images to upload</p>
                         </div>
+                        <p class="help-block">Select images to upload</p>
                     </div>
         
                     <div class="control-group">
@@ -104,11 +103,8 @@
                     </div>
                 </fieldset>
             </form>
-        
         </div>
-    </div>
-</div>
-
+ 
 <?php
     include("_footer.php");
 ?>

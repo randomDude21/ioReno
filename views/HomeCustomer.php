@@ -15,7 +15,7 @@
     
         ?>
     <h1>Your projects:</h1><br>
-    <div class="row">
+    <div class="row container" style="margin-right:0px;margin-left:0px">
 <?php
 
      $projects=$db->getCustomerProject($customer->get_email());
