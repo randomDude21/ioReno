@@ -46,7 +46,7 @@ if (isset($_FILES["image"])) {
         $uploadOk = 0;
     }
 }
-if ($_FILES["image"]["size"] > 500000) {
+if ($_FILES["image"]["size"] > 10000000) {
     echo "File size too large";
     $uploadOk = 0;
 }
@@ -55,11 +55,15 @@ if (!in_array($imageFileType, $extension)) {
     $uploadOk = 0;
 }
 if ($uploadOk == 0) {
-    $imgData = file_get_contents("../images/placeholder.png");
+    $imgData = "../images/project_images/placeholder.jpg";
 }
 else {
-    $imgData = file_get_contents($_FILES["image"]["tmp_name"]);
+    $time = time();
+    $filename = hash('md5', $time + $email);
+    move_uploaded_file($_FILES["image"]["tmp_name"], "../images/project_images/" . $filename . "." . $imageFileType);
+    $imgData = "../images/project_images/" . $filename . "." . $imageFileType;
 }
+
 
 
 $project = new Project(0, $email, $title, $description, $projectType, $budget, $address, $city, $imgData);

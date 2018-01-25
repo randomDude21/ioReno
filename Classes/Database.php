@@ -412,7 +412,7 @@ class Database {
             $city = $project->get_city();
             $images = $project->getImages();
             $budget=$project->get_budget();
-            $sql->bind_param("isssdsssb", $id, $email, $description, $projectType, $budget, $title, $address, $city, $images);
+            $sql->bind_param("isssdssss", $id, $email, $description, $projectType, $budget, $title, $address, $city, $images);
             $sql->send_long_data(8, $images);
             $status=$sql->execute();
             if(!$status)
@@ -553,7 +553,7 @@ class Database {
             $address = $project->getAddress();
             $city = $project->get_city();
             $images = $project->getImages();
-            $stmt->bind_param('sssdsssbi', $email, $description, $type, $budget, $title, $address, $city, $images, $id);
+            $stmt->bind_param('sssdssssi', $email, $description, $type, $budget, $title, $address, $city, $images, $id);
 
             $stmt->execute();
             $stmt->close();
