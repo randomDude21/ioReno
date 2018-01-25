@@ -18,6 +18,9 @@ $_SESSION["description"] = $description;
 $address = $_POST["address"];
 $_SESSION["address"] = $address;
 
+$city = $_POST["city"];
+$_SESSION["city"] = $city;
+
 $email = $_SESSION["customer"]; //get email from session login;
 
 
@@ -32,7 +35,7 @@ $image = $_FILES["image"]["name"];
 $uploadOk = 1;
 $imageFileType = strtolower(pathinfo($image, PATHINFO_EXTENSION));
 //validate
-if (isset($FILES["image"])) {
+if (isset($_FILES["image"])) {
     $check = getimagesize($_FILES["image"]["tmp_name"]);
     if ($check !== false) {
         echo "File is an image - " . $check["mime"];
@@ -59,14 +62,14 @@ else {
 }
 
 
-$project = new Project(0, $email, $title, $description, $projectType, $budget, $address, $imgData);
+$project = new Project(0, $email, $title, $description, $projectType, $budget, $address, $city, $imgData);
 $db = new Database();
 $db->insertProject($project);
 $_SESSION["title"] = null;
 $_SESSION["budget"] = null;
 $_SESSION["description"] = null;
 $_SESSION["address"] = null;
-
+$_SESSION["city"] = null;
 header("Location: " . "../views/HomeCustomer.php");
 
 

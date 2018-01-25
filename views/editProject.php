@@ -88,13 +88,17 @@ require "../Classes/Database.php";
                                 
                                 echo '<tr><td>Project Title</td><td><input type="text" name="title" value="'.$project->getTitle().'"></td></tr>'
                                         . '<tr><td>Project Description</td><td><textarea class="form-control" name="desc">'.$project->get_description().'</textarea></td></tr>'
-                                        . '<tr><td>Project Type</td><td><select class="form-control" id="projectType" name="projectType">';
+                                        . '<tr><td>Project Type</td><td><select class="form-control" id="type" name="type">';
                                 foreach ($projectTypes as $val) {
-                                    echo '<option value="' . $val . '">' . $val . '</option>';
+                                    echo '<option ';
+                                    if ($project->get_type() == $val)
+                                        echo 'selected="selected"';
+                                    echo 'value="' . $val . '">' . $val . '</option>';
                                         }
                            
                                 echo '</select> </td></tr>'
                                         . '<tr><td>Address</td><td><input type="text" name="address" value="'.$project->getAddress().'"></td></tr>'
+                                        . '<tr><td>City</td><td><input type="text" name="city" value="'.$project->get_city().'"></td></tr>'
                                         . '<tr><td>Project budget</td><td><input type="text" name="budget" value="'.$project->get_budget().'"></td></tr>';
 
                          }

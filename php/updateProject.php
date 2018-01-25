@@ -4,6 +4,9 @@ require '../Classes/Database.php';
 $db=new Database();
 $project=$db->getProject($_SESSION['project']);
 $flag=true;
+
+echo $_POST["type"];
+
  $_SESSION['error']='';
 if(!is_numeric($_POST['budget'])||(double)$_POST['budget']<0)
 {
@@ -17,7 +20,8 @@ if (empty($_POST['desc']))
 }
 if($flag)
 {
-    $pro=new Project($project->get_id(),$project->get_email(),$_POST['title'], $_POST['desc'], $_POST['budget'], $_POST['address'], null);
+    $pro=new Project($project->get_id(),$project->get_email(),$_POST['title'], $_POST['desc'], $_POST["type"], $_POST['budget'], $_POST['address'], $_POST["city"], null);
+    echo $pro->get_type();
     $db->updateProject($pro);
     $_SESSION['error']=null;
     $_SESSION['update']='Your project has been succesfully updated';

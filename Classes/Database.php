@@ -553,7 +553,7 @@ class Database {
             $address = $project->getAddress();
             $city = $project->get_city();
             $images = $project->getImages();
-            $stmt->bind_param('ssdssbi', $email, $description, $type, $budget, $title, $address, $city, $images, $id);
+            $stmt->bind_param('sssdsssbi', $email, $description, $type, $budget, $title, $address, $city, $images, $id);
 
             $stmt->execute();
             $stmt->close();
