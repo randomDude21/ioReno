@@ -8,9 +8,10 @@ class Project {
     private $type;
     private $budget;
     private $address;
+    private $city;
     private $images;
     
-    function __construct($id, $email, $title, $description, $type, $budget, $address, $images) {
+    function __construct($id, $email, $title, $description, $type, $budget, $address, $city, $images) {
         $this->id = $id;
         $this->email = $email;
         $this->title = $title;
@@ -18,6 +19,7 @@ class Project {
         $this->type = $type;
         $this->budget = $budget;
         $this->address = $address;
+        $this->city = $city;
         $this->images = $images;
     }
     
@@ -51,6 +53,10 @@ class Project {
     
     function get_type() {
         return $this->type;
+    }
+    
+    function get_city() {
+        return $this->city;
     }
    }
 ?>
