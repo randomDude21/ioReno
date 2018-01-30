@@ -27,7 +27,7 @@ require "../Classes/Database.php";
 
 <body class="container-fluid" style="padding:0px;margin:0px;">
     <header>
-<!-- ----------------------------------- Boostrap v4 scripts --------------------------------------------->
+<!-- ----------------------------------- Bootstrap v4 scripts --------------------------------------------->
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
@@ -67,17 +67,8 @@ require "../Classes/Database.php";
                         <li class="nav-item">
                             <a class="nav-link" href="contact.php">Contact</a>
                         </li>
-                    <?php if(isset($customer)){
-                    ?>
-                        <li>
-                            <a href="HomeCustomer.php"><strong>Welcome,  
-                                <?php
-                                    echo $customer->get_name();
-                                ?></strong></a>
-                        </li>
-                    <?php
-                            }
-                    ?>
+                    
+                        
 <!-------------------------------------Dropdown example may be useful--------------------------------- 
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -92,8 +83,26 @@ require "../Classes/Database.php";
       </li>
 -->
                     </ul>
-
-                    <form class="form-inline my-2 my-lg-0" role="form" action="../php/login.php" method="post">
+                    <ul class="navbar-nav navbar-right">
+                    <?php if(isset($customer)){
+                    ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="HomeCustomer.php"><strong>Welcome,  
+                                <?php
+                                    echo $customer->get_name();
+                                ?></strong></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link"href="../php/logout.php"><strong>Logout</strong></a>
+                        </li>
+                        
+                    <?php
+                            }
+                    ?>
+                    </ul>
+                    <?php
+                        if (!isset($_SESSION["login"])) {
+                            echo '<form class="form-inline my-2 my-lg-0" role="form" action="../php/login.php" method="post">
                         <div class="input-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="basic-addon1">@</span>
@@ -105,7 +114,12 @@ require "../Classes/Database.php";
                             <input style="margin-right: 20px;" class="form-control" type="password" id="Password" name="Password" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1" required>
                         </div>
                         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Sign In</button>
-                    </form>
+                    </form>';
+                        }
+                    
+                    
+                    ?>
+                    
                 </div>
         </nav>
     </header>
