@@ -1,6 +1,6 @@
 <?php
+    session_start();
     include("_header.php");
-
 ?>
 
         <div id="image_Home_customer">
