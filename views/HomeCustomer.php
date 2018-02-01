@@ -56,7 +56,6 @@
                         </div>
                         <div class="modal-body">
                             Once you delete your project you cannot retrieve it ever again.
-                            <?php echo $pro->get_id() ?>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>

@@ -9,8 +9,9 @@ class Contractor {
     private $name;
     private $password;
     private $date;
+    private $approved;
     
-    function __construct($conum,$coname, $p, $e, $n, $pass, $d ) {
+    function __construct($conum,$coname, $p, $e, $n, $pass, $d, $approved) {
         $this->coNum=$conum;
         $this->coName=$coname;
         $this->phone=$p;
@@ -18,6 +19,7 @@ class Contractor {
         $this->name=$n;
         $this->password=$pass;
         $this->date=$d;
+        $this->approved=$approved;
     }
     public function get_coNum()
     {
@@ -46,6 +48,9 @@ class Contractor {
     public function get_date()
     {
         return $this->date;
+    }   
+    public function get_approved() {
+        return $this->approved;
     }
 }
 ?>
