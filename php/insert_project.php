@@ -21,6 +21,7 @@ $_SESSION["address"] = $address;
 $city = $_POST["city"];
 $_SESSION["city"] = $city;
 
+$date = date('Y-m-d', time());
 $email = $_SESSION["customer"]; //get email from session login;
 
 
@@ -66,7 +67,7 @@ else {
 
 
 
-$project = new Project(0, $email, $title, $description, $projectType, $budget, $address, $city, $imgData);
+$project = new Project(0, $email, $title, $description, $projectType, $budget, $address, $city, $imgData, $date);
 $db = new Database();
 $db->insertProject($project);
 $_SESSION["title"] = null;
