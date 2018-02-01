@@ -14,6 +14,9 @@
     
     
         ?>
+    <div style="margin-top: 40px; margin-left: 65px">
+        <a href="createProject.php" class="btn btn-primary" role="button"><strong>Create a new project</strong></a>
+    </div>
     <h1>Your projects:</h1><br>
     <div class="row container" style="margin-right:0px;margin-left:0px">
 <?php
@@ -27,15 +30,16 @@
                 <img class="card-img-top" src="<?php echo $pro->getImages() ?>" alt="Card image cap">
                 <div class="card-body">
                     <h5 class="card-title">
-                        <?php echo $pro->getTitle()?>
+                        <?php echo $pro->getTitle() ?>
                     </h5>
                     <p class="card-text">
-                        <?php echo $pro->get_budget()."$"?>
+                        <?php echo $pro->get_budget() . "$" ?>
                     </p>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">
-                            <a href="<?php echo '../views/seeEstimates.php?id='.$pro->get_id()?>" class="btn btn-primary btn-sm">See Estimates</a>
-                            <a href="<?php echo '../views/editProject.php?id='.$pro->get_id()?>" class="btn btn-warning btn-sm">Edit</a>
+                            <a href="<?php echo '../views/viewProject.php?id=' . $pro->get_id() ?>" class="btn btn-info btn-sm">View</a>
+                            <a href="<?php echo '../views/seeEstimates.php?id=' . $pro->get_id() ?>" class="btn btn-primary btn-sm">See Estimates</a>
+                            <a href="<?php echo '../views/editProject.php?id=' . $pro->get_id() ?>" class="btn btn-warning btn-sm">Edit</a>
                         </li>
                         <li class="list-group-item">
                             <a href="" class="btn btn-danger btn-sm btn-block" data-toggle="modal" data-target="#deleteConfirmation<?php echo $pro->get_id(); ?>">Delete</a>
@@ -74,8 +78,6 @@
 
 ?>
     </div>
-    <div style="margin-top: 40px; margin-left: 65px">
-        <a href="createProject.php" class="btn btn-primary" role="button"><strong>Create a new project</strong></a>
-    </div>
+    
     <?php
     include("_footer.php");
