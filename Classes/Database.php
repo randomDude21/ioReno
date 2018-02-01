@@ -624,6 +624,122 @@ class Database {
                 return null;
             }
         }
+        public function reportCustomers()
+        {
+            $conn= $this->connect();
+            $sql="SELECT * FROM CUSTOMER WHERE CUSTOMER_DATE_REGISTERED > DATE_FORMAT(SYSDATE(), '%Y-%m-%d')-7";
+            $get_result=$conn->query($sql);
+            $customers=array();
+            if($get_result)
+            {
+                $i=0;
+                while ($cust = $get_result->fetch_array())
+                {
+                    $customer=new Customer($cust["Customer_ID"], $cust["Customer_Name"], $cust["Customer_Email"], 
+                            $cust["Customer_Phone"], $cust["Customer_Password"], $cust["Customer_Date_Registered"]);
+                    $customers[$i]=$customer;
+                }
+                $get_result->free();
+                $conn->close();
+                return $customers;
+            }
+            else
+            {
+                return null;
+            }
+            
+        }
+        public function reportContractors()
+        {
+            $conn= $this->connect();
+            $sql="SELECT * FROM Contractor WHERE Contractor_DATE_REGISTERED > DATE_FORMAT(SYSDATE(), '%Y-%m-%d')-7";
+            $get_result=$conn->query($sql);
+            $contractors=array();
+            if($get_result)
+            {
+                $i=0;
+                while ($cont = $get_result->fetch_array())
+                {
+                    $contractor=new Contractor($cont["Contractor_CO_Num"], $cont["Contractor_CO_Name"], $cont["Contractor_Phone"], 
+                       $cont["Contractor_Email"], $cont["Contractor_Contact_Name"], $cont["Contractor_Password"], $cont["Contractor_Date_Registered"]);
+                    $contractors[$i]=$contractor;
+                }
+                $get_result->free();
+                $conn->close();
+                return $contractors;
+            }
+            else
+            {
+                return null;
+            }
+            
+        }
+        public function reportPayments()
+        {
+            $conn= $this->connect();
+            $sql="SELECT * FROM PAYMENTS WHERE PAYMENT_DATE> DATE_FORMAT(SYSDATE(), '%Y-%m-%d')-7";
+            $get_result=$conn->query($sql);
+            $payments=array();
+            if($get_result)
+            {
+                $i=0;
+                while ($pay = $get_result->fetch_array())
+                {
+                    $payment=new Payment($pay["Payment_ID"], $pay["Contractor_CO_Num"], $pay["Payment_Amount"], $pay["Poposal_ID"],
+                            $pay["Payment_Status"], $pay["PAYMENT_DATE"]);
+                    $payments[$i]=$payment;
+                }
+                $get_result->free();
+                $conn->close();
+                return $payments;
+            }
+            else
+            {
+                return null;
+            }
+            
+        }
+        public function totals()
+        {
+            $conn=$this->connect();
+            $sql= "SELECT COUNT(PAYMENT_ID) AS NUMBER_PAYMENTS, SUM(PAYMENT_AMOUNT) AS TOTAL_PAYMENTS FROM PAYMENTS "
+                    . "WHERE PAYMENT_DATE>DATE_FORMAT(SYSDATE(), '%Y-%m-%d')-7";
+            $get_result=$conn->query($sql);
+            $info=array();
+            if ($get_result)
+            {
+                $info["number"]=$get_result["NUMBER_PAYMENTS"];
+                $info["total"]=$get_result["TOTAL_PAYMENTS"];
+                
+                $get_result->free();
+                $conn->close();
+                return $info;
+            }
+        }
+        public function deniedPayments()
+        {
+            $conn= $this->connect();
+            $sql="SELECT * FROM PAYMENTS WHERE Payment_Status = FALSE";
+            $get_result=$conn->query($sql);
+            $payments=array();
+            if($get_result)
+            {
+                $i=0;
+                while ($pay = $get_result->fetch_array())
+                {
+                    $payment=new Payment($pay["Payment_ID"], $pay["Contractor_CO_Num"], $pay["Payment_Amount"], $pay["Poposal_ID"],
+                            $pay["Payment_Status"], $pay["PAYMENT_DATE"]);
+                    $payments[$i]=$payment;
+                }
+                $get_result->free();
+                $conn->close();
+                return $payments;
+            }
+            else
+            {
+                return null;
+            }
+        }
 }
         
         
