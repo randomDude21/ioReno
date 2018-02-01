@@ -1,4 +1,5 @@
 <?php
+    session_start();
     include("_header.php");
 ?>
 <div id="head_contact" class="jumbotron jumbotron-sm">
