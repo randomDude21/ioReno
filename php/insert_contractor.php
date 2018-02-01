@@ -58,7 +58,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
 }
 if ($nextUrl == '../views/index.php') {
-    $contractor = new Contractor($companyNumber, $companyName, $phone, $email, $name, $passwordEmail, $date);
+    $contractor = new Contractor($companyNumber, $companyName, $phone, $email, $name, $passwordEmail, $date, false);
     
     $db->insertContractor($contractor);
     $_SESSION["username"] = null;
@@ -67,7 +67,7 @@ if ($nextUrl == '../views/index.php') {
     $_SESSION["email"] = null;
     $_SESSION["phone"] = null;
     $_SESSION["registerMessage"] = "Thank you for registering your company with IOReno!" . "<br>" .
-                                    "We will review your information and send a notify you when you are approved.";
+                                    "We will review your information and send an email notification you when you are approved.";
     header('Location: ' . $nextUrl);
     //insert contractor to database
     //send user to index with message explaining review

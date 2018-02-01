@@ -31,7 +31,7 @@ class Database {
             while ($cons = $get_result->fetch_array())
             {
                 $contractor= new Contractor($cons["Contractor_CO_Num"], $cons["Contractor_CO_Name"], $cons["Contractor_Phone"], 
-                        $cons["Contractor_Email"], $cons["Contractor_Contact_Name"], $cons["Contractor_Password"], $cons["Contractor_Date_Registered"]);
+                        $cons["Contractor_Email"], $cons["Contractor_Contact_Name"], $cons["Contractor_Password"], $cons["Contractor_Date_Registered"], $cons["approved"]);
                 $contractors=$contractor;
             }
             $get_result->free();
@@ -137,7 +137,7 @@ class Database {
             {
                 $cons=$get_result->fetch_assoc();
                     $contractor= new Contractor($cons["Contractor_CO_Num"], $cons["Contractor_CO_Name"], $cons["Contractor_Phone"], 
-                            $cons["Contractor_Email"], $cons["Contractor_Contact_Name"], $cons["Contractor_Password"], $cons["Contractor_Date_Registered"]);
+                            $cons["Contractor_Email"], $cons["Contractor_Contact_Name"], $cons["Contractor_Password"], $cons["Contractor_Date_Registered"], $cons["approved"]);
                     
                 $get_result->free();
                 $conn->close(); 
@@ -155,11 +155,11 @@ class Database {
             //$sql= "SELECT * FROM Customer WHERE Customer_Email = ?";
             //$get_result= $conn->query($sql) or die ("Can't connect to the customer table");
             if($sql = $conn->prepare("SELECT Contractor_CO_Num, Contractor_CO_Name, Contractor_Phone, Contractor_Email, "
-                    . "Contractor_Contact_Name, Contractor_Password, Contractor_Date_Registered FROM Contractor WHERE Contractor_Email = ?"))
+                    . "Contractor_Contact_Name, Contractor_Password, Contractor_Date_Registered, approved FROM Contractor WHERE Contractor_Email = ?"))
             {
                 $sql->bind_param("s", $email);
                 $sql->execute();
-                $sql->bind_result($coNum, $coName, $phone, $email, $name, $password, $date);
+                $sql->bind_result($coNum, $coName, $phone, $email, $name, $password, $date, $approved);
                 $sql->fetch();
                 if (empty($email))
                 {
@@ -167,7 +167,7 @@ class Database {
                 }
                 else
                 {
-                    $contractor= new Contractor($coNum, $coName, $phone, $email, $name, $password, $date);
+                    $contractor= new Contractor($coNum, $coName, $phone, $email, $name, $password, $date, $approved);
 
                     $sql->close();
                     $conn->close();
@@ -338,7 +338,7 @@ class Database {
         public function insertContractor(Contractor $contractor)
         {
             $conn= $this->connect();
-            $sql=$conn->prepare("INSERT INTO Contractor VALUES (?,?,?,?,?,?,?)");
+            $sql=$conn->prepare("INSERT INTO Contractor VALUES (?,?,?,?,?,?,?,?)");
         
             $coNum=$contractor->get_coNum();
             $coName=$contractor->get_coName();
@@ -347,7 +347,8 @@ class Database {
             $name=$contractor->get_name();
             $pass=$contractor->get_password();
             $date=$contractor->get_date();
-            $sql->bind_param("issssss", $coNum, $coName, $phone, $email, $name, $pass, $date);
+            $approved = false;
+            $sql->bind_param("issssssi", $coNum, $coName, $phone, $email, $name, $pass, $date, $approved);
             
             $status = $sql->execute();
             if(!$status)
@@ -488,7 +489,7 @@ class Database {
         {
             $conn=$this->connect();
             $stmt=$conn->prepare("UPDATE contractor SET Contractor_CO_Name = ?, Contractor_Phone = ?, Contractor_Email = ?, "
-                    . "Contractor_Contact_Name = ?, Contractor_Password = ?, Contractor_Date_Registered = ? WHERE Contractor_CO_Num = ?");
+                    . "Contractor_Contact_Name = ?, Contractor_Password = ?, Contractor_Date_Registered = ?, approved = ? WHERE Contractor_CO_Num = ?");
             $coNum=$contractor->get_coNum();
             $coName=$contractor->get_coName();
             $phone=$contractor->get_phone();
@@ -496,8 +497,8 @@ class Database {
             $name=$contractor->get_name();
             $password=$contractor->get_password();
             $date=$contractor->get_date();
-            
-            $stmt->bind_param('ssssssi', $coName, $phone, $email, $name, $password, $date, $coNum);
+            $approved = $contractor->get_approved();
+            $stmt->bind_param('ssssssii', $coName, $phone, $email, $name, $password, $date, $coNum, $approved);
             $stmt->execute();
             $stmt->close();
             $conn->close();

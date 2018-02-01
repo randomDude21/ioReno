@@ -1,5 +1,7 @@
 
-
+.description {
+    white-space: pre-wrap;
+}
 
 /*make button go to the middle*/
 #image_Home_customer{
@@ -189,6 +191,11 @@ font-size: 24px;
     margin-bottom: 10px;
 }
 
+
+.view-img {
+    width: 45%;
+}
+
 /*----------------------------------when screen is smaller than 480px--------------------------------*/
 @media only screen and (max-width:480px){
     
@@ -233,3 +240,8 @@ font-size: 24px;
     width: 100%;
 
 }
+
+.view-img {
+    width: 80%;
+}
+
