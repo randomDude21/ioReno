@@ -661,7 +661,7 @@ class Database {
                 while ($cont = $get_result->fetch_array())
                 {
                     $contractor=new Contractor($cont["Contractor_CO_Num"], $cont["Contractor_CO_Name"], $cont["Contractor_Phone"], 
-                       $cont["Contractor_Email"], $cont["Contractor_Contact_Name"], $cont["Contractor_Password"], $cont["Contractor_Date_Registered"]);
+                       $cont["Contractor_Email"], $cont["Contractor_Contact_Name"], $cont["Contractor_Password"], $cont["Contractor_Date_Registered"], $cont["Approved"]);
                     $contractors[$i]=$contractor;
                 }
                 $get_result->free();
