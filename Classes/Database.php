@@ -640,6 +640,7 @@ class Database {
                     $customer=new Customer($cust["Customer_ID"], $cust["Customer_Name"], $cust["Customer_Email"], 
                             $cust["Customer_Phone"], $cust["Customer_Password"], $cust["Customer_Date_Registered"]);
                     $customers[$i]=$customer;
+                    $i++;
                 }
                 $get_result->free();
                 $conn->close();
@@ -665,6 +666,7 @@ class Database {
                     $contractor=new Contractor($cont["Contractor_CO_Num"], $cont["Contractor_CO_Name"], $cont["Contractor_Phone"], 
                        $cont["Contractor_Email"], $cont["Contractor_Contact_Name"], $cont["Contractor_Password"], $cont["Contractor_Date_Registered"], $cont["Approved"]);
                     $contractors[$i]=$contractor;
+                    $i++;
                 }
                 $get_result->free();
                 $conn->close();
@@ -690,6 +692,7 @@ class Database {
                     $payment=new Payment($pay["Payment_ID"], $pay["Contractor_CO_Num"], $pay["Payment_Amount"], $pay["Proposal_ID"],
                             $pay["Payment_Status"], $pay["PAYMENT_DATE"]);
                     $payments[$i]=$payment;
+                    $i++;
                 }
                 $get_result->free();
                 $conn->close();
@@ -732,6 +735,7 @@ class Database {
                     $payment=new Payment($pay["Payment_ID"], $pay["Contractor_CO_Num"], $pay["Payment_Amount"], $pay["Poposal_ID"],
                             $pay["Payment_Status"], $pay["PAYMENT_DATE"]);
                     $payments[$i]=$payment;
+                    $i++;
                 }
                 $get_result->free();
                 $conn->close();
