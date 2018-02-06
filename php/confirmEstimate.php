@@ -13,7 +13,7 @@ if(!is_numeric($_POST['estimate'])||(double)$_POST['estimate']<0)
 
 if($flag)
 {
-    $proposal= new Proposal(null, $contractor->get_coNum(), $project->get_id(), $_POST['estimate']);
+    $proposal= new Proposal(null, $contractor->get_coNum(), $project->get_id(), $_POST['estimate'], null);
     $db->insertProposal($proposal);
     $_SESSION['update']='Your project has been succesfully updated';
     header("location: ../views/HomeContractor.php" );

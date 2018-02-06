@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 06, 2018 at 06:45 PM
+-- Generation Time: Feb 06, 2018 at 08:02 PM
 -- Server version: 5.7.9
 -- PHP Version: 7.0.0
 
@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS `contractor` (
   `Contractor_Date_Registered` date NOT NULL,
   `Approved` tinyint(1) NOT NULL,
   PRIMARY KEY (`Contractor_CO_Num`)
-) ENGINE=MyISAM AUTO_INCREMENT=43322 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=55556 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `contractor`
@@ -63,7 +63,8 @@ INSERT INTO `contractor` (`Contractor_CO_Num`, `Contractor_CO_Name`, `Contractor
 (12345, ' Dunder Mifflin', '1234567890', 'mscott@dundermifflin.com', 'Michael Scott', '33a9e269dd782e92489a8e547b7ed582e0e1d42b', '2018-01-12', 0),
 (12346, 'jkasdhfk', '5144445555', 'itsnickzomg@gmail.com', 'adhfjkadsh', '3da541559918a808c2402bba5012f6c60b27661c', '2018-01-12', 0),
 (12555, 'jkasdhfk', '5144445555', 'itsnickzomg@gmail.com', 'adhfjkadsh', '3da541559918a808c2402bba5012f6c60b27661c', '2018-01-12', 0),
-(43321, 'Big Tiddies', '5144445555', 'x@x.com', 'Timmy Esteban', 'd4c5108cbc830a44d93a621c1a9f30e7028ce3e7', '2018-02-01', 0);
+(43321, 'Big Tiddies', '5144445555', 'x@x.com', 'Timmy Esteban', 'd4c5108cbc830a44d93a621c1a9f30e7028ce3e7', '2018-02-01', 0),
+(55555, 'Big John''s Reno Inc.', '5144445555', 'w@w.com', 'Big John', '96e057d9d3344c5f3f3cf6be7e63ecaa88866f65', '2018-02-06', 0);
 
 -- --------------------------------------------------------
 
@@ -234,51 +235,60 @@ CREATE TABLE IF NOT EXISTS `proposal` (
   `Contractor_CO_Num` int(5) NOT NULL,
   `Project_ID` int(5) NOT NULL,
   `Project_Estimate` double(7,2) NOT NULL,
+  `approved` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`Proposal_ID`),
   KEY `Contractor_CO_Num` (`Contractor_CO_Num`),
   KEY `Project_ID` (`Project_ID`)
-) ENGINE=MyISAM AUTO_INCREMENT=36 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=44 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `proposal`
 --
 
-INSERT INTO `proposal` (`Proposal_ID`, `Contractor_CO_Num`, `Project_ID`, `Project_Estimate`) VALUES
-(1, 1, 1, 13000.00),
-(2, 2, 2, 9100.00),
-(3, 3, 3, 3000.00),
-(4, 4, 4, 8250.00),
-(5, 5, 5, 9800.00),
-(6, 1, 1, 13000.00),
-(7, 2, 2, 9100.00),
-(8, 3, 3, 3000.00),
-(9, 4, 4, 8250.00),
-(10, 5, 5, 9800.00),
-(11, 1, 1, 13000.00),
-(12, 2, 2, 9100.00),
-(13, 3, 3, 3000.00),
-(14, 4, 4, 8250.00),
-(15, 5, 5, 9800.00),
-(16, 1, 1, 13000.00),
-(17, 2, 2, 9100.00),
-(18, 3, 3, 3000.00),
-(19, 4, 4, 8250.00),
-(20, 5, 5, 9800.00),
-(21, 1, 1, 13000.00),
-(22, 2, 2, 9100.00),
-(23, 3, 3, 3000.00),
-(24, 4, 4, 8250.00),
-(25, 5, 5, 9800.00),
-(26, 1, 1, 13000.00),
-(27, 2, 2, 9100.00),
-(28, 3, 3, 3000.00),
-(29, 4, 4, 8250.00),
-(30, 5, 5, 9800.00),
-(31, 1, 1, 13000.00),
-(32, 2, 2, 9100.00),
-(33, 3, 3, 3000.00),
-(34, 4, 4, 8250.00),
-(35, 5, 5, 9800.00);
+INSERT INTO `proposal` (`Proposal_ID`, `Contractor_CO_Num`, `Project_ID`, `Project_Estimate`, `approved`) VALUES
+(1, 1, 1, 13000.00, NULL),
+(2, 2, 2, 9100.00, NULL),
+(3, 3, 3, 3000.00, NULL),
+(4, 4, 4, 8250.00, NULL),
+(5, 5, 5, 9800.00, NULL),
+(6, 1, 1, 13000.00, NULL),
+(7, 2, 2, 9100.00, NULL),
+(8, 3, 3, 3000.00, NULL),
+(9, 4, 4, 8250.00, NULL),
+(10, 5, 5, 9800.00, NULL),
+(11, 1, 1, 13000.00, NULL),
+(12, 2, 2, 9100.00, NULL),
+(13, 3, 3, 3000.00, NULL),
+(14, 4, 4, 8250.00, NULL),
+(15, 5, 5, 9800.00, NULL),
+(16, 1, 1, 13000.00, NULL),
+(17, 2, 2, 9100.00, NULL),
+(18, 3, 3, 3000.00, NULL),
+(19, 4, 4, 8250.00, NULL),
+(20, 5, 5, 9800.00, NULL),
+(21, 1, 1, 13000.00, NULL),
+(22, 2, 2, 9100.00, NULL),
+(23, 3, 3, 3000.00, NULL),
+(24, 4, 4, 8250.00, NULL),
+(25, 5, 5, 9800.00, NULL),
+(26, 1, 1, 13000.00, NULL),
+(27, 2, 2, 9100.00, NULL),
+(28, 3, 3, 3000.00, NULL),
+(29, 4, 4, 8250.00, NULL),
+(30, 5, 5, 9800.00, NULL),
+(31, 1, 1, 13000.00, NULL),
+(32, 2, 2, 9100.00, NULL),
+(33, 3, 3, 3000.00, NULL),
+(34, 4, 4, 8250.00, NULL),
+(35, 5, 5, 9800.00, NULL),
+(36, 43321, 134, 120.00, NULL),
+(37, 43321, 127, 59999.00, NULL),
+(38, 43321, 127, 123.00, NULL),
+(39, 43321, 127, 555.00, NULL),
+(40, 43321, 127, 99964.00, NULL),
+(41, 43321, 129, 404.00, NULL),
+(42, 55555, 129, 4055.00, NULL),
+(43, 43321, 129, 909.00, NULL);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

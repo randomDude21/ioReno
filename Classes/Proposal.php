@@ -5,12 +5,14 @@ class Proposal {
     private $coNum;
     private $project;
     private $estimate;
+    private $approved;
     
-    function __construct($i, $c, $p, $e) {
+    function __construct($i, $c, $p, $e, $a) {
         $this->id=$i;
         $this->coNum=$c;
         $this->project=$p;
         $this->estimate=$e;
+        $this->approved = $a;
     }
     public function get_id()
     {
@@ -28,5 +30,10 @@ class Proposal {
     {
         return $this->estimate;
     }
+    public function get_approved() 
+    {
+        return $this->approved;
+    }
+    
 }
 ?>

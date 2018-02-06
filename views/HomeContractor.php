@@ -34,7 +34,7 @@ if($projects!=null)
                             </div>
                             
                         </div>
-                        <a href="#" class="btn btn-primary" style="height:30px;">Read More</a>
+                        <a href="makeEstimate.php?id=<?php echo $pro->get_id(); ?>" class="btn btn-primary" style="height:30px;">Read More</a>
                     </div>
             
                 </div>
