@@ -5,6 +5,11 @@ require "../Classes/Database.php";
         $db=new Database();
         $customer=$db->getCustomerE($_SESSION["customer"]);
     }
+    else if (isset($_SESSION["contractor"]))
+    {
+        $db=new Database();
+        $contractor=$db->getContractorE($_SESSION['contractor']);
+    }
     
 ?>
 <!DOCTYPE html>
@@ -97,6 +102,20 @@ require "../Classes/Database.php";
                         </li>
                         
                     <?php
+                            }
+                            else if(isset($contractor))
+                            {?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="HomeContractor.php"><strong>Welcome,  
+                                <?php
+                                    echo $contractor->get_name();
+                                ?></strong></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link"href="../php/logout.php"><strong>Logout</strong></a>
+                        </li>
+                    <?php
+                                
                             }
                     ?>
                     </ul>
