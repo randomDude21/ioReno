@@ -18,7 +18,7 @@
 
   <body>
     <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
-      <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Company name</a>
+      <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">IOReno</a>
       <input class="form-control form-control-dark w-100" placeholder="Search" aria-label="Search" type="text">
       <ul class="navbar-nav px-3">
         <li class="nav-item text-nowrap">
@@ -33,39 +33,40 @@
           <div class="sidebar-sticky">
             <ul class="nav flex-column">
               <li class="nav-item">
-                <a class="nav-link active" href="#">
+                <a class="nav-link active" href="AdminHome.php?id=Dashboard">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
                   Dashboard <span class="sr-only">(current)</span>
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
-                  Orders
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shopping-cart"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
-                  Products
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                <a class="nav-link" href="AdminHome.php?id=Customers">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
                   Customers
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bar-chart-2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
-                  Reports
+                <a class="nav-link" href="AdminHome.php?id=Contractors">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shopping-cart"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+                  Contractors
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-layers"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
-                  Integrations
+                <a class="nav-link" href="AdminHome.php?id=Payments">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-layers"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                  
+                  Projects
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="AdminHome.php?id=DeniedPayments">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+                  Denied Payments
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="AdminHome.php?id=Totals">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bar-chart-2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+                  Totals
                 </a>
               </li>
             </ul>
@@ -107,7 +108,7 @@
 
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4"><div style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;" class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
           <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-            <h1 class="h2">Dashboard</h1>
+            <h1 class="h2"><?php echo $_GET["id"];?></h1>
             <div class="btn-toolbar mb-2 mb-md-0">
               <div class="btn-group mr-2">
                 <button class="btn btn-sm btn-outline-secondary">Share</button>
@@ -123,131 +124,159 @@
             <!-- CHART DRAWING MATE -->
           <!--<canvas class="my-4 chartjs-render-monitor" id="myChart" width="1522" height="642" style="display: block; height: 514px; width: 1218px;"></canvas>-->
 
-          <h2>Section title</h2>
-          <div class="table-responsive">
+            <div class="table-responsive">
             <table class="table table-striped table-sm">
+            <?php
+                require '../Classes/Database.php';
+                $db=new Database;
+                if($_GET["id"]=="Contractors"){
+            ?>
               <thead>
                 <tr>
                   <th>#</th>
-                  <th>Header</th>
-                  <th>Header</th>
-                  <th>Header</th>
-                  <th>Header</th>
+                  <th>Company #</th>
+                  <th>Company Name</th>
+                  <th>Contractor Name</th>
+                  <th>Contractor Phone</th>
+                  <th>Contractor Email</th>
+                  <th>Date Registered</th>
+                  <th>Approved</th>
                 </tr>
               </thead>
+            <?php
+                    $contractors=$db->reportContractors();
+                    var_dump($contractors);
+                    echo '<br>';
+                    var_dump($db);
+                    foreach($contractors as $contractor){
+            ?>
               <tbody>
                 <tr>
-                  <td>1,001</td>
-                  <td>Lorem</td>
-                  <td>ipsum</td>
-                  <td>dolor</td>
-                  <td>sit</td>
+                  <td>1</td>
+                  <td><?php echo $contractor->get_coNum();?></td>
+                  <td><?php echo $contractor->get_name();?></td>
+                  <td><?php echo $contractor->get_date();?></td>
+                  <td><?php echo $contractor->get_phone();?></td>
+                  <td><?php echo $contractor->get_email();?></td>
+                  <td><?php echo $contractor->get_date();?></td>
+                  <td><?php echo $contractor->get_approved();?></td>
+                    
                 </tr>
+            <?php
+                    }
+                }
+                else if($_GET["id"]=="Customers"){
+            ?>
+              <thead>
                 <tr>
-                  <td>1,002</td>
-                  <td>amet</td>
-                  <td>consectetur</td>
-                  <td>adipiscing</td>
-                  <td>elit</td>
+                  <th>#</th>
+                  <th>Customer Name</th>
+                  <th>Customer Phone</th>
+                  <th>Customer Email</th>
+                  <th>Date Registered</th>
                 </tr>
+              </thead>
+            <?php
+                    $customers=$db->reportCustomers();
+                    var_dump($customers);
+                    foreach($customers as $customer){
+            ?>
+              <tbody>
                 <tr>
-                  <td>1,003</td>
-                  <td>Integer</td>
-                  <td>nec</td>
-                  <td>odio</td>
-                  <td>Praesent</td>
+                  <td>1</td>
+                  <td><?php echo $customer->get_name();?></td>
+                  <td><?php echo $customer->get_phone();?></td>
+                  <td><?php echo $customer->get_email();?></td>
+                  <td><?php echo $customer->get_date();?></td>
                 </tr>
+            <?php
+                    }
+                }
+                else if($_GET["id"]=="Payments"){
+            ?>
+              <thead>
                 <tr>
-                  <td>1,003</td>
-                  <td>libero</td>
-                  <td>Sed</td>
-                  <td>cursus</td>
-                  <td>ante</td>
+                  <th>#</th>
+                  <th>Payment ID</th>
+                  <th>Company Company #</th>
+                  <th>Payment Amount</th>
+                  <th>Proposal ID</th>
+                  <th>Payment Status</th>
+                  <th>Payment Date</th>
                 </tr>
+              </thead>
+            <?php
+                    $payments=$db->reportPayments();
+                    foreach($payments as $payment){
+                        var_dump($payment);
+            ?>
+              <tbody>
                 <tr>
-                  <td>1,004</td>
-                  <td>dapibus</td>
-                  <td>diam</td>
-                  <td>Sed</td>
-                  <td>nisi</td>
+                    
+                  <td>1</td>
+                  <td><?php echo $payment->get_id();?></td>
+                  <td><?php echo $payment->get_coNum();?></td>
+                  <td><?php echo $payment->get_amount();?></td>
+                  <td><?php echo $payment->get_proposal();?></td>
+                  <td><?php echo $payment->get_status();?></td>
+                  <td><?php echo $payment->get_date();?></td>
+                    
                 </tr>
+            <?php
+                    }
+                }
+                else if($_GET["id"]=="Denied Payments"){
+            ?>
+              <thead>
                 <tr>
-                  <td>1,005</td>
-                  <td>Nulla</td>
-                  <td>quis</td>
-                  <td>sem</td>
-                  <td>at</td>
+                  <th>#</th>
+                  <th>Payment ID</th>
+                  <th>Company Company #</th>
+                  <th>Payment Amount</th>
+                  <th>Proposal ID</th>
+                  <th>Payment Status</th>
+                  <th>Payment Date</th>
                 </tr>
+              </thead>
+            <?php
+                    $payments=$db->deniedPayments();
+                    foreach($payments as $payment){
+                        var_dump($payment);
+            ?>
+              <tbody>
                 <tr>
-                  <td>1,006</td>
-                  <td>nibh</td>
-                  <td>elementum</td>
-                  <td>imperdiet</td>
-                  <td>Duis</td>
+                    
+                  <td>1</td>
+                  <td><?php echo $payment->get_id();?></td>
+                  <td><?php echo $payment->get_coNum();?></td>
+                  <td><?php echo $payment->get_amount();?></td>
+                  <td><?php echo $payment->get_proposal();?></td>
+                  <td><?php echo $payment->get_status();?></td>
+                  <td><?php echo $payment->get_date();?></td>
+                    
                 </tr>
+            <?php
+                    }
+                }
+                else if($_GET["id"]=="Totals"){
+            ?>
+              <thead>
                 <tr>
-                  <td>1,007</td>
-                  <td>sagittis</td>
-                  <td>ipsum</td>
-                  <td>Praesent</td>
-                  <td>mauris</td>
+                  <th>Number of Payments</th>
+                  <th>Total Payments</th>
                 </tr>
+              </thead>
+            <?php
+                    $total=$db->totals();
+            ?>
+              <tbody>
                 <tr>
-                  <td>1,008</td>
-                  <td>Fusce</td>
-                  <td>nec</td>
-                  <td>tellus</td>
-                  <td>sed</td>
+                  <td><?php echo $total;?></td>
+                  <td><?php //echo $total['total'];?></td>
                 </tr>
-                <tr>
-                  <td>1,009</td>
-                  <td>augue</td>
-                  <td>semper</td>
-                  <td>porta</td>
-                  <td>Mauris</td>
-                </tr>
-                <tr>
-                  <td>1,010</td>
-                  <td>massa</td>
-                  <td>Vestibulum</td>
-                  <td>lacinia</td>
-                  <td>arcu</td>
-                </tr>
-                <tr>
-                  <td>1,011</td>
-                  <td>eget</td>
-                  <td>nulla</td>
-                  <td>Class</td>
-                  <td>aptent</td>
-                </tr>
-                <tr>
-                  <td>1,012</td>
-                  <td>taciti</td>
-                  <td>sociosqu</td>
-                  <td>ad</td>
-                  <td>litora</td>
-                </tr>
-                <tr>
-                  <td>1,013</td>
-                  <td>torquent</td>
-                  <td>per</td>
-                  <td>conubia</td>
-                  <td>nostra</td>
-                </tr>
-                <tr>
-                  <td>1,014</td>
-                  <td>per</td>
-                  <td>inceptos</td>
-                  <td>himenaeos</td>
-                  <td>Curabitur</td>
-                </tr>
-                <tr>
-                  <td>1,015</td>
-                  <td>sodales</td>
-                  <td>ligula</td>
-                  <td>in</td>
-                  <td>libero</td>
-                </tr>
+            <?php
+                }
+            ?>
               </tbody>
             </table>
           </div>
