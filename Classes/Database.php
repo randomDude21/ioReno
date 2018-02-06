@@ -101,7 +101,7 @@ class Database {
             $i=0;
             while ($pro = $get_result->fetch_array())
             {
-                $project= new Project($pro["Project_ID"], $pro["Customer_Email"], $pro["title"], $pro["Project_Description"], $pro["projectType"], $pro["Project_Budget"], $pro["address"], $pro["city"], null);
+                $project= new Project($pro["Project_ID"], $pro["Customer_Email"], $pro["title"], $pro["Project_Description"], $pro["projectType"], $pro["Project_Budget"], $pro["address"], $pro["city"], $pro["images"], $pro["date_posted"]);
                 $projects[$i]=$project;
                 $i++;
             }
@@ -300,7 +300,7 @@ class Database {
             {
                 $pro=$get_result->fetch_assoc();
 
-                $project= new Project($pro["Project_ID"], $pro["Customer_Email"], $pro["title"], $pro["Project_Description"], $pro["projectType"], $pro["Project_Budget"], $pro["address"], $pro["city"], $pro["images"]);
+                $project= new Project($pro["Project_ID"], $pro["Customer_Email"], $pro["title"], $pro["Project_Description"], $pro["projectType"], $pro["Project_Budget"], $pro["address"], $pro["city"], $pro["images"], $pro["date_posted"]);
 
                 $get_result->free();
                 $conn->close();
@@ -402,7 +402,7 @@ class Database {
            public function insertProject(Project $project)
         {
             $conn= $this->connect();
-            $sql=$conn->prepare("INSERT INTO project VALUES (?,?,?,?,?,?,?,?,?)");
+            $sql=$conn->prepare("INSERT INTO project VALUES (?,?,?,?,?,?,?,?,?,?)");
             
             $id=$project->get_id();
             $email=$project->get_email();
@@ -413,8 +413,8 @@ class Database {
             $city = $project->get_city();
             $images = $project->getImages();
             $budget=$project->get_budget();
-            $sql->bind_param("isssdssss", $id, $email, $description, $projectType, $budget, $title, $address, $city, $images);
-            $sql->send_long_data(8, $images);
+            $date = $project->get_date();
+            $sql->bind_param("isssdsssss", $id, $email, $description, $projectType, $budget, $title, $address, $city, $images, $date);
             $status=$sql->execute();
             if(!$status)
                 echo trigger_error ($sql->error, E_USER_ERROR);
@@ -588,7 +588,7 @@ class Database {
                 $i=0;
                 while ($pro = $get_result->fetch_array())
                 {
-                    $project= new Project($pro["Project_ID"], $pro["Customer_Email"], $pro["title"], $pro["Project_Description"], $pro["projectType"], $pro["Project_Budget"], $pro["address"], $pro["city"], $pro["images"]);
+                    $project= new Project($pro["Project_ID"], $pro["Customer_Email"], $pro["title"], $pro["Project_Description"], $pro["projectType"], $pro["Project_Budget"], $pro["address"], $pro["city"], $pro["images"], $pro["date_posted"]);
                     $projects[$i]=$project;
                     $i++;
                 }

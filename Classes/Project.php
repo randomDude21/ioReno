@@ -10,8 +10,9 @@ class Project {
     private $address;
     private $city;
     private $images;
+    private $date;
     
-    function __construct($id, $email, $title, $description, $type, $budget, $address, $city, $images) {
+    function __construct($id, $email, $title, $description, $type, $budget, $address, $city, $images, $date) {
         $this->id = $id;
         $this->email = $email;
         $this->title = $title;
@@ -21,6 +22,7 @@ class Project {
         $this->address = $address;
         $this->city = $city;
         $this->images = $images;
+        $this->date = $date;
     }
     
     public function get_id()
@@ -57,6 +59,10 @@ class Project {
     
     function get_city() {
         return $this->city;
+    }
+    
+    function get_date() {
+        return $this->date;
     }
    }
 ?>

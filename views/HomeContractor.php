@@ -11,40 +11,43 @@ if (!$_SESSION["login"]){
     }
     $db=new Database();
     $projects = $db->getProjects();
-    if($projects!=null)
-     {
-        echo '    <div class="row">';
-        
+if($projects!=null)
+{
+?>
+<div class="container-fluid" style="width:85%">
+    <h1>Project Listings</h1>
+    <?php
         foreach ($projects as $pro)
         { 
             ?>
-            <div class="card shadow_fade" style="width: 18rem; margin:10px">
-                <img class="card-img-top" src="../images/gt.jpg" alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title">
-                        <?php echo $pro->getTitle()?>
-                    </h5>
-                    <p class="card-text">
-                        <?php echo $pro->get_budget()."$"?>
-                    </p>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">
-                            <a href="<?php echo '../views/makeEstimate.php?id='.$pro->get_id()?>" class="btn btn-primary btn-sm">Make a proposal</a>
-                           
-                        </li>
-                       
-                    </ul>
-
-                </div>
-            </div>
+        <div class="card">
+                    <div class="row" >
+                        <div class="col-sm-1">
+                                <img src="<?php echo $pro->getImages(); ?>"  height="100px">
+                        </div>
+                        <div class="col-sm-7 px-3">
+                            <div class="card-block px-3">
+                                <h4 class="card-title"><?php echo $pro->getTitle() ?></h4>
+                                <p class="card-text"><?php echo $pro->get_description(); ?></p>
+                                <p class="card-text">$<?php echo $pro->get_budget(); ?></p>
+                                
+                            </div>
+                            
+                        </div>
+                        <a href="#" class="btn btn-primary" style="height:30px;">Read More</a>
+                    </div>
             
-           
-<?php
+                </div>
+            
+        <?php
         }
-     }
-       echo '    </div>';
-
+        ?>
+</div>
+<?php
+}
 ?>
+            
+            
 <?php
     include("_footer.php");
 ?>
