@@ -322,9 +322,9 @@ class Database {
             if($get_result!=false)
             {
                 $prop=$get_result->fetch_assoc();
-                $proposal= new Proposal($prop["Proposal_ID"], $prop["Contractor_CO_Num"], $prop["Project_ID"], $prop["Project_Estimate"]);
+                $proposal= new Proposal($prop["Proposal_ID"], $prop["Contractor_CO_Num"], $prop["Project_ID"], $prop["Project_Estimate"], $prop["approved"]);
                 
-                $sql->close();
+                $get_result->free();
                 $conn->close();
                 return $proposal;
             }
@@ -746,10 +746,11 @@ class Database {
         {
             
             $conn=$this->connect();
+            $sql="UPDATE proposal SET approved = 0 WHERE Project_ID = ".$proposal->get_project();
+            $conn->query($sql) or die("Can't connect to the proposal table");
             $sql="UPDATE proposal SET approved = 1 WHERE Proposal_ID = ".$proposal->get_id();
             $conn->query($sql) or die("Can't connect to the proposal table");
-            $sql="UPDATE proposal SET approved = 1 WHERE Proposal_ID = ".$proposal->get_project();
-            $conn->query($sql) or die("Can't connect to the proposal table");
+            
 
         }
 }
