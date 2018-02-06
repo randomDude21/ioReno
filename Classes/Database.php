@@ -707,10 +707,10 @@ class Database {
                     . "WHERE PAYMENT_DATE>DATE_FORMAT(SYSDATE(), '%Y-%m-%d')-7";
             $get_result=$conn->query($sql);
             $info=array();
-            if ($get_result)
+            while ($get=$get_result->fetch_array())
             {
-                $info["number"]=$get_result["NUMBER_PAYMENTS"];
-                $info["total"]=$get_result["TOTAL_PAYMENTS"];
+                $info["number"]=$get["NUMBER_PAYMENTS"];
+                $info["total"]=$get["TOTAL_PAYMENTS"];
                 
                 $get_result->free();
                 $conn->close();
