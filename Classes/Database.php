@@ -741,6 +741,16 @@ class Database {
                 return null;
             }
         }
+        public function acceptEstimates(Proposal $proposal)
+        {
+            
+            $conn=$this->connect();
+            $sql="UPDATE proposal SET approved = 1 WHERE Proposal_ID = ".$proposal->get_id();
+            $conn->query($sql) or die("Can't connect to the proposal table");
+            $sql="UPDATE proposal SET approved = 1 WHERE Proposal_ID = ".$proposal->get_project();
+            $conn->query($sql) or die("Can't connect to the proposal table");
+
+        }
 }
         
         
