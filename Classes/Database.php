@@ -137,7 +137,7 @@ class Database {
             {
                 $cons=$get_result->fetch_assoc();
                     $contractor= new Contractor($cons["Contractor_CO_Num"], $cons["Contractor_CO_Name"], $cons["Contractor_Phone"], 
-                            $cons["Contractor_Email"], $cons["Contractor_Contact_Name"], $cons["Contractor_Password"], $cons["Contractor_Date_Registered"], $cons["approved"]);
+                            $cons["Contractor_Email"], $cons["Contractor_Contact_Name"], $cons["Contractor_Password"], $cons["Contractor_Date_Registered"], $cons["Approved"]);
                     
                 $get_result->free();
                 $conn->close(); 
@@ -426,12 +426,13 @@ class Database {
            public function insertProposal(Proposal $proposal)
         {
             $conn= $this->connect();
-            $sql=$conn->prepare("INSERT INTO proposal VALUES (?,?,?,?)");
+            $sql=$conn->prepare("INSERT INTO proposal VALUES (?,?,?,?,?)");
             $id=$proposal->get_id();
             $coNum=$proposal->get_coNum();
             $project=$proposal->get_project();
-            $estimate=$proposal->get_estimate();
-            $sql->bind_param("iiid", $id, $coNum, $project, $estimate);
+            $estimate=$proposal->get_estimate();  
+            $approved = null;
+            $sql->bind_param("iiidi", $id, $coNum, $project, $estimate, $approved);
             
             $sql->execute();
             
@@ -612,7 +613,7 @@ class Database {
                 $i=0;
                 while ($pro = $get_result->fetch_array())
                 {
-                    $proposal= new Proposal($pro["Proposal_ID"], $pro["Contractor_CO_Num"], $pro["Project_ID"], $pro["Project_Estimate"]);
+                    $proposal= new Proposal($pro["Proposal_ID"], $pro["Contractor_CO_Num"], $pro["Project_ID"], $pro["Project_Estimate"], $pro["approved"]);
                     $proposals[$i]=$proposal;
                     $i++;
                 }
