@@ -31,7 +31,7 @@ class Database {
             while ($cons = $get_result->fetch_array())
             {
                 $contractor= new Contractor($cons["Contractor_CO_Num"], $cons["Contractor_CO_Name"], $cons["Contractor_Phone"], 
-                        $cons["Contractor_Email"], $cons["Contractor_Contact_Name"], $cons["Contractor_Password"], $cons["Contractor_Date_Registered"]);
+                        $cons["Contractor_Email"], $cons["Contractor_Contact_Name"], $cons["Contractor_Password"], $cons["Contractor_Date_Registered"], $cons["approved"]);
                 $contractors=$contractor;
             }
             $get_result->free();
@@ -101,7 +101,7 @@ class Database {
             $i=0;
             while ($pro = $get_result->fetch_array())
             {
-                $project= new Project($pro["Project_ID"], $pro["Customer_Email"], $pro["title"], $pro["Project_Description"], $pro["projectType"], $pro["Project_Budget"], $pro["address"], $pro["city"], null);
+                $project= new Project($pro["Project_ID"], $pro["Customer_Email"], $pro["title"], $pro["Project_Description"], $pro["projectType"], $pro["Project_Budget"], $pro["address"], $pro["city"], $pro["images"], $pro["date_posted"]);
                 $projects[$i]=$project;
                 $i++;
             }
@@ -137,7 +137,7 @@ class Database {
             {
                 $cons=$get_result->fetch_assoc();
                     $contractor= new Contractor($cons["Contractor_CO_Num"], $cons["Contractor_CO_Name"], $cons["Contractor_Phone"], 
-                            $cons["Contractor_Email"], $cons["Contractor_Contact_Name"], $cons["Contractor_Password"], $cons["Contractor_Date_Registered"]);
+                            $cons["Contractor_Email"], $cons["Contractor_Contact_Name"], $cons["Contractor_Password"], $cons["Contractor_Date_Registered"], $cons["Approved"]);
                     
                 $get_result->free();
                 $conn->close(); 
@@ -155,11 +155,11 @@ class Database {
             //$sql= "SELECT * FROM Customer WHERE Customer_Email = ?";
             //$get_result= $conn->query($sql) or die ("Can't connect to the customer table");
             if($sql = $conn->prepare("SELECT Contractor_CO_Num, Contractor_CO_Name, Contractor_Phone, Contractor_Email, "
-                    . "Contractor_Contact_Name, Contractor_Password, Contractor_Date_Registered FROM Contractor WHERE Contractor_Email = ?"))
+                    . "Contractor_Contact_Name, Contractor_Password, Contractor_Date_Registered, approved FROM Contractor WHERE Contractor_Email = ?"))
             {
                 $sql->bind_param("s", $email);
                 $sql->execute();
-                $sql->bind_result($coNum, $coName, $phone, $email, $name, $password, $date);
+                $sql->bind_result($coNum, $coName, $phone, $email, $name, $password, $date, $approved);
                 $sql->fetch();
                 if (empty($email))
                 {
@@ -167,7 +167,7 @@ class Database {
                 }
                 else
                 {
-                    $contractor= new Contractor($coNum, $coName, $phone, $email, $name, $password, $date);
+                    $contractor= new Contractor($coNum, $coName, $phone, $email, $name, $password, $date, $approved);
 
                     $sql->close();
                     $conn->close();
@@ -300,7 +300,7 @@ class Database {
             {
                 $pro=$get_result->fetch_assoc();
 
-                $project= new Project($pro["Project_ID"], $pro["Customer_Email"], $pro["title"], $pro["Project_Description"], $pro["projectType"], $pro["Project_Budget"], $pro["address"], $pro["city"], $pro["images"]);
+                $project= new Project($pro["Project_ID"], $pro["Customer_Email"], $pro["title"], $pro["Project_Description"], $pro["projectType"], $pro["Project_Budget"], $pro["address"], $pro["city"], $pro["images"], $pro["date_posted"]);
 
                 $get_result->free();
                 $conn->close();
@@ -338,7 +338,7 @@ class Database {
         public function insertContractor(Contractor $contractor)
         {
             $conn= $this->connect();
-            $sql=$conn->prepare("INSERT INTO Contractor VALUES (?,?,?,?,?,?,?)");
+            $sql=$conn->prepare("INSERT INTO Contractor VALUES (?,?,?,?,?,?,?,?)");
         
             $coNum=$contractor->get_coNum();
             $coName=$contractor->get_coName();
@@ -347,7 +347,8 @@ class Database {
             $name=$contractor->get_name();
             $pass=$contractor->get_password();
             $date=$contractor->get_date();
-            $sql->bind_param("issssss", $coNum, $coName, $phone, $email, $name, $pass, $date);
+            $approved = false;
+            $sql->bind_param("issssssi", $coNum, $coName, $phone, $email, $name, $pass, $date, $approved);
             
             $status = $sql->execute();
             if(!$status)
@@ -401,7 +402,7 @@ class Database {
            public function insertProject(Project $project)
         {
             $conn= $this->connect();
-            $sql=$conn->prepare("INSERT INTO project VALUES (?,?,?,?,?,?,?,?,?)");
+            $sql=$conn->prepare("INSERT INTO project VALUES (?,?,?,?,?,?,?,?,?,?)");
             
             $id=$project->get_id();
             $email=$project->get_email();
@@ -412,8 +413,8 @@ class Database {
             $city = $project->get_city();
             $images = $project->getImages();
             $budget=$project->get_budget();
-            $sql->bind_param("isssdssss", $id, $email, $description, $projectType, $budget, $title, $address, $city, $images);
-            $sql->send_long_data(8, $images);
+            $date = $project->get_date();
+            $sql->bind_param("isssdsssss", $id, $email, $description, $projectType, $budget, $title, $address, $city, $images, $date);
             $status=$sql->execute();
             if(!$status)
                 echo trigger_error ($sql->error, E_USER_ERROR);
@@ -425,12 +426,13 @@ class Database {
            public function insertProposal(Proposal $proposal)
         {
             $conn= $this->connect();
-            $sql=$conn->prepare("INSERT INTO proposal VALUES (?,?,?,?)");
+            $sql=$conn->prepare("INSERT INTO proposal VALUES (?,?,?,?,?)");
             $id=$proposal->get_id();
             $coNum=$proposal->get_coNum();
             $project=$proposal->get_project();
-            $estimate=$proposal->get_estimate();
-            $sql->bind_param("iiid", $id, $coNum, $project, $estimate);
+            $estimate=$proposal->get_estimate();  
+            $approved = null;
+            $sql->bind_param("iiidi", $id, $coNum, $project, $estimate, $approved);
             
             $sql->execute();
             
@@ -488,7 +490,7 @@ class Database {
         {
             $conn=$this->connect();
             $stmt=$conn->prepare("UPDATE contractor SET Contractor_CO_Name = ?, Contractor_Phone = ?, Contractor_Email = ?, "
-                    . "Contractor_Contact_Name = ?, Contractor_Password = ?, Contractor_Date_Registered = ? WHERE Contractor_CO_Num = ?");
+                    . "Contractor_Contact_Name = ?, Contractor_Password = ?, Contractor_Date_Registered = ?, approved = ? WHERE Contractor_CO_Num = ?");
             $coNum=$contractor->get_coNum();
             $coName=$contractor->get_coName();
             $phone=$contractor->get_phone();
@@ -496,8 +498,8 @@ class Database {
             $name=$contractor->get_name();
             $password=$contractor->get_password();
             $date=$contractor->get_date();
-            
-            $stmt->bind_param('ssssssi', $coName, $phone, $email, $name, $password, $date, $coNum);
+            $approved = $contractor->get_approved();
+            $stmt->bind_param('ssssssii', $coName, $phone, $email, $name, $password, $date, $coNum, $approved);
             $stmt->execute();
             $stmt->close();
             $conn->close();
@@ -587,7 +589,7 @@ class Database {
                 $i=0;
                 while ($pro = $get_result->fetch_array())
                 {
-                    $project= new Project($pro["Project_ID"], $pro["Customer_Email"], $pro["title"], $pro["Project_Description"], $pro["projectType"], $pro["Project_Budget"], $pro["address"], $pro["city"], $pro["images"]);
+                    $project= new Project($pro["Project_ID"], $pro["Customer_Email"], $pro["title"], $pro["Project_Description"], $pro["projectType"], $pro["Project_Budget"], $pro["address"], $pro["city"], $pro["images"], $pro["date_posted"]);
                     $projects[$i]=$project;
                     $i++;
                 }
@@ -611,7 +613,7 @@ class Database {
                 $i=0;
                 while ($pro = $get_result->fetch_array())
                 {
-                    $proposal= new Proposal($pro["Proposal_ID"], $pro["Contractor_CO_Num"], $pro["Project_ID"], $pro["Project_Estimate"]);
+                    $proposal= new Proposal($pro["Proposal_ID"], $pro["Contractor_CO_Num"], $pro["Project_ID"], $pro["Project_Estimate"], $pro["approved"]);
                     $proposals[$i]=$proposal;
                     $i++;
                 }
@@ -706,10 +708,10 @@ class Database {
                     . "WHERE PAYMENT_DATE>DATE_FORMAT(SYSDATE(), '%Y-%m-%d')-7";
             $get_result=$conn->query($sql);
             $info=array();
-            if ($get_result)
+            while ($get=$get_result->fetch_array())
             {
-                $info["number"]=$get_result["NUMBER_PAYMENTS"];
-                $info["total"]=$get_result["TOTAL_PAYMENTS"];
+                $info["number"]=$get["NUMBER_PAYMENTS"];
+                $info["total"]=$get["TOTAL_PAYMENTS"];
                 
                 $get_result->free();
                 $conn->close();

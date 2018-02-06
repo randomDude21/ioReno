@@ -18,7 +18,6 @@ if (isset($_SESSION["customer"]))
     $customer=$db->getCustomerE($_SESSION["customer"]);
 }
 $project = $db->getProject($_GET["id"]);
-$_SESSION["project"] = $_GET["id"];
 ?>
 <div class="container-fluid">
     <div class="col-sm-8">
@@ -33,17 +32,8 @@ $_SESSION["project"] = $_GET["id"];
     <div class="col-sm-6">
         <h3>Address</h3>
     </div>
-    
-        <h4>Make Estimate</h4>
-        <form action="../php/confirmEstimate.php" method="POST">
-            <input type="number" id="estimate" name="estimate">
-            <span name="error"><?php if (isset($_SESSION['error'])) echo("{$_SESSION['error']}"); $_SESSION['error'] = ""; ?></span>
-            
-    
     <div style="margin-top: 20px">
-        <a href="HomeContractor.php" class="btn btn-danger" role="button"><strong>Go back</strong></a>
-        <input type="submit" class="btn btn-success" value="Submit">
-        </form>
+            <a href="HomeCustomer.php" class="btn btn-danger" role="button"><strong>Go back</strong></a>
         </div>
 
 
