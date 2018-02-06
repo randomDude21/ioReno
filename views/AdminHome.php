@@ -127,9 +127,110 @@
             <table class="table table-striped table-sm">
             <h2>Section title</h2>
             <?php
-                require "../Classes/Database.php";
+                require '../Classes/Database.php';
                 $db=new Database;
                 if($_GET["id"]=="Contractors"){
+            ?>
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Company #</th>
+                  <th>Company Name</th>
+                  <th>Contractor Name</th>
+                  <th>Contractor Phone</th>
+                  <th>Contractor Email</th>
+                  <th>Date Registered</th>
+                  <th>Approved</th>
+                </tr>
+              </thead>
+            <?php
+                    $contractors=$db->reportContractors();
+                    var_dump($contractors);
+                    echo '<br>';
+                    var_dump($db);
+                    foreach($contractors as $contractor){
+            ?>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td><?php echo $contractor->get_coNum();?></td>
+                  <td><?php echo $contractor->get_name();?></td>
+                  <td><?php echo $contractor->get_date();?></td>
+                  <td><?php echo $contractor->get_phone();?></td>
+                  <td><?php echo $contractor->get_email();?></td>
+                  <td><?php echo $contractor->get_date();?></td>
+                  <td><?php echo $contractor->get_approved();?></td>
+                    
+                </tr>
+            <?php
+                    }
+                }
+                else if($_GET["id"]=="Customers"){
+            ?>
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Customer Name</th>
+                  <th>Customer Phone</th>
+                  <th>Customer Email</th>
+                  <th>Date Registered</th>
+                  <th>Approved</th>
+                </tr>
+              </thead>
+            <?php
+                    $customers=$db->reportCustomers();
+                    var_dump($customers);
+                    foreach($customers as $customer){
+            ?>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td><?php echo $contractor->get_coNum();?></td>
+                  <td><?php echo $contractor->get_name();?></td>
+                  <td><?php echo $contractor->get_date();?></td>
+                  <td><?php echo $contractor->get_phone();?></td>
+                  <td><?php echo $contractor->get_email();?></td>
+                  <td><?php echo $contractor->get_date();?></td>
+                  <td><?php echo $contractor->get_approved();?></td>
+                    
+                </tr>
+            <?php
+                    }
+                }
+                else if($_GET["id"]=="Projects"){
+            ?>
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Company #</th>
+                  <th>Company Name</th>
+                  <th>Contractor Name</th>
+                  <th>Contractor Phone</th>
+                  <th>Contractor Email</th>
+                  <th>Date Registered</th>
+                  <th>Approved</th>
+                </tr>
+              </thead>
+            <?php
+                    $contractors=$db->reportContractors();
+                    foreach($contractors as $contractor){
+            ?>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td><?php echo $contractor->get_coNum();?></td>
+                  <td><?php echo $contractor->get_name();?></td>
+                  <td><?php echo $contractor->get_date();?></td>
+                  <td><?php echo $contractor->get_phone();?></td>
+                  <td><?php echo $contractor->get_email();?></td>
+                  <td><?php echo $contractor->get_date();?></td>
+                  <td><?php echo $contractor->get_approved();?></td>
+                    
+                </tr>
+            <?php
+                    }
+                }
+                else if($_GET["id"]=="Reports"){
             ?>
               <thead>
                 <tr>
