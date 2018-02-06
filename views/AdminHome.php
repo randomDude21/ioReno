@@ -40,7 +40,7 @@
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="AdminHome.php?id=Customers">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
                   Customers
                 </a>
               </li>
@@ -51,21 +51,22 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="AdminHome.php?id=Projects">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                <a class="nav-link" href="AdminHome.php?id=Payments">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-layers"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                  
                   Projects
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="AdminHome.php?id=Reports">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bar-chart-2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
-                  Totals
+                <a class="nav-link" href="AdminHome.php?id=DeniedPayments">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+                  Denied Payments
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="AdminHome.php?id=6">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-layers"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
-                  Integrations
+                <a class="nav-link" href="AdminHome.php?id=Totals">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bar-chart-2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+                  Totals
                 </a>
               </li>
             </ul>
@@ -125,7 +126,6 @@
 
             <div class="table-responsive">
             <table class="table table-striped table-sm">
-            <h2>Section title</h2>
             <?php
                 require '../Classes/Database.php';
                 $db=new Database;
@@ -174,7 +174,6 @@
                   <th>Customer Phone</th>
                   <th>Customer Email</th>
                   <th>Date Registered</th>
-                  <th>Approved</th>
                 </tr>
               </thead>
             <?php
@@ -185,83 +184,97 @@
               <tbody>
                 <tr>
                   <td>1</td>
-                  <td><?php echo $contractor->get_coNum();?></td>
-                  <td><?php echo $contractor->get_name();?></td>
-                  <td><?php echo $contractor->get_date();?></td>
-                  <td><?php echo $contractor->get_phone();?></td>
-                  <td><?php echo $contractor->get_email();?></td>
-                  <td><?php echo $contractor->get_date();?></td>
-                  <td><?php echo $contractor->get_approved();?></td>
+                  <td><?php echo $customer->get_name();?></td>
+                  <td><?php echo $customer->get_phone();?></td>
+                  <td><?php echo $customer->get_email();?></td>
+                  <td><?php echo $customer->get_date();?></td>
+                </tr>
+            <?php
+                    }
+                }
+                else if($_GET["id"]=="Payments"){
+            ?>
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Payment ID</th>
+                  <th>Company Company #</th>
+                  <th>Payment Amount</th>
+                  <th>Proposal ID</th>
+                  <th>Payment Status</th>
+                  <th>Payment Date</th>
+                </tr>
+              </thead>
+            <?php
+                    $payments=$db->reportPayments();
+                    foreach($payments as $payment){
+                        var_dump($payment);
+            ?>
+              <tbody>
+                <tr>
+                    
+                  <td>1</td>
+                  <td><?php echo $payment->get_id();?></td>
+                  <td><?php echo $payment->get_coNum();?></td>
+                  <td><?php echo $payment->get_amount();?></td>
+                  <td><?php echo $payment->get_proposal();?></td>
+                  <td><?php echo $payment->get_status();?></td>
+                  <td><?php echo $payment->get_date();?></td>
                     
                 </tr>
             <?php
                     }
                 }
-                else if($_GET["id"]=="Projects"){
+                else if($_GET["id"]=="Denied Payments"){
             ?>
               <thead>
                 <tr>
                   <th>#</th>
-                  <th>Company #</th>
-                  <th>Company Name</th>
-                  <th>Contractor Name</th>
-                  <th>Contractor Phone</th>
-                  <th>Contractor Email</th>
-                  <th>Date Registered</th>
-                  <th>Approved</th>
+                  <th>Payment ID</th>
+                  <th>Company Company #</th>
+                  <th>Payment Amount</th>
+                  <th>Proposal ID</th>
+                  <th>Payment Status</th>
+                  <th>Payment Date</th>
                 </tr>
               </thead>
             <?php
-                    $contractors=$db->reportContractors();
-                    foreach($contractors as $contractor){
+                    $payments=$db->deniedPayments();
+                    foreach($payments as $payment){
+                        var_dump($payment);
             ?>
               <tbody>
                 <tr>
+                    
                   <td>1</td>
-                  <td><?php echo $contractor->get_coNum();?></td>
-                  <td><?php echo $contractor->get_name();?></td>
-                  <td><?php echo $contractor->get_date();?></td>
-                  <td><?php echo $contractor->get_phone();?></td>
-                  <td><?php echo $contractor->get_email();?></td>
-                  <td><?php echo $contractor->get_date();?></td>
-                  <td><?php echo $contractor->get_approved();?></td>
+                  <td><?php echo $payment->get_id();?></td>
+                  <td><?php echo $payment->get_coNum();?></td>
+                  <td><?php echo $payment->get_amount();?></td>
+                  <td><?php echo $payment->get_proposal();?></td>
+                  <td><?php echo $payment->get_status();?></td>
+                  <td><?php echo $payment->get_date();?></td>
                     
                 </tr>
             <?php
                     }
                 }
-                else if($_GET["id"]=="Reports"){
+                else if($_GET["id"]=="Totals"){
             ?>
               <thead>
                 <tr>
-                  <th>#</th>
-                  <th>Company #</th>
-                  <th>Company Name</th>
-                  <th>Contractor Name</th>
-                  <th>Contractor Phone</th>
-                  <th>Contractor Email</th>
-                  <th>Date Registered</th>
-                  <th>Approved</th>
+                  <th>Number of Payments</th>
+                  <th>Total Payments</th>
                 </tr>
               </thead>
             <?php
-                    $contractors=$db->reportContractors();
-                    foreach($contractors as $contractor){
+                    $total=$db->totals();
             ?>
               <tbody>
                 <tr>
-                  <td>1</td>
-                  <td><?php echo $contractor->get_coNum();?></td>
-                  <td><?php echo $contractor->get_name();?></td>
-                  <td><?php echo $contractor->get_date();?></td>
-                  <td><?php echo $contractor->get_phone();?></td>
-                  <td><?php echo $contractor->get_email();?></td>
-                  <td><?php echo $contractor->get_date();?></td>
-                  <td><?php echo $contractor->get_approved();?></td>
-                    
+                  <td><?php echo $total;?></td>
+                  <td><?php //echo $total['total'];?></td>
                 </tr>
             <?php
-                    }
                 }
             ?>
               </tbody>

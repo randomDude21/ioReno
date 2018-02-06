@@ -685,7 +685,7 @@ class Database {
                 $i=0;
                 while ($pay = $get_result->fetch_array())
                 {
-                    $payment=new Payment($pay["Payment_ID"], $pay["Contractor_CO_Num"], $pay["Payment_Amount"], $pay["Poposal_ID"],
+                    $payment=new Payment($pay["Payment_ID"], $pay["Contractor_CO_Num"], $pay["Payment_Amount"], $pay["Proposal_ID"],
                             $pay["Payment_Status"], $pay["PAYMENT_DATE"]);
                     $payments[$i]=$payment;
                 }
