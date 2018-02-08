@@ -754,7 +754,33 @@ class Database {
             $conn->query($sql) or die("Can't connect to the proposal table");
             $sql="UPDATE proposal SET approved = 1 WHERE Proposal_ID = ".$proposal->get_project();
             $conn->query($sql) or die("Can't connect to the proposal table");
+            $conn->close();
 
+        }
+        public function pastEstimates(Contractor $contractor)
+        {
+            $conn=$this->connect();
+            $sql="SELECT * FROM proposal WHERE Contractor_CO_Num=".$contractor->get_coNum();
+            $get_result=$conn->query($sql) or die ("Can't connect to the proposal table");
+            $proposals=array();
+            if($get_result)
+            {
+                $i=0;
+                while ($pro = $get_result->fetch_array())
+                {
+                    $proposal=new Proposal($pro["Proposal_ID"],$pro["Contractor_CO_Num"],$pro["Project_ID"],$pro["Project_Estimate"],$pro["approved"]);
+                    $proposals[$i]=$proposal;
+                    $i++;
+                }
+
+                $get_result->free();
+                $conn->close();
+                return $proposals;
+            }
+            else
+            {
+                return null;
+            }
         }
 }
         

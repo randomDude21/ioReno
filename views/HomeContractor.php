@@ -11,6 +11,11 @@ if (!$_SESSION["login"]){
     }
     $db=new Database();
     $projects = $db->getProjects();
+    ?>
+<div class="container-fluid">
+    <a href="pastEstimates.php" class="btn btn-primary">See your estimates</a>
+</div>
+<?php
 if($projects!=null)
 {
 ?>
