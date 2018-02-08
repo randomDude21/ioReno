@@ -13,7 +13,7 @@ if (!$_SESSION["login"]){
     $projects = $db->getProjects();
     ?>
 <div class="container-fluid">
-    <a href="pastEstimates.php" class="btn btn-primary">See your estimates</a>
+    <a href="pastEstimates.php" class="btn btn-primary" style="margin-left: 7.5%; margin-top: 1%">See your estimates</a>
 </div>
 <?php
 if($projects!=null)
@@ -39,7 +39,7 @@ if($projects!=null)
                             </div>
                             
                         </div>
-                        <a href="makeEstimate.php?id=<?php echo $pro->get_id(); ?>" class="btn btn-primary" style="height:30px;">Read More</a>
+                        <a href="makeEstimate.php?id=<?php echo $pro->get_id(); ?>" class="btn btn-primary" style="height:40%; margin-top: auto; margin-bottom: auto">Read More</a>
                     </div>
             
                 </div>
