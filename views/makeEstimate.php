@@ -12,11 +12,6 @@ if (!$_SESSION["login"])
 {
     header("location:../views/index.php");
 }
-if (isset($_SESSION["customer"]))
-{
-    $db=new Database();
-    $customer=$db->getCustomerE($_SESSION["customer"]);
-}
 $project = $db->getProject($_GET["id"]);
 $_SESSION["project"] = $_GET["id"];
 ?>
