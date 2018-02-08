@@ -30,13 +30,14 @@ if($projects!=null)
 <div class="container-fluid" style="width:85%">
     <h1>Project Listings</h1>
         <div>
-            <h3>Project Types</h3>
+            <h5>Project Types</h5>
             <form action="HomeContractor.php" method="get">
-                <ul class="nav flex-column">
+                <ul class="nav">
                     <?php
                         include("../Classes/ProjectTypes.php");
                         foreach ($projectTypes as $val) {
                             ?>
+                    <li class="nav-item">
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
                                     <div class="input-group-text">
@@ -46,12 +47,13 @@ if($projects!=null)
                                 </div>
                                 
                             </div>
+                    </li>
                             <?php
                         }
                     ?>
                 </ul>
                 <input type="submit" value="Search">
-                <input type="reset" value="Clear">
+                
             </form>
         </div>
     <?php
