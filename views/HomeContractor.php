@@ -24,7 +24,7 @@ if (!$_SESSION["login"]){
     <a href="pastEstimates.php" class="btn btn-primary" style="margin-left: 7.5%; margin-top: 1%">See your estimates</a>
 </div>
 <?php
-if($projects!=null)
+if(true)
 {
 ?>
 <div class="container-fluid" style="width:85%">
@@ -35,17 +35,17 @@ if($projects!=null)
                 <ul class="nav">
                     <?php
                         include("../Classes/ProjectTypes.php");
+                        
                         foreach ($projectTypes as $val) {
                             ?>
                     <li class="nav-item">
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
                                     <div class="input-group-text">
-                                        <input type="checkbox" name="type[]" value="<?php echo $val; ?>" <?php if (isset($_GET["type"]) && in_array($val, $_GET["type"])) echo "checked=chekced"; ?>>
+                                        <input type="checkbox" name="type[]" id="<?php echo $val; ?>" value="<?php echo $val; ?>" <?php if (isset($_GET["type"]) && in_array($val, $_GET["type"])) echo "checked=chekced"; ?>>
                                         <label for="<?php echo $val; ?>"><?php echo $val ?></label>
                                     </div>
-                                </div>
-                                
+                                </div>                                
                             </div>
                     </li>
                             <?php
