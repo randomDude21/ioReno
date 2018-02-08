@@ -145,9 +145,6 @@
               </thead>
             <?php
                     $contractors=$db->reportContractors();
-                    var_dump($contractors);
-                    echo '<br>';
-                    var_dump($db);
                     foreach($contractors as $contractor){
             ?>
               <tbody>
@@ -178,7 +175,6 @@
               </thead>
             <?php
                     $customers=$db->reportCustomers();
-                    var_dump($customers);
                     foreach($customers as $customer){
             ?>
               <tbody>
@@ -208,7 +204,6 @@
             <?php
                     $payments=$db->reportPayments();
                     foreach($payments as $payment){
-                        var_dump($payment);
             ?>
               <tbody>
                 <tr>
@@ -241,7 +236,6 @@
             <?php
                     $payments=$db->deniedPayments();
                     foreach($payments as $payment){
-                        var_dump($payment);
             ?>
               <tbody>
                 <tr>
@@ -271,8 +265,8 @@
             ?>
               <tbody>
                 <tr>
-                  <td><?php echo $total;?></td>
-                  <td><?php //echo $total['total'];?></td>
+                  <td><?php echo $total['number']?></td>
+                  <td><?php echo $total['total'];?></td>
                 </tr>
             <?php
                 }
