@@ -782,6 +782,28 @@ class Database {
                 return null;
             }
         }
+        
+        
+        
+        //returns all the rows in the project table 
+          public function sortProjects($types)
+        {
+            $type_string = implode ("', '", $types);
+            $sql= "SELECT * FROM project WHERE projectType IN ('" . $type_string . "')";
+            $conn=$this->connect();
+            $get_result= $conn->query($sql) or die("Can't connect to the project table");
+            $projects=array();
+            $i=0;
+            while ($pro = $get_result->fetch_array())
+            {
+                $project= new Project($pro["Project_ID"], $pro["Customer_Email"], $pro["title"], $pro["Project_Description"], $pro["projectType"], $pro["Project_Budget"], $pro["address"], $pro["city"], $pro["images"], $pro["date_posted"]);
+                $projects[$i]=$project;
+                $i++;
+            }
+            $get_result->free();
+            $conn->close();
+            return $projects;
+        }
 }
         
         
