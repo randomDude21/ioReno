@@ -99,6 +99,7 @@
                         <!-- Submit -->
                         <div class="controls">
                             <input type="submit" name="submit" class="btn btn-success" value="Submit">
+                            <a href="HomeCustomer.php" class="btn btn-danger" role="button"><strong>Go back</strong></a>
                         </div>
                     </div>
                 </fieldset>
