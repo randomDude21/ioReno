@@ -1,8 +1,8 @@
 <?php
+session_start(); 
+require '../Classes/Database.php';
+$db=new Database();
+$proposal = $db->getProposal($_GET["id"]);
+$db->acceptEstimates($proposal);
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
+header("location: ../views/HomeCustomer.php");

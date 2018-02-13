@@ -330,9 +330,9 @@ class Database {
             if($get_result!=false)
             {
                 $prop=$get_result->fetch_assoc();
-                $proposal= new Proposal($prop["Proposal_ID"], $prop["Contractor_CO_Num"], $prop["Project_ID"], $prop["Project_Estimate"]);
+                $proposal= new Proposal($prop["Proposal_ID"], $prop["Contractor_CO_Num"], $prop["Project_ID"], $prop["Project_Estimate"], $prop["approved"]);
                 
-                $sql->close();
+                $get_result->free();
                 $conn->close();
                 return $proposal;
             }
@@ -773,6 +773,64 @@ class Database {
             {
                 return null;
             }
+        }
+        public function acceptEstimates(Proposal $proposal)
+        {
+            
+            $conn=$this->connect();
+            $sql="UPDATE proposal SET approved = 0 WHERE Project_ID = ".$proposal->get_project();
+            $conn->query($sql) or die("Can't connect to the proposal table");
+            $sql="UPDATE proposal SET approved = 1 WHERE Proposal_ID = ".$proposal->get_id();
+            $conn->query($sql) or die("Can't connect to the proposal table");
+            $conn->close();
+
+        }
+        public function pastEstimates(Contractor $contractor)
+        {
+            $conn=$this->connect();
+            $sql="SELECT * FROM proposal WHERE Contractor_CO_Num=".$contractor->get_coNum();
+            $get_result=$conn->query($sql) or die ("Can't connect to the proposal table");
+            $proposals=array();
+            if($get_result)
+            {
+                $i=0;
+                while ($pro = $get_result->fetch_array())
+                {
+                    $proposal=new Proposal($pro["Proposal_ID"],$pro["Contractor_CO_Num"],$pro["Project_ID"],$pro["Project_Estimate"],$pro["approved"]);
+                    $proposals[$i]=$proposal;
+                    $i++;
+                }
+
+                $get_result->free();
+                $conn->close();
+                return $proposals;
+            }
+            else
+            {
+                return null;
+            }
+        }
+        
+        
+        
+        //returns all the rows in the project table 
+          public function sortProjects($types)
+        {
+            $type_string = implode ("', '", $types);
+            $sql= "SELECT * FROM project WHERE projectType IN ('" . $type_string . "')";
+            $conn=$this->connect();
+            $get_result= $conn->query($sql) or die("Can't connect to the project table");
+            $projects=array();
+            $i=0;
+            while ($pro = $get_result->fetch_array())
+            {
+                $project= new Project($pro["Project_ID"], $pro["Customer_Email"], $pro["title"], $pro["Project_Description"], $pro["projectType"], $pro["Project_Budget"], $pro["address"], $pro["city"], $pro["images"], $pro["date_posted"]);
+                $projects[$i]=$project;
+                $i++;
+            }
+            $get_result->free();
+            $conn->close();
+            return $projects;
         }
 }
         
