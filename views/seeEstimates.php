@@ -32,7 +32,15 @@ if (isset($_SESSION["error"])) {
 $project = $db->getProject($_GET["id"]);
 
 $estimates = $db->getProjectProposals($project->get_id());
-if ($estimates != null) {
+$flag = false;
+foreach ($estimates as $est) {
+    if ($est->get_approved() == 1) {
+        $flag = true;
+        echo "You have accepted this estimate for this project:";
+
+    }
+}
+if ($estimates != null && $flag == false) {
     foreach ($estimates as $est) {
 
         $contractor = $db->getContractor($est->get_coNum());
@@ -60,7 +68,7 @@ if ($estimates != null) {
                         </div>
         <?php       
         }
-} else {
+} else if ($estimates == null) {
     echo "You don't have any estimate for this project yet";
 }
 ?>
