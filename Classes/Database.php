@@ -28,11 +28,13 @@ class Database {
             $sql= "SELECT * FROM contractor";
             $get_result= $conn->query($sql) or die("Can't connect to the contractor table");
             $contractors=array();
+            $i=0;
             while ($cons = $get_result->fetch_array())
             {
                 $contractor= new Contractor($cons["Contractor_CO_Num"], $cons["Contractor_CO_Name"], $cons["Contractor_Phone"], 
-                        $cons["Contractor_Email"], $cons["Contractor_Contact_Name"], $cons["Contractor_Password"], $cons["Contractor_Date_Registered"], $cons["approved"]);
-                $contractors=$contractor;
+                        $cons["Contractor_Email"], $cons["Contractor_Contact_Name"], $cons["Contractor_Password"], $cons["Contractor_Date_Registered"], $cons["Approved"]);
+                $contractors[$i]=$contractor;
+                $i++;
             }
             $get_result->free();
             $conn->close();
@@ -62,11 +64,13 @@ class Database {
             $sql= "SELECT * FROM customer";
             $get_result= $conn->query($sql) or die("Can't connect to the customer table");
             $customers=array();
+            $i=0;
             while ($cust = $get_result->fetch_array())
             {
                 $customer= new Customer($cust["Customer_ID"], $cust["Customer_Name"], $cust["Customer_Email"], 
                         $cust["Customer_Phone"], $cust["Customer_Password"], $cust["Customer_Date_Registered"]);
-                $customers=$customer;
+                $customers[$i]=$customer;
+                $i++;
             }
             $get_result->free();
             $conn->close();
@@ -80,11 +84,13 @@ class Database {
             $sql= "SELECT * FROM payments";
             $get_result= $conn->query($sql) or die("Can't connect to the payments table");
             $payments=array();
+            $i=0;
             while ($pay = $get_result->fetch_array())
             {
                 $payment= new Payment($pay["Payment_ID"], $pay["Contractor_CO_Num"], $pay["Payment_Amount"], 
                         $pay["Proposal_ID"], $pay["Payment_Status"], $pay["PAYMENT_DATE"]);
-                $payments=$payment;
+                $payments[$i]=$payment;
+                $i++;
             }
             $get_result->free();
             $conn->close();
@@ -117,10 +123,12 @@ class Database {
             $sql= "SELECT * FROM proposal";
             $get_result= $conn->query($sql) or die("Can't connect to the proposal table");
             $proposals=array();
+            $i=0;
             while ($prop = $get_result->fetch_array())
             {
                 $proposal= new Proposal($prop["Proposal_ID"], $prop["Contractor_CO_Num"], $prop["Project_ID"], $prop["Project_Estimate"]);
-                $proposals=$proposal;
+                $proposals[$i]=$proposal;
+                $i++;
             }
             $get_result->free();
             $conn->close();
@@ -629,7 +637,7 @@ class Database {
         public function reportCustomers()
         {
             $conn= $this->connect();
-            $sql="SELECT * FROM CUSTOMER WHERE CUSTOMER_DATE_REGISTERED > DATE_FORMAT(SYSDATE(), '%Y-%m-%d')-7";
+            $sql="SELECT * FROM CUSTOMER WHERE CUSTOMER_DATE_REGISTERED > date_sub(DATE_FORMAT(sysdate(), '%Y-%m-%d'), INTERVAL 7 day)";
             $get_result=$conn->query($sql);
             $customers=array();
             if($get_result)
@@ -655,7 +663,7 @@ class Database {
         public function reportContractors()
         {
             $conn= $this->connect();
-            $sql="SELECT * FROM Contractor WHERE Contractor_DATE_REGISTERED > DATE_FORMAT(SYSDATE(), '%Y-%m-%d')-7";
+            $sql="SELECT * FROM Contractor WHERE Contractor_DATE_REGISTERED > date_sub(DATE_FORMAT(sysdate(), '%Y-%m-%d'), INTERVAL 7 day)";
             $get_result=$conn->query($sql);
             $contractors=array();
             if($get_result)
@@ -681,7 +689,7 @@ class Database {
         public function reportPayments()
         {
             $conn= $this->connect();
-            $sql="SELECT * FROM PAYMENTS WHERE PAYMENT_DATE> DATE_FORMAT(SYSDATE(), '%Y-%m-%d')-7";
+            $sql="SELECT * FROM PAYMENTS WHERE PAYMENT_DATE > date_sub(DATE_FORMAT(sysdate(), '%Y-%m-%d'), INTERVAL 7 day)";
             $get_result=$conn->query($sql);
             $payments=array();
             if($get_result)
@@ -704,11 +712,31 @@ class Database {
             }
             
         }
+    
+        //returns all the rows in the project table 
+          public function reportProjects()
+        {
+            $conn=$this->connect();
+            $sql= "SELECT * FROM project where date_posted > date_sub(DATE_FORMAT(sysdate(), '%Y-%m-%d'), INTERVAL 7 day)";
+            $get_result= $conn->query($sql) or die("Can't connect to the project table");
+            $projects=array();
+            $i=0;
+            while ($pro = $get_result->fetch_array())
+            {
+                $project= new Project($pro["Project_ID"], $pro["Customer_Email"], $pro["title"], $pro["Project_Description"], $pro["projectType"], $pro["Project_Budget"], $pro["address"], $pro["city"], $pro["images"], $pro["date_posted"]);
+                $projects[$i]=$project;
+                $i++;
+            }
+            $get_result->free();
+            $conn->close();
+            return $projects;
+        }
+    
         public function totals()
         {
             $conn=$this->connect();
             $sql= "SELECT COUNT(PAYMENT_ID) AS NUMBER_PAYMENTS, SUM(PAYMENT_AMOUNT) AS TOTAL_PAYMENTS FROM PAYMENTS "
-                    . "WHERE PAYMENT_DATE>DATE_FORMAT(SYSDATE(), '%Y-%m-%d')-7";
+                    . "WHERE PAYMENT_DATE>date_sub(DATE_FORMAT(sysdate(), '%Y-%m-%d'), INTERVAL 7 day)";
             $get_result=$conn->query($sql);
             $info=array();
             while ($get=$get_result->fetch_array())
@@ -732,7 +760,7 @@ class Database {
                 $i=0;
                 while ($pay = $get_result->fetch_array())
                 {
-                    $payment=new Payment($pay["Payment_ID"], $pay["Contractor_CO_Num"], $pay["Payment_Amount"], $pay["Poposal_ID"],
+                    $payment=new Payment($pay["Payment_ID"], $pay["Contractor_CO_Num"], $pay["Payment_Amount"], $pay["Proposal_ID"],
                             $pay["Payment_Status"], $pay["PAYMENT_DATE"]);
                     $payments[$i]=$payment;
                     $i++;
