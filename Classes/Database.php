@@ -439,7 +439,7 @@ class Database {
             $coNum=$proposal->get_coNum();
             $project=$proposal->get_project();
             $estimate=$proposal->get_estimate();  
-            $approved = null;
+            $approved = 2;
             $sql->bind_param("iiidi", $id, $coNum, $project, $estimate, $approved);
             
             $sql->execute();
@@ -831,6 +831,25 @@ class Database {
             $get_result->free();
             $conn->close();
             return $projects;
+        }
+        
+        public function sortEstimates($status, $contractor)
+        {
+            $stat_string = implode ("', '", $status);
+            $sql= "SELECT * FROM proposal WHERE approved IN ('" . $stat_string . "') and Contractor_CO_Num=".$contractor->get_coNum();;
+            $conn=$this->connect();
+            $get_result= $conn->query($sql) or die("Can't connect to the proposal table");
+            $proposals=array();
+            $i=0;
+            while ($prop = $get_result->fetch_array())
+            {
+                $proposal = new Proposal($prop["Proposal_ID"], $prop["Contractor_CO_Num"], $prop["Project_ID"], $prop["Project_Estimate"], $prop["approved"]);
+                $proposals[$i]=$proposal;
+                $i++;
+            }
+            $get_result->free();
+            $conn->close();
+            return $proposals;
         }
 }
         

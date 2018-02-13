@@ -17,14 +17,7 @@ if (isset($_SESSION["customer"])) {
     <div style="margin-top: 40px; margin-left: 65px">
     </div>
     <div style="margin-top: 50px; margin-left: 65px">
-<?php
-if (isset($_SESSION["error"])) {
-    echo "<div class=\"alert alert-danger text-center\">" .
-    "<strong></strong>" . $_SESSION["error"] .
-    "</div>";
-    $_SESSION["error"] = null;
-}
-?>
+
         <form action="../php/updateProject.php" method="POST">
             <table class="table-striped table-bordered">
 
@@ -37,6 +30,8 @@ foreach ($estimates as $est) {
     if ($est->get_approved() == 1) {
         $flag = true;
         echo "You have accepted this estimate for this project:";
+        $contractor = $db->getContractor($est->get_coNum());
+        echo '<tr><td>$'.$est->get_estimate().'</td><td>'.$contractor->get_coName().'</td>';
 
     }
 }
@@ -44,7 +39,7 @@ if ($estimates != null && $flag == false) {
     foreach ($estimates as $est) {
 
         $contractor = $db->getContractor($est->get_coNum());
-        echo '<tr><td>'.$est->get_estimate().'</td><td>'.$contractor->get_coName().'</td><td><a href="" class="btn btn-success btn-sm btn-block" data-toggle="modal" data-target="#selectConfirmation' . $est->get_id() . '">Select</a>';
+        echo '<tr><td>$'.$est->get_estimate().'</td><td>'.$contractor->get_coName().'</td><td><a href="" class="btn btn-success btn-sm btn-block" data-toggle="modal" data-target="#selectConfirmation' . $est->get_id() . '">Select</a>';
         ?>
                 <div class = "modal fade" id = "selectConfirmation<?php echo $est->get_id() ?>" tabindex = "-1" role = "dialog" aria-labelledby = "exampleModalCenterTitle" aria-hidden = "true">
                             <div class = "modal-dialog" role = "document">
