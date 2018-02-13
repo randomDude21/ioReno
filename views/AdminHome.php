@@ -59,6 +59,7 @@
         <div class="row">
             <nav class="col-md-2 d-none d-md-block bg-light sidebar">
                 <div class="sidebar-sticky">
+                    <br>
                     <ul class="nav flex-column">
                         <li class="nav-item">
                             <a class="nav-link active" href="AdminHome.php?<?php 
@@ -127,40 +128,8 @@
                   Totals
                 </a>
                         </li>
-                    </ul>
+            </ul>
 
-                    <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-                        <span>Saved reports</span>
-                        <a class="d-flex align-items-center text-muted" href="#">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-circle"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
-              </a>
-                    </h6>
-                    <ul class="nav flex-column mb-2">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-                  Current month
-                </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-                  Last quarter
-                </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-                  Social engagement
-                </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-                  Year-end sale
-                </a>
-                        </li>
-                    </ul>
                 </div>
             </nav>
 
@@ -186,8 +155,7 @@
                     </h1>
                     <div class="btn-toolbar mb-2 mb-md-0">
                         <div class="btn-group mr-2">
-                            <button class="btn btn-sm btn-outline-secondary">Share</button>
-                            <button class="btn btn-sm btn-outline-secondary">Export</button>
+                            <button class="btn btn-sm btn-outline-secondary" onClick="PrintDoc()">Print</button>
                         </div>
                         <div class="dropdown">
                             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -216,7 +184,7 @@
             if(isset($_GET["id"])){
                 if($_GET["time"]=="Last Week"){
         ?>
-                    <div class="table-responsive">
+                    <div class="table-responsive" id="printar">
                         <table class="table table-striped table-sm">
                             <?php
                 require '../Classes/Database.php';
@@ -249,10 +217,10 @@
                                                 <?php echo $contractor->get_coNum();?>
                                             </td>
                                             <td>
-                                                <?php echo $contractor->get_name();?>
+                                                <?php echo $contractor->get_coName();?>
                                             </td>
                                             <td>
-                                                <?php echo $contractor->get_date();?>
+                                                <?php echo $contractor->get_name();?>
                                             </td>
                                             <td>
                                                 <?php echo $contractor->get_phone();?>
@@ -264,7 +232,11 @@
                                                 <?php echo $contractor->get_date();?>
                                             </td>
                                             <td>
-                                                <?php echo $contractor->get_approved();?>
+                                                <?php if($contractor->get_approved()=='0'){
+                                                ?>
+                                                <a href="<?php echo '../php/AdminHome.php?id='.$contractor->get_id();?>" class="btn btn-primary">Approve</a>
+                                                <?php
+                                                        };?>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -429,13 +401,23 @@
                                                                         <?php
                 }
                 else if($_GET["id"]=="Dashboard"){
+                    
+                    //calculate number of customers
+                    $nb_customers=0;
+                    $customers=$db->reportCustomers();
+                    foreach($customers as $customer){
+                        $nb_customers++;
+                    }
+                    
+                    //calculate number of contractors
+                    $nb_contractors=0;
+                    $contractors=$db->reportContractors();
+                    foreach($contractors as $contractor){
+                        $nb_contractors++;
+                    }
             ?>
                 <!-- CHART DRAWING MATE -->
-                <canvas class="my-4 chartjs-render-monitor" id="doughnutzz" width="2000" height="400" style="display: block; height: 514px; width: 514px;"></canvas>
-                
-                <canvas class="my-4 chartjs-render-monitor" id="myChart" width="1522" height="642" style="display: block; height: 514px; width: 1218px;"></canvas>
-                <br>
-                <canvas class="my-4 chartjs-render-monitor" id="myChart2" width="1522" height="642" style="display: block; height: 514px; width: 1218px;"></canvas>
+                    <canvas class="my-4 chartjs-render-monitor" id="cust_contr" width="1522" height="642" style="display: block; height: 514px; width: 514px;"></canvas>
                 <?php
                 }
             ?>
@@ -451,7 +433,7 @@
                 
             else if($_GET["time"]=="All Time"){
             ?>
-                        <div class="table-responsive">
+                        <div class="table-responsive" id="printar">
                             <table class="table table-striped table-sm">
                                 <?php
                 require '../Classes/Database.php';
@@ -472,6 +454,10 @@
                                     </thead>
                                     <?php
                     $i=1;
+                    if(isset($_GET["con"])){
+                        $contractor=$db->getContractor($_GET["con"]);
+                        $db->approveContractor($contractor);
+                    }
                     $contractors=$db->getContractors();
                     foreach($contractors as $contractor){
             ?>
@@ -485,10 +471,10 @@
                                                     <?php echo $contractor->get_coNum();?>
                                                 </td>
                                                 <td>
-                                                    <?php echo $contractor->get_name();?>
+                                                    <?php echo $contractor->get_coName();?>
                                                 </td>
                                                 <td>
-                                                    <?php echo $contractor->get_date();?>
+                                                    <?php echo $contractor->get_name();?>
                                                 </td>
                                                 <td>
                                                     <?php echo $contractor->get_phone();?>
@@ -500,7 +486,11 @@
                                                     <?php echo $contractor->get_date();?>
                                                 </td>
                                                 <td>
-                                                    <?php echo $contractor->get_approved();?>
+                                                    <?php if($contractor->get_approved()=='0'){
+                                                ?>
+                                                <a href="<?php echo '../views/AdminHome.php?'.'time='.$_GET['time'].'&'.'id='.$_GET['id'].'&'.'con='.$contractor->get_coNum();?>" class="btn btn-primary">Approve</a>
+                                                <?php
+                                                        };?>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -664,13 +654,22 @@
                                                                             <?php
                 }
                 else if($_GET["id"]=="Dashboard"){
+                    //calculate number of customers
+                    $nb_customers=0;
+                    $customers=$db->getCustomers();
+                    foreach($customers as $customer){
+                        $nb_customers++;
+                    }
+                    
+                    //calculate number of contractors
+                    $nb_contractors=0;
+                    $contractors=$db->getContractors();
+                    foreach($contractors as $contractor){
+                        $nb_contractors++;
+                    }
             ?>
                 <!-- CHART DRAWING MATE -->
-                <canvas class="my-4 chartjs-render-monitor" id="doughnutzz" width="1522" height="642" style="display: block; height: 514px; width: 514px;"></canvas>
-                                                                            
-                <canvas class="my-4 chartjs-render-monitor" id="myChart" width="1522" height="642" style="display: block; height: 514px; width: 1218px;"></canvas>
-                <br>
-                <canvas class="my-4 chartjs-render-monitor" id="myChart2" width="1522" height="642" style="display: block; height: 514px; width: 1218px;"></canvas>
+                <canvas class="my-4 chartjs-render-monitor" id="cust_contr" width="1522" height="642" style="display: block; height: 514px; width: 514px;"></canvas>
                 <?php
                 }
                   ?>
@@ -710,81 +709,37 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
     
     <script>
-    var gtx=document.getElementById("doughnutzz");
-        var chart=new Chart(gtx,{"type":"doughnut","data":{"labels":["Red","Blue","Yellow"],"datasets":[{"label":"My First Dataset","data":[300,50,100],"backgroundColor":["rgb(255, 99, 132)","rgb(54, 162, 235)","rgb(255, 205, 86)"]}]}});
+    var gtx=document.getElementById("cust_contr");
+        var chart=new Chart(gtx,{"type":"doughnut","data":{"labels":["Customers","Contractors"],"datasets":[{"label":"CustomersVSContractors","data":[<?php echo $nb_customers;?>,<?php echo $nb_contractors;?>],"backgroundColor":["rgb(255, 99, 132)","rgb(54, 162, 235)"]}]}});
     </script>
     
-    <script>
-        var ctx = document.getElementById("myChart");
-        var myChart = new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-                datasets: [{
-                    data: [15339, 21345, 18483, 24003, 23489, 24092, 12034],
-                    lineTension: 0,
-                    backgroundColor: 'transparent',
-                    borderColor: '#007bff',
-                    borderWidth: 4,
-                    pointBackgroundColor: '#007bff'
-                }]
-            },
-            options: {
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero: false
-                        }
-                    }]
-                },
-                legend: {
-                    display: false,
-                }
-            }
-        });
-
-    </script>
-
-    <script>
-        var ctx = document.getElementById("myChart2").getContext('2d');
-        var myChart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-                datasets: [{
-                    label: '# of Votes',
-                    data: [12, 19, 3, 5, 2, 3],
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(153, 102, 255, 0.2)',
-                        'rgba(255, 159, 64, 0.2)'
-                    ],
-                    borderColor: [
-                        'rgba(255,99,132,1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)',
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(153, 102, 255, 1)',
-                        'rgba(255, 159, 64, 1)'
-                    ],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero:true
-                        }
-                    }]
-                }
-            }
-        });
-    </script>
     <!-- Graphs GRAPHING MATE-------------------->
+    
+
+    
+
+<script type="text/javascript">
+    
+    /*--This JavaScript method for Print command--*/
+    
+    function PrintDoc() {
+
+        var toPrint = document.getElementById('printar');
+
+        var popupWin = window.open('', '_blank', 'width=1200,height=650,location=no,left=20px');
+
+        popupWin.document.open();
+
+        popupWin.document.write('<!DOCTYPE html><html><head><title>Report 1</title><link rel="stylesheet" type="text/css"  href="print.css"/><link href="../bootstrap4.0.0/dist/css/bootstrap.min.css" rel="stylesheet"></head><body onload="window.print()">')
+
+        popupWin.document.write(toPrint.innerHTML);
+
+        popupWin.document.write('</html>');
+
+        popupWin.document.close();
+
+    }
+</script>
 
 </body>
 
