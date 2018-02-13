@@ -16,6 +16,7 @@ if($flag)
     $proposal= new Proposal(null, $contractor->get_coNum(), $project->get_id(), $_POST['estimate'], null);
     $db->insertProposal($proposal);
     $_SESSION['update']='Your estimate has been sent to the client';
+    
     header("location: ../views/HomeContractor.php" );
 }
 else

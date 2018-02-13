@@ -11,6 +11,12 @@
         "</div>";
         $_SESSION["update"] = null;
     }
+    if (isset($_SESSION["estimate"])) {
+        echo "<div class=\"alert alert-success text-center\">" .
+        "<strong>Success! </strong>" . $_SESSION["estimate"] .
+        "</div>";
+        $_SESSION["estimate"] = null;
+    }
     
     
         ?>
