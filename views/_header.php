@@ -103,7 +103,7 @@ require "../Classes/Database.php";
                         
                     <?php
                             }
-                            else if(isset($contractor))
+                            if(isset($contractor))
                             {?>
                         <li class="nav-item">
                             <a class="nav-link" href="HomeContractor.php"><strong>Welcome,  
