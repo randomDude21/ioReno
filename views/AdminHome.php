@@ -62,8 +62,8 @@
                     <ul class="nav flex-column">
                         <li class="nav-item">
                             <a class="nav-link active" href="AdminHome.php?<?php 
-                                                                    if(isset($_GET[" time "]))
-                                                                        echo 'time='.$_GET["time "].'&';
+                                                                    if(isset($_GET["time"]))
+                                                                        echo 'time='.$_GET["time"].'&';
                                                                     else 
                                                                         echo "time=All Time& ";
                                                                 ?>id=Dashboard">
@@ -73,8 +73,8 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="AdminHome.php?<?php 
-                                                            if(isset($_GET[" time "]))
-                                                                echo 'time='.$_GET["time "].'&';
+                                                            if(isset($_GET["time"]))
+                                                                echo 'time='.$_GET["time"].'&';
                                                             else 
                                                                 echo "time=All Time& ";
                                                         ?>id=Customers">
@@ -84,8 +84,8 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="AdminHome.php?<?php 
-                                                            if(isset($_GET[" time "]))
-                                                                echo 'time='.$_GET["time "].'&';
+                                                            if(isset($_GET["time"]))
+                                                                echo 'time='.$_GET["time"].'&';
                                                             else 
                                                                 echo "time=All Time& ";
                                                         ?>id=Contractors">
@@ -95,8 +95,8 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="AdminHome.php?<?php 
-                                                            if(isset($_GET[" time "]))
-                                                                echo 'time='.$_GET["time "].'&';
+                                                            if(isset($_GET["time"]))
+                                                                echo 'time='.$_GET["time"].'&';
                                                             else 
                                                                 echo "time=All Time& ";
                                                         ?>id=Payments">
@@ -107,8 +107,8 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="AdminHome.php?<?php 
-                                                            if(isset($_GET[" time "]))
-                                                                echo 'time='.$_GET["time "].'&';
+                                                            if(isset($_GET["time"]))
+                                                                echo 'time='.$_GET["time"].'&';
                                                             else 
                                                                 echo "time=All Time& ";
                                                         ?>id=Denied Payments">
@@ -118,8 +118,8 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="AdminHome.php?<?php 
-                                                            if(isset($_GET[" time "]))
-                                                                echo 'time='.$_GET["time "].'&';
+                                                            if(isset($_GET["time"]))
+                                                                echo 'time='.$_GET["time"].'&';
                                                             else 
                                                                 echo "time=All Time& ";
                                                         ?>id=Totals">
@@ -197,15 +197,15 @@
                   </button>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                 <a class="dropdown-item" href="AdminHome.php?time=Last Week<?php 
-                                                                                    if(isset($_GET[" id "]))
-                                                                                        echo "&id=".$_GET[" id "];
+                                                                                    if(isset($_GET["id"]))
+                                                                                        echo "&id=".$_GET["id"];
                                                                                     else 
-                                                                                        echo "&id=Dashboard ";?>">Last Week</a>
+                                                                                        echo "&id=Dashboard";?>">Last Week</a>
                                 <a class="dropdown-item" href="AdminHome.php?time=All Time<?php 
-                                                                                    if(isset($_GET[" id "]))
-                                                                                        echo "&id=".$_GET[" id "];
+                                                                                    if(isset($_GET["id"]))
+                                                                                        echo "&id=".$_GET["id"];
                                                                                     else 
-                                                                                        echo "&id=Dashboard ";?>">All Time</a>
+                                                                                        echo "&id=Dashboard";?>">All Time</a>
                             </div>
                         </div>
 
