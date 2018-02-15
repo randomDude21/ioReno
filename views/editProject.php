@@ -1,20 +1,25 @@
 <?php session_start(); 
-if (!$_SESSION["login"]){
+if (!$_SESSION["login"]||$_SESSION["customer"]==null){
         header("Location: index.php");
     }
-else {
-    include("_header.php");
-}
-
-if (!$_SESSION["login"])
+else 
 {
-    header("location:../views/index.php");
-}
-if (isset($_SESSION["customer"]))
-{
+    $_SESSION["trolling"]=true;
+    require "../Classes/Database.php";
     $db=new Database();
     $customer=$db->getCustomerE($_SESSION["customer"]);
+    $project=$db->getProject($_GET["id"]);
+    if($customer->get_email()!=$project->get_email())
+    {
+        $_SESSION["trolling"]=false;
+        header("location:../views/index.php");
+    }
+    include("_header.php");
+   
+  
 }
+
+
 ?>
 
         

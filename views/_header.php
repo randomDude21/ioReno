@@ -1,5 +1,7 @@
 <?php 
-require "../Classes/Database.php";
+if (!$_SESSION["trolling"])
+{
+    require "../Classes/Database.php";
     if (isset($_SESSION["customer"]))
     {
         $db=new Database();
@@ -10,6 +12,8 @@ require "../Classes/Database.php";
         $db=new Database();
         $contractor=$db->getContractorE($_SESSION['contractor']);
     }
+    
+}
     
 ?>
 <!DOCTYPE html>
