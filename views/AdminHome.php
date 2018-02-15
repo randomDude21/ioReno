@@ -1,6 +1,12 @@
 <!DOCTYPE  html>
 <html lang="en">
-
+<?php 
+    session_start();
+    if ($_SESSION["admin"]==null)
+    {
+        header("location:index.php");
+    }
+?>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -50,7 +56,7 @@
         <input class="form-control form-control-dark w-100" placeholder="Search" aria-label="Search" type="text">
         <ul class="navbar-nav px-3">
             <li class="nav-item text-nowrap">
-                <a class="nav-link" href="#">Sign out</a>
+                <a class="nav-link" href="../php/logout.php">Sign out</a>
             </li>
         </ul>
     </nav>

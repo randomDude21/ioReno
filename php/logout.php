@@ -2,6 +2,7 @@
 session_start();
 $_SESSION["customer"] = null;
 $_SESSION["contractor"] = null;
+$_SESSION["admin"]= null;
 $_SESSION["login"] = null;
 header("location: ../views/index.php");
 
