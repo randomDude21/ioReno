@@ -18,6 +18,10 @@
 
     <!-- Bootstrap core CSS -->
     <link href="../bootstrap4.0.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!--OPEN ICONIC icons-->
+    <link href="../open-iconic/font/css/open-iconic-bootstrap.css" rel="stylesheet">
+
 
     <!-- Custom styles for this template -->
     <link href="dashboard.css" rel="stylesheet">
@@ -53,7 +57,6 @@
 <body>
     <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
         <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">IOReno</a>
-        <input class="form-control form-control-dark w-100" placeholder="Search" aria-label="Search" type="text">
         <ul class="navbar-nav px-3">
             <li class="nav-item text-nowrap">
                 <a class="nav-link" href="../php/logout.php">Sign out</a>
@@ -69,6 +72,7 @@
                     <ul class="nav flex-column">
                         <li class="nav-item">
                             <a class="nav-link active" href="AdminHome.php?<?php 
+                            //<!-- using php url query string to keep the state of the choice in the dropdown when changing views from dashboard to Customers to Contractors etc.-->
                                                                     if(isset($_GET["time"]))
                                                                         echo 'time='.$_GET["time"].'&';
                                                                     else 
@@ -79,7 +83,8 @@
                 </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="AdminHome.php?<?php 
+                            <a class="nav-link" href="AdminHome.php?<?php
+                            //<!-- using php url query string to keep the state of the choice in the dropdown when changing views from dashboard to Customers to Contractors etc. Same as up top-->
                                                             if(isset($_GET["time"]))
                                                                 echo 'time='.$_GET["time"].'&';
                                                             else 
@@ -91,6 +96,7 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="AdminHome.php?<?php 
+                            //<!-- using php url query string to keep the state of the choice in the dropdown when changing views from dashboard to Customers to Contractors etc. Same as up top-->
                                                             if(isset($_GET["time"]))
                                                                 echo 'time='.$_GET["time"].'&';
                                                             else 
@@ -102,6 +108,7 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="AdminHome.php?<?php 
+                            //<!-- using php url query string to keep the state of the choice in the dropdown when changing views from dashboard to Customers to Contractors etc. Same as up top-->
                                                             if(isset($_GET["time"]))
                                                                 echo 'time='.$_GET["time"].'&';
                                                             else 
@@ -114,6 +121,7 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="AdminHome.php?<?php 
+                            //<!-- using php url query string to keep the state of the choice in the dropdown when changing views from dashboard to Customers to Contractors etc. Same as up top-->
                                                             if(isset($_GET["time"]))
                                                                 echo 'time='.$_GET["time"].'&';
                                                             else 
@@ -125,6 +133,7 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="AdminHome.php?<?php 
+                                                      //<!-- using php url query string to keep the state of the choice in the dropdown when changing views from dashboard to Customers to Contractors etc. Same as up top-->
                                                             if(isset($_GET["time"]))
                                                                 echo 'time='.$_GET["time"].'&';
                                                             else 
@@ -150,14 +159,16 @@
                 </div>
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
                     <h1 class="h2">
-                        <?php if(isset($_GET["time"])){
-                                    if(isset($_GET["id"]))
-                                        echo $_GET["id"];
-                                    else
-                                        echo "<- Please select what you wish to view";
-                                 }
-                                 else 
-                                     echo "Please select a timeframe ->";?>
+                        <?php 
+                        //<!-- If ever nothing is selected, tells user what to select -->
+                            if(isset($_GET["time"])){
+                                if(isset($_GET["id"]))
+                                    echo $_GET["id"];
+                                else
+                                    echo "<- Please select what you wish to view";
+                             }
+                             else 
+                                 echo "Please select a timeframe ->";?>
                     </h1>
                     <div class="btn-toolbar mb-2 mb-md-0">
                         <div class="btn-group mr-2">
@@ -170,7 +181,9 @@
                            else echo "Select Timeframe"?>
                   </button>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" href="AdminHome.php?time=Last Week<?php 
+                                
+                                <a class="dropdown-item" href="AdminHome.php?time=Last Week<?php
+                               //<!-- using php url query string to stay on the same page when selecting from the dropdown -->
                                                                                     if(isset($_GET["id"]))
                                                                                         echo "&id=".$_GET["id"];
                                                                                     else 
@@ -186,9 +199,11 @@
                     </div>
                 </div>
                 <?php
+                //<!-- using php to verify if the time, and id is set in the url query string -->
         if(isset($_GET["time"])){
             if(isset($_GET["id"])){
                 if($_GET["time"]=="Last Week"){
+                    //<!-- do this if the time in the query string is Last Week -->
         ?>
                     <div class="table-responsive" id="printar">
                         <table class="table table-striped table-sm">
@@ -206,7 +221,7 @@
                                         <th>Contractor Phone</th>
                                         <th>Contractor Email</th>
                                         <th>Date Registered</th>
-                                        <th>Approved</th>
+                                        <th>Approve or Deny</th>
                                     </tr>
                                 </thead>
                                 <?php
@@ -237,13 +252,44 @@
                                             <td>
                                                 <?php echo $contractor->get_date();?>
                                             </td>
+                                             <?php if($contractor->get_approved()=='0'){
+                                            ?>
+                                            <!-- do this if the contractor isn't approved -->
                                             <td>
-                                                <?php if($contractor->get_approved()=='0'){
-                                                ?>
-                                                <a href="<?php echo '../php/AdminHome.php?id='.$contractor->get_id();?>" class="btn btn-primary">Approve</a>
-                                                <?php
-                                                        };?>
+                                            <a href="<?php 
+                                            //<!-- use the php url query string to keep the same page and dropdown selection but also add the variable to either approve or deny using the contractor company number-->
+                                            echo '../views/AdminHome.php?'.'time='.$_GET['time'].'&'.'id='.$_GET['id'].'&'.'approve='.$contractor->get_coNum();?>" class="btn btn-primary">Approve</a>
                                             </td>
+                                            <td>
+                                                <a href="<?php echo '../views/AdminHome.php?'.'time='.$_GET['time'].'&'.'id='.$_GET['id'].'&'.'deny='.$contractor->get_coNum();?>" class="btn btn-danger ">Deny</a>
+                                            </td>
+                                            <?php
+                                                    }
+                                                else if($contractor->get_approved()!='0'){
+
+                                            ?>
+                                            <td>
+                                            <?php
+                                                //display those icons
+                                                if($contractor->get_approved()=='1'){
+                                            ?>
+                                                <span class="oi oi-check text-success" title="icon name" aria-hidden="true"></span>
+                                            <?php
+                                                    }
+                                            ?>
+                                            </td>
+                                            <td>
+                                            <?php
+                                                if($contractor->get_approved()=='2'){
+                                            ?>
+                                                <span class="oi oi-x text-danger" title="icon name" aria-hidden="true"></span>
+                                            <?php
+                                                    }
+                                            ?>
+                                            </td>
+                                            <?php
+                                                }
+                                            ?>
                                         </tr>
                                     </tbody>
                                     <?php
@@ -408,14 +454,14 @@
                 }
                 else if($_GET["id"]=="Dashboard"){
                     
-                    //calculate number of customers
+                    //calculate number of customers to use in the chart in the script at the bottom
                     $nb_customers=0;
                     $customers=$db->reportCustomers();
                     foreach($customers as $customer){
                         $nb_customers++;
                     }
                     
-                    //calculate number of contractors
+                    //calculate number of contractors to use in the chart in the script at the bottom
                     $nb_contractors=0;
                     $contractors=$db->reportContractors();
                     foreach($contractors as $contractor){
@@ -436,6 +482,7 @@
         //-------------------------------------------------------------------------
         //----------------- Get All Time Data --------------------------------------
         //-------------------------------------------------------------------------
+        //code is basically the same as up top but with some different php database functions to get all time info
                 
             else if($_GET["time"]=="All Time"){
             ?>
@@ -455,14 +502,19 @@
                                             <th>Contractor Phone</th>
                                             <th>Contractor Email</th>
                                             <th>Date Registered</th>
-                                            <th>Approved</th>
+                                            <th>Approve</th>
+                                            <th>Deny</th>
                                         </tr>
                                     </thead>
                                     <?php
                     $i=1;
-                    if(isset($_GET["con"])){
-                        $contractor=$db->getContractor($_GET["con"]);
+                    if(isset($_GET["approve"])){
+                        $contractor=$db->getContractor($_GET["approve"]);
                         $db->approveContractor($contractor);
+                    }
+                    else if(isset($_GET["deny"])){
+                        $contractor=$db->getContractor($_GET["deny"]);
+                        $db->denyContractor($contractor);
                     }
                     $contractors=$db->getContractors();
                     foreach($contractors as $contractor){
@@ -491,13 +543,40 @@
                                                 <td>
                                                     <?php echo $contractor->get_date();?>
                                                 </td>
-                                                <td>
                                                     <?php if($contractor->get_approved()=='0'){
                                                 ?>
-                                                <a href="<?php echo '../views/AdminHome.php?'.'time='.$_GET['time'].'&'.'id='.$_GET['id'].'&'.'con='.$contractor->get_coNum();?>" class="btn btn-primary">Approve</a>
-                                                <?php
-                                                        };?>
+                                                <td>
+                                                    <a href="<?php echo '../views/AdminHome.php?'.'time='.$_GET['time'].'&'.'id='.$_GET['id'].'&'.'approve='.$contractor->get_coNum();?>" class="btn btn-primary">Approve</a>
                                                 </td>
+                                                <td>
+                                                    <a href="<?php echo '../views/AdminHome.php?'.'time='.$_GET['time'].'&'.'id='.$_GET['id'].'&'.'deny='.$contractor->get_coNum();?>" class="btn btn-danger ">Deny</a>
+                                                </td>
+                                                <?php
+                                                        }
+                                                    else if($contractor->get_approved()!='0'){
+                                                        
+                                                ?>
+                                                <td>
+                                                <?php
+                                                    if($contractor->get_approved()=='1'){
+                                                ?>
+                                                    <span class="oi oi-check text-success" title="icon name" aria-hidden="true"></span>
+                                                <?php
+                                                        }
+                                                ?>
+                                                </td>
+                                                <td>
+                                                <?php
+                                                    if($contractor->get_approved()=='2'){
+                                                ?>
+                                                    <span class="oi oi-x text-danger" title="icon name" aria-hidden="true"></span>
+                                                <?php
+                                                        }
+                                                ?>
+                                                </td>
+                                                <?php
+                                                    }
+                                                ?>
                                             </tr>
                                         </tbody>
                                         <?php
