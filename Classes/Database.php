@@ -423,9 +423,8 @@ class Database {
             $budget=$project->get_budget();
             $date = $project->get_date();
             $sql->bind_param("isssdsssss", $id, $email, $description, $projectType, $budget, $title, $address, $city, $images, $date);
-            $status=$sql->execute();
-            if(!$status)
-                echo trigger_error ($sql->error, E_USER_ERROR);
+            
+            $sql->execute();
             
             $sql->close();
             $conn->close();
