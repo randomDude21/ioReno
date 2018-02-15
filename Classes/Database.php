@@ -743,6 +743,18 @@ class Database {
             $conn->close();
             
         }
+        
+        public function denyContractor(Contractor $contractor)
+        {
+            $conn=$this->connect();
+            $stmt=$conn->prepare("UPDATE contractor SET approved = '2' WHERE Contractor_CO_Num = ?");
+            $coNum=$contractor->get_coNum();
+            $stmt->bind_param('i',$coNum);
+            $stmt->execute();
+            $stmt->close();
+            $conn->close();
+            
+        }
     
         public function totals()
         {
