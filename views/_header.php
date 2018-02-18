@@ -1,6 +1,5 @@
 <?php 
-if (!$_SESSION["trolling"])
-{
+
     require "../Classes/Database.php";
     if (isset($_SESSION["customer"]))
     {
@@ -13,7 +12,6 @@ if (!$_SESSION["trolling"])
         $contractor=$db->getContractorE($_SESSION['contractor']);
     }
     
-}
     
 ?>
 <!DOCTYPE html>
