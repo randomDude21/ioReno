@@ -758,6 +758,22 @@ class Database {
         public function totals()
         {
             $conn=$this->connect();
+            $sql= "SELECT COUNT(PAYMENT_ID) AS NUMBER_PAYMENTS, SUM(PAYMENT_AMOUNT) AS TOTAL_PAYMENTS FROM PAYMENTS ";
+            $get_result=$conn->query($sql);
+            $info=array();
+            while ($get=$get_result->fetch_array())
+            {
+                $info["number"]=$get["NUMBER_PAYMENTS"];
+                $info["total"]=$get["TOTAL_PAYMENTS"];
+                
+                $get_result->free();
+                $conn->close();
+                return $info;
+            }
+        }
+         public function totalsWeek()
+        {
+            $conn=$this->connect();
             $sql= "SELECT COUNT(PAYMENT_ID) AS NUMBER_PAYMENTS, SUM(PAYMENT_AMOUNT) AS TOTAL_PAYMENTS FROM PAYMENTS "
                     . "WHERE PAYMENT_DATE>date_sub(DATE_FORMAT(sysdate(), '%Y-%m-%d'), INTERVAL 7 day)";
             $get_result=$conn->query($sql);
@@ -776,6 +792,31 @@ class Database {
         {
             $conn= $this->connect();
             $sql="SELECT * FROM PAYMENTS WHERE Payment_Status = FALSE";
+            $get_result=$conn->query($sql);
+            $payments=array();
+            if($get_result)
+            {
+                $i=0;
+                while ($pay = $get_result->fetch_array())
+                {
+                    $payment=new Payment($pay["Payment_ID"], $pay["Contractor_CO_Num"], $pay["Payment_Amount"], $pay["Proposal_ID"],
+                            $pay["Payment_Status"], $pay["PAYMENT_DATE"]);
+                    $payments[$i]=$payment;
+                    $i++;
+                }
+                $get_result->free();
+                $conn->close();
+                return $payments;
+            }
+            else
+            {
+                return null;
+            }
+        }
+        public function deniedPaymentsWeek()
+        {
+            $conn= $this->connect();
+            $sql="SELECT * FROM PAYMENTS WHERE Payment_Status = FALSE AND PAYMENT_DATE>date_sub(DATE_FORMAT(sysdate(), '%Y-%m-%d'), INTERVAL 7 day)";
             $get_result=$conn->query($sql);
             $payments=array();
             if($get_result)

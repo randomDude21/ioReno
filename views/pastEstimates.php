@@ -65,7 +65,7 @@ else {
             <div class="card" style="width: 90%; margin-left: auto; margin-right: auto">
                 <div class="row" >
                     <div class="col-sm-1">
-                        <img src="<?php echo $pr->getImages(); ?>"  height="100px">
+                        <img src="<?php echo $pr->getImages(); ?>"  height="100px" width="100px">
                     </div>
                     <div class="col-sm-7 px-3">
                         <div class="card-block px-3">

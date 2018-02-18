@@ -397,7 +397,7 @@
                                                         </thead>
                                                         <?php
                     $i=1;
-                    $payments=$db->deniedPayments();
+                    $payments=$db->deniedPaymentsWeek();
                     foreach($payments as $payment){
             ?>
                                                             <tbody>
@@ -439,7 +439,7 @@
                                                                     </tr>
                                                                 </thead>
                                                                 <?php
-                    $total=$db->totals();
+                    $total=$db->totalsWeek();
             ?>
                                                                     <tbody>
                                                                         <tr>
