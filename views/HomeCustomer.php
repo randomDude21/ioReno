@@ -20,10 +20,9 @@
     
     
         ?>
-    <div style="margin-top: 40px; margin-left: 65px">
-        <a href="createProject.php" class="btn btn-primary" role="button"><strong>Create a new project</strong></a>
-    </div>
+    <div class="container">
     <h1>Your projects:</h1><br>
+        <a href="createProject.php" class="btn btn-primary" role="button"><strong>Create a new project</strong></a>
     <div class="row container" style="margin-right:0px;margin-left:0px">
 <?php
 
@@ -84,6 +83,7 @@
 
 ?>
     </div>
+	</div>
     
     <?php
     include("_footer.php");

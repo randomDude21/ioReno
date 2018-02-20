@@ -142,12 +142,10 @@ if (!$_SESSION["login"]||$_SESSION["customer"]==null)
                 </div>
         </nav>
     </header>
-    <div class="body_all container-fluid" style="padding:0px;">
-
-        
-            <div style="margin-top: 40px; margin-left: 65px">
-           </div>
-            <div style="margin-top: 50px; margin-left: 65px">
+    <div class="container" style="padding:0px;">
+		<h1>Edit Project</h1>
+       
+            <div style="margin-left: 65px">
                   <?php
                  if (isset($_SESSION["error"])) {
                         echo "<div class=\"alert alert-danger text-center\">" .
@@ -156,18 +154,23 @@ if (!$_SESSION["login"]||$_SESSION["customer"]==null)
                         $_SESSION["error"] = null;
                     }
                     ?>
-                <form action="../php/updateProject.php" method="POST" enctype="multipart/form-data">
-                    <table>
-                        
+                <form action="../php/updateProject.php" method="POST" enctype="multipart/form-data">           
                     <?php
                          $project=$db->getProject($_GET["id"]);
                          include("../Classes/ProjectTypes.php");
                          if($project!=null)
                          {
                                 
-                                echo '<tr><td>Project Title</td><td><input type="text" name="title" value="'.$project->getTitle().'"></td></tr>'
-                                        . '<tr><td>Project Description</td><td><textarea class="form-control" name="desc">'.$project->get_description().'</textarea></td></tr>'
-                                        . '<tr><td>Project Type</td><td><select class="form-control" id="type" name="type">';
+                                echo '<div class="form-group">
+										<label for="projectTitle">Project Title</label>
+										<input type="text" class="form-control" id="projectTitle" aria-describedby="projectTitle" value="<?php echo $project->getTitle();?>">
+									  </div>
+									  <div class="form-group">
+										<label for="projectDescription">Project Description</label>
+										<textarea rows="3" class="form-control" id="projectDescription" value="<?php$project->get_description();?>"></textarea>
+									  </div>
+									  <label for="projType">Project Type</label>
+									  <select class="form-control" id="projType">';
                                 foreach ($projectTypes as $val) {
                                     echo '<option ';
                                     if ($project->get_type() == $val)
@@ -175,12 +178,18 @@ if (!$_SESSION["login"]||$_SESSION["customer"]==null)
                                     echo 'value="' . $val . '">' . $val . '</option>';
                                         }
                            
-                                echo '</select> </td></tr>'
-                                        . '<tr><td>Address</td><td><input type="text" name="address" value="'.$project->getAddress().'"></td></tr>'
-                                        . '<tr><td>City</td><td><input type="text" name="city" value="'.$project->get_city().'"></td></tr>'
-                                        . '<tr><td>Project budget</td><td><input type="text" name="budget" value="'.$project->get_budget().'"></td></tr>'
-                                        . '<tr><td>Image</td><td><input type="file" id="image" name="image" value="'.$project->getImages().'"></td></tr>';
-
+                                echo '</select>'.
+                                        . '	<label for="Address">Address</label>
+												<input type="text" class="form-control" id="Address" aria-describedby="Address" value="<?php echo $project->getAddress();?>">
+												
+											<label for="City">City</label>
+												<input type="text" class="form-control" id="City" aria-describedby="City" value="<?php echo $project->get_city();?>">
+												
+											<label for="Budget">Budget</label>
+												<input type="text" class="form-control" id="Budget" aria-describedby="Budget" value="<?php echo $project->get_budget();?>">
+												
+											<label for="Image">Image</label>
+												<input type="file" class="form-control-file" id="Image" value="<?php$project->getImages();?>">';
                          }
                          else
                          {
@@ -192,7 +201,7 @@ if (!$_SESSION["login"]||$_SESSION["customer"]==null)
                     <div style="margin-top: 20px">
                         <a href="HomeCustomer.php" class="btn btn-danger" role="button"><strong>Go back</strong></a>
 
-                        <input type="submit" class="btn btn-success" value="Confirm Changes"/>
+                        <input type="submit" class="btn btn-primary" value="Confirm Changes"/>
                     </div>
                 </form>
             </div>
