@@ -26,9 +26,9 @@ $project = $db->getProject($_GET["id"]);
 <div class="card">
   <h5 class="card-header"><?php echo $project->getTitle(); ?></h5>
   <div class="card-body">
-    <h5 class="card-title">Project Type: $<?php echo $project->get_type(); ?></h5>
+    <h5 class="card-title">Project Type: <?php echo $project->get_type(); ?></h5>
 	<h5><strong>Budget: $<?php echo $project->get_budget(); ?></strong></h5>
-    <p class="card-text"><?php echo $project->get_description(); ?></p>
+        <p class="card-text" style="white-space: pre-wrap;"><?php echo $project->get_description(); ?></p>
 	<h5><strong>Address: $<?php echo $project->getAddress(); ?></strong></h5>
     <a href="HomeCustomer.php" class="btn btn-primary" role="button">Go back</a>
   </div>

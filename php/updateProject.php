@@ -70,7 +70,8 @@ else {
 
 
 if ($flag) {
-    $pro = new Project($project->get_id(), $project->get_email(), $_POST['title'], $_POST['desc'], $_POST["type"], $_POST['budget'], $_POST['address'], $_POST["city"], $imgData);
+    $pro = new Project($project->get_id(), $project->get_email(), $_POST['title'], $_POST['desc'], $_POST["type"], $_POST['budget'], $_POST['address'], $_POST["city"], $imgData, $project->get_date());
+   
     $db->updateProject($pro);
     $_SESSION['error'] = null;
     $_SESSION['update'] = 'Your project has been succesfully updated';

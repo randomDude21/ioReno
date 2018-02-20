@@ -160,17 +160,16 @@ if (!$_SESSION["login"]||$_SESSION["customer"]==null)
                          include("../Classes/ProjectTypes.php");
                          if($project!=null)
                          {
-                                
                                 echo '<div class="form-group">
-										<label for="projectTitle">Project Title</label>
-										<input type="text" class="form-control" id="projectTitle" aria-describedby="projectTitle" value="<?php echo $project->getTitle();?>">
+										<label for="title">Project Title</label>
+										<input type="text" class="form-control" id="title" aria-describedby="projectTitle" name="title" value="'.$project->getTitle().'">
 									  </div>
 									  <div class="form-group">
-										<label for="projectDescription">Project Description</label>
-										<textarea rows="3" class="form-control" id="projectDescription" value="<?php$project->get_description();?>"></textarea>
+										<label for="desc">Project Description</label>
+										<textarea rows="3" class="form-control" id="desc" name="desc">'.$project->get_description().'</textarea>
 									  </div>
-									  <label for="projType">Project Type</label>
-									  <select class="form-control" id="projType">';
+									  <label for="type">Project Type</label>
+									  <select class="form-control" name="type" id="type">';
                                 foreach ($projectTypes as $val) {
                                     echo '<option ';
                                     if ($project->get_type() == $val)
@@ -178,18 +177,18 @@ if (!$_SESSION["login"]||$_SESSION["customer"]==null)
                                     echo 'value="' . $val . '">' . $val . '</option>';
                                         }
                            
-                                echo '</select>'.
-                                        . '	<label for="Address">Address</label>
-												<input type="text" class="form-control" id="Address" aria-describedby="Address" value="<?php echo $project->getAddress();?>">
+                                echo '</select>'
+                                        . '	<label for="address">Address</label>
+												<input type="text" class="form-control" id="address" name="address" aria-describedby="Address" value="'.$project->getAddress().'">
 												
-											<label for="City">City</label>
-												<input type="text" class="form-control" id="City" aria-describedby="City" value="<?php echo $project->get_city();?>">
+											<label for="city">City</label>
+												<input type="text" class="form-control" id="city" name="city" aria-describedby="City" value="'. $project->get_city().'">
 												
-											<label for="Budget">Budget</label>
-												<input type="text" class="form-control" id="Budget" aria-describedby="Budget" value="<?php echo $project->get_budget();?>">
+											<label for="budget">Budget</label>
+												<input type="text" class="form-control" id="budget" name="budget" value="'.$project->get_budget().'">
 												
-											<label for="Image">Image</label>
-												<input type="file" class="form-control-file" id="Image" value="<?php$project->getImages();?>">';
+											<label for="image">Image</label>
+												<input type="file" class="form-control-file" id="image" name="image" value="'.$project->getImages().'">';
                          }
                          else
                          {
