@@ -19,25 +19,22 @@ if (isset($_SESSION["customer"]))
 }
 $project = $db->getProject($_GET["id"]);
 ?>
-<div class="container-fluid row" style="width: 85%; margin-left: auto; margin-right: auto; margin-top: 1%">
-    <div class="col-sm-6">
-        
-        <h3><strong><?php echo $project->getTitle(); ?></strong></h3>
-        <h4>Budget</h4>
-            <span>$<?php echo $project->get_budget(); ?></span>
-        <div><img class="view-img" src="<?php echo $project->getImages() ?>" width="82.5%"></div>
-        <h4>Project Type</h4>
-        <div class="description"><?php echo $project->get_type();?></div>
-        <h4>Description</h4>
-        <div class="description"><?php echo $project->get_description(); ?></div>
-   
-        <h4>Address</h4>
-        <div class="description"><?php echo $project->getAddress(); ?></div>
-        <a href="HomeCustomer.php" class="btn btn-danger" role="button"><strong>Go back</strong></a>
-    </div>
 
+<div class="container">
+<div class="shadow_fade"><img class="view-img" src="<?php echo $project->getImages() ?>" width="82.5%"></div>
 
+<div class="card">
+  <h5 class="card-header"><?php echo $project->getTitle(); ?></h5>
+  <div class="card-body">
+    <h5 class="card-title">Project Type: $<?php echo $project->get_type(); ?></h5>
+	<h5><strong>Budget: $<?php echo $project->get_budget(); ?></strong></h5>
+    <p class="card-text"><?php echo $project->get_description(); ?></p>
+	<h5><strong>Address: $<?php echo $project->getAddress(); ?></strong></h5>
+    <a href="HomeCustomer.php" class="btn btn-primary" role="button">Go back</a>
+  </div>
 </div>
+</div>
+
 <?php
 include("_footer.php");
 ?>
