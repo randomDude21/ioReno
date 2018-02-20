@@ -1,6 +1,9 @@
 <?php
 require "..\\Classes\\Database.php";
 session_start();
+
+
+
 $db = new Database();
 $name = $_POST["username"];
 $_SESSION["username"] = $name;
@@ -17,15 +20,15 @@ $_SESSION["email"] = $email;
 $phone = $_POST["phone"];
 $_SESSION["phone"] = $phone;
 
-$password = sha1($_POST["password"]);
-$passwordConfirm = sha1($_POST["passwordConfirm"]);
-$passwordEmail = sha1($_POST["email"].$_POST["password"]);
-$date = date('Y-m-d', time());
+$password = $_POST["password"];
+$passwordConfirm = $_POST["passwordConfirm"];
+
+
 $nextUrl = '../views/index.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (!is_numeric($companyNumber)) {
-        $_SESSION['companyErr1'] = "Company number format is invalid (numbers only)";
+    if (!is_numeric($companyNumber) && strlen($companyNumber) != 10) {
+        $_SESSION['companyErr1'] = "Company number format is invalid (numbers only), 10 valid digits";
         
         $nextUrl = '../views/signup_contractor.php';
     }
@@ -47,17 +50,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['emailErr2'] = "A user already exists with that email"; 
         $nextUrl = '../views/signup_contractor.php';
     }
-    if (!preg_match("/^(\d[\s-]?)?[\(\[\s-]{0,2}?\d{3}[\)\]\s-]{0,2}?\d{3}[\s-]?\d{4}$/i", $phone)){
+    if (!preg_match("/^(\d[\s-]?)?[\(\[\s-]{0,2}?\d{3}[\)\]\s-]{0,2}?\d{3}[\s-]?\d{4}$/i", $phone) && strlen($phone) > 14){
         $_SESSION['phoneErr'] = "Invalid phone number"; 
         $nextUrl = '../views/signup_contractor.php';
     }
+    if ((strlen($password) < 8) || strlen($password) > 40) {
+        $_SESSION["passErr1"] = "Password must be at least 8 characters.";
+        $nextUrl = '../views/signup_contractor.php';
+    }
+    if (!preg_match("#[0-9]+#", $password)) {
+        $_SESSION["passErr2"] = "Password must contain at least one number.";
+        $nextUrl = '../views/signup_contractor.php';
+    }
+    if (!preg_match("#[a-zA-Z]+#", $password)) {
+        $_SESSION["passErr3"] = "Password must contain at least one letter.";
+        $nextUrl = '../views/signup_contractor.php';
+    }
     if ($password != $passwordConfirm) {
-        $_SESSION['passErr'] = "Passwords do not match";
+        $_SESSION['passErr'] = "Passwords do not match. ";
         $nextUrl = '../views/signup_contractor.php';
     }
     
 }
 if ($nextUrl == '../views/index.php') {
+    $password = sha1($_POST["password"]);
+    $passwordConfirm = sha1($_POST["passwordConfirm"]);
+    $passwordEmail = sha1($_POST["email"] . $_POST["password"]);
+    $date = date('Y-m-d', time());
     $contractor = new Contractor($companyNumber, $companyName, $phone, $email, $name, $passwordEmail, $date, false);
     
     $db->insertContractor($contractor);
@@ -69,14 +88,11 @@ if ($nextUrl == '../views/index.php') {
     $_SESSION["registerMessage"] = "Thank you for registering your company with IOReno!" . "<br>" .
                                     "We will review your information and send an email notification you when you are approved.";
     header('Location: ' . $nextUrl);
-    //insert contractor to database
-    //send user to index with message explaining review
-    
-    header('Location: ' . $nextUrl);
 }
 else {
     header('Location: ' . $nextUrl);
 }
+
 
 
  

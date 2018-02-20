@@ -21,9 +21,10 @@
     
         ?>
     <div class="container">
-    <h1>Your projects:</h1><br>
-        <a href="createProject.php" class="btn btn-primary" role="button"><strong>Create a new project</strong></a>
-    <div class="row container" style="margin-right:0px;margin-left:0px">
+    <h1>Your projects:</h1>
+        <a href="createProject.php" class="btn btn-primary m-2 " role="button"><strong>Create a new project</strong></a>
+        <br>
+    <div class="row container" style="margin-right:0px;margin-left:0px;padding:0px">
 <?php
 
      $projects=$db->getCustomerProject($customer->get_email());
@@ -31,7 +32,7 @@
      {
         foreach ($projects as $pro)
         { ?>
-            <div class="card shadow_fade" style="width: 18rem; margin:10px">
+            <div class="card shadow_fade m-2" style="width: 18rem;">
                 <img class="card-img-top" src="<?php echo $pro->getImages() ?>" alt="Card image cap">
                 <div class="card-body">
                     <h5 class="card-title">

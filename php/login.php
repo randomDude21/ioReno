@@ -2,10 +2,12 @@
 require "../Classes/Database.php";
 session_start();
 $db=new Database();
-if($db->getCustomerE($_POST['Email'])!= null)
+$email=trim($_POST["Email"]);
+
+if($db->getCustomerE($email)!= null)
 {
-    $customer=$db->getCustomerE($_POST['Email']);
-    if($customer->get_password()== sha1($_POST["Email"].$_POST['Password']))
+    $customer=$db->getCustomerE($email);
+    if($customer->get_password()== sha1($email.$_POST['Password']))
     {
 
         $_SESSION["invalidLogin"]=null;
@@ -21,11 +23,11 @@ if($db->getCustomerE($_POST['Email'])!= null)
         header("location:../views/index.php");
     }
 }
-else if($db->getContractorE($_POST['Email'])!= null)
+else if($db->getContractorE($email)!= null)
 {
     
-    $contractor=$db->getContractorE($_POST['Email']);
-    if ($contractor->get_password()== sha1($_POST["Email"].$_POST['Password']))
+    $contractor=$db->getContractorE($email);
+    if ($contractor->get_password()== sha1($email.$_POST['Password']))
     {
         if ($contractor->get_approved()==1)
         {
@@ -46,7 +48,7 @@ else if($db->getContractorE($_POST['Email'])!= null)
         header("location:../views/index.php");
     }
 }
-else if ($_POST["Email"]== 'admin'&& $_POST['Password']== 'admin')
+else if ($email== 'admin'&& $_POST['Password']== 'admin')
 {
     $_SESSION['admin']=true;
     header("location:../views/AdminHome.php?time=All Time&id=Dashboard");

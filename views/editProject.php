@@ -143,9 +143,7 @@ if (!$_SESSION["login"]||$_SESSION["customer"]==null)
         </nav>
     </header>
     <div class="container" style="padding:0px;">
-		<h1>Edit Project</h1>
-       
-            <div style="margin-left: 65px">
+		<h1 class="mt-2 mb-2">Edit Project</h1>
                   <?php
                  if (isset($_SESSION["error"])) {
                         echo "<div class=\"alert alert-danger text-center\">" .
@@ -196,7 +194,6 @@ if (!$_SESSION["login"]||$_SESSION["customer"]==null)
                          }
                          $_SESSION['project']=$project->get_id();
                     ?>
-                    </table>
                     <div style="margin-top: 20px">
                         <a href="HomeCustomer.php" class="btn btn-danger" role="button"><strong>Go back</strong></a>
 

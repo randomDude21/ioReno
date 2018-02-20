@@ -13,10 +13,10 @@ $_SESSION["email"] = $email;
 $phone = $_POST["phone"];
 $_SESSION["phone"] = $phone;
 
-$password = sha1($_POST["password"]);
-$passwordConfirm = sha1($_POST["passwordConfirm"]);
-$passwordEmail = sha1($_POST["email"].$_POST["password"]);
-$date = date('Y-m-d', time());
+$password = $_POST["password"];
+$passwordConfirm = $_POST["passwordConfirm"];
+
+
 $nextUrl = '../views/HomeCustomer.php';
 
 $db = new Database();
@@ -33,8 +33,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['emailErr2'] = "A user already exists with that email";
         $nextUrl = '../views/signup_customer.php';
     }
-    if (!preg_match("/^(\d[\s-]?)?[\(\[\s-]{0,2}?\d{3}[\)\]\s-]{0,2}?\d{3}[\s-]?\d{4}$/i", $phone)){
+    if (!preg_match("/^(\d[\s-]?)?[\(\[\s-]{0,2}?\d{3}[\)\]\s-]{0,2}?\d{3}[\s-]?\d{4}$/i", $phone) && strlen($phone) > 14){
         $_SESSION['phoneErr'] = "Invalid phone number"; 
+        $nextUrl = '../views/signup_customer.php';
+    }
+    if (strlen($password) < 8) {
+        $_SESSION["passErr1"] = "Password must be at least 8 characters.";
+        $nextUrl = '../views/signup_customer.php';
+    }
+    if (!preg_match("#[0-9]+#", $password)) {
+        $_SESSION["passErr2"] = "Password must contain at least one number.";
+        $nextUrl = '../views/signup_customer.php';
+    }
+    if (!preg_match("#[a-zA-Z]+#", $password)) {
+        $_SESSION["passErr3"] = "Password must contain at least one letter.";
         $nextUrl = '../views/signup_customer.php';
     }
     if ($password != $passwordConfirm) {
@@ -45,6 +57,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
 }
 if ($nextUrl == '../views/HomeCustomer.php') {
+    $password = sha1($_POST["password"]);
+    $passwordConfirm = sha1($_POST["passwordConfirm"]);
+    $passwordEmail = sha1($_POST["email"].$_POST["password"]);
+    $date = date('Y-m-d', time());
     $customer = new Customer(0, $name, $email, $phone, $passwordEmail, $date);
     $db = new Database();
     $db->insertCustomer($customer);

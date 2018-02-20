@@ -13,13 +13,10 @@ if (isset($_SESSION["customer"])) {
     $customer = $db->getCustomerE($_SESSION["customer"]);
 }
 ?>
-<div class="body_all">
-    <div style="margin-top: 40px; margin-left: 65px">
-    </div>
-    <div style="margin-top: 50px; margin-left: 65px">
-
+    <div class="container">
+        <h1 class="m-2">Your Estimates</h1>
         <form action="../php/updateProject.php" method="POST">
-            <table class="table-striped table-bordered">
+            <table class="table">
 
 <?php
 $project = $db->getProject($_GET["id"]);
@@ -29,7 +26,7 @@ $flag = false;
 foreach ($estimates as $est) {
     if ($est->get_approved() == 1) {
         $flag = true;
-        echo "You have accepted this estimate for this project:";
+        echo "<h5 class='font-weight-light m-2'>You have accepted this estimate for this project:</h5>";
         $contractor = $db->getContractor($est->get_coNum());
         echo '<tr><td>$'.$est->get_estimate().'</td><td>'.$contractor->get_coName().'</td>';
 
@@ -64,11 +61,11 @@ if ($estimates != null && $flag == false) {
         <?php       
         }
 } else if ($estimates == null) {
-    echo "You don't have any estimate for this project yet";
+    echo "<h3 class='font-weight-light m-2'>You don't have any estimates for this project yet!</h3>";
 }
 ?>
             </table>
-            <div style="margin-top: 20px">
+            <div class="m-2">
                 <a href="HomeCustomer.php" class="btn btn-danger" role="button"><strong>Go back</strong></a>
             </div>
         </form>

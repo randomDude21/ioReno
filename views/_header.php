@@ -42,20 +42,6 @@
 <!-- ---------------------------------------------- NAV BAR --------------------------------------------->
         <nav class="navbar navbar-expand-xl navbar-light bg-light">
             <a class="navbar-brand" href="index.php"><img src="../images/logo.PNG" alt="IOReno" class="logo"></a>
-            <?php
-            if (isset($_SESSION["registerMessage"])) {
-                echo "<div style=\"margin-left:10px;margin-right:10px;margin-top:0;margin-bottom:0;width:150px;\" class=\"alert alert-success text-center\">" .
-                "<strong>Success! </strong>" . $_SESSION["registerMessage"] .
-                "</div>";
-                $_SESSION["registerMessage"] = null;
-            }
-            if (isset($_SESSION["invalidLogin"])) {
-                echo "<div style=\"margin-left:10px;margin-right:10px;margin-top:0;margin-bottom:0;width:150px;\" class=\"alert alert-danger text-center\">" .
-                "<strong>Error! </strong>" . $_SESSION["invalidLogin"] .
-                "</div>";
-                $_SESSION["invalidLogin"] = null;
-            }
-        ?>
                 <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -72,7 +58,6 @@
                             <a class="nav-link" href="contact.php">Contact</a>
                         </li>
                     
-                        
 <!-------------------------------------Dropdown example may be useful--------------------------------- 
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -87,6 +72,7 @@
       </li>
 -->
                     </ul>
+                    
                     <ul class="navbar-nav navbar-right">
                     <?php if(isset($customer)){
                     ?>
@@ -140,5 +126,20 @@
                     
                 </div>
         </nav>
+        <?php
+            if (isset($_SESSION["registerMessage"])) {
+                echo "<div class=\"alert alert-success text-center\">" .
+                "<strong>Success! </strong>" . $_SESSION["registerMessage"] .
+                "</div>";
+                $_SESSION["registerMessage"] = null;
+            }
+            if (isset($_SESSION["invalidLogin"])) {
+                echo "<div class=\"alert alert-danger text-center\">" .
+                "<strong>Error! </strong>" . $_SESSION["invalidLogin"] .
+                "</div>";
+                $_SESSION["invalidLogin"] = null;
+            }
+        ?>
     </header>
     <div class="body_all container-fluid" style="padding:0px;">
+        
