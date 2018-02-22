@@ -346,6 +346,26 @@ class Database {
             }
         }
         
+        public function getProposalByProject($id)
+        {
+            $conn=$this->connect();
+            $sql= "SELECT * FROM proposal WHERE Project_ID = ".$id;
+            $get_result= $conn->query($sql) or die("Can't connect to the proposal table");
+            if($get_result!=false)
+            {
+                $prop=$get_result->fetch_assoc();
+                $proposal= new Proposal($prop["Proposal_ID"], $prop["Contractor_CO_Num"], $prop["Project_ID"], $prop["Project_Estimate"], $prop["approved"]);
+                
+                $get_result->free();
+                $conn->close();
+                return $proposal;
+            }
+            else
+            {
+                return null;
+            }
+        }
+        
         //insert a record in the contractor table
         public function insertContractor(Contractor $contractor)
         {
@@ -438,6 +458,23 @@ class Database {
         {
             $conn= $this->connect();
             $sql=$conn->prepare("INSERT INTO proposal VALUES (?,?,?,?,?)");
+            $id=$proposal->get_id();
+            $coNum=$proposal->get_coNum();
+            $project=$proposal->get_project();
+            $estimate=$proposal->get_estimate();  
+            $approved = 2;
+            $sql->bind_param("iiidi", $id, $coNum, $project, $estimate, $approved);
+            
+            $sql->execute();
+            
+            $sql->close();
+            $conn->close();
+        }
+        
+           public function replaceProposal(Proposal $proposal)
+        {
+            $conn= $this->connect();
+            $sql=$conn->prepare("REPLACE INTO proposal VALUES (?,?,?,?,?)");
             $id=$proposal->get_id();
             $coNum=$proposal->get_coNum();
             $project=$proposal->get_project();

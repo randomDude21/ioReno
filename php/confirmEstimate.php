@@ -12,9 +12,17 @@ if(!is_numeric($_POST['estimate'])||(double)$_POST['estimate']<0)
 }
 
 if($flag)
-{
-    $proposal= new Proposal(null, $contractor->get_coNum(), $project->get_id(), $_POST['estimate'], null);
-    $db->insertProposal($proposal);
+{  
+    if ($db->getProposalByProject($project->get_id()) != null) {
+        $proposal= new Proposal($db->getProposalByProject($project->get_id())->get_id(), $contractor->get_coNum(), $project->get_id(), $_POST['estimate'], null);
+        $db->replaceProposal($proposal);
+    }
+    else {
+        $proposal= new Proposal(null, $contractor->get_coNum(), $project->get_id(), $_POST['estimate'], null);
+        $db->insertProposal($proposal);
+    }
+    
+    
     $_SESSION['update']='Your estimate has been sent to the client';
     
     header("location: ../views/HomeContractor.php" );
