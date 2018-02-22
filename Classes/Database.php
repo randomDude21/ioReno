@@ -160,6 +160,9 @@ class Database {
                 return null;
             }
         }
+       
+        
+        
         //return one record from the contracator table based on Email
         public function getContractorE($email)
         {
@@ -191,6 +194,8 @@ class Database {
                 return null;
             }
         }
+        
+        
         
         public function getContractorEmails()
         {
@@ -350,6 +355,27 @@ class Database {
         {
             $conn=$this->connect();
             $sql= "SELECT * FROM proposal WHERE Project_ID = ".$id;
+            $get_result= $conn->query($sql) or die("Can't connect to the proposal table");
+            if($get_result!=false)
+            {
+                $prop=$get_result->fetch_assoc();
+                $proposal= new Proposal($prop["Proposal_ID"], $prop["Contractor_CO_Num"], $prop["Project_ID"], $prop["Project_Estimate"], $prop["approved"]);
+                
+                $get_result->free();
+                $conn->close();
+                return $proposal;
+            }
+            else
+            {
+                return null;
+            }
+        }
+        
+        public function getProposalByProjectCon($id, $con)
+        {
+            $conn=$this->connect();
+            $sql= "SELECT * FROM proposal WHERE Project_ID = ".$id . " "
+                    . "AND Contractor_CO_Num = " . $con;
             $get_result= $conn->query($sql) or die("Can't connect to the proposal table");
             if($get_result!=false)
             {
