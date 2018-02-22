@@ -33,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['emailErr2'] = "A user already exists with that email";
         $nextUrl = '../views/signup_customer.php';
     }
-    if (!preg_match("/^(\d[\s-]?)?[\(\[\s-]{0,2}?\d{3}[\)\]\s-]{0,2}?\d{3}[\s-]?\d{4}$/i", $phone) && strlen($phone) > 14){
+    if (!preg_match("/^(\d[\s-]?)?[\(\[\s-]{0,2}?\d{3}[\)\]\s-]{0,2}?\d{3}[\s-]?\d{4}$/i", $phone) || strlen($phone) > 14){
         $_SESSION['phoneErr'] = "Invalid phone number"; 
         $nextUrl = '../views/signup_customer.php';
     }
