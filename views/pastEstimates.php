@@ -37,7 +37,7 @@ else {
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <div class="input-group-text">
-                            <input type="checkbox" name="status[]" value="2" <?php if (isset($_GET["status"]) && in_array('null', $_GET["status"])) echo "checked=chekced"; ?>>
+                            <input type="checkbox" name="status[]" value="2" <?php if (isset($_GET["status"]) && in_array('2', $_GET["status"])) echo "checked=chekced"; ?>>
                             <label for="pending">Pending</label>
                         </div>
                     </div>                      

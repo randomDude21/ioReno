@@ -26,7 +26,7 @@ include("_header.php");
                     <div class="form-row form-group">
                         <!-- Company Number -->
                         <label for="companyNumber">Company number</label>
-                        <input type="text" id="companyNumber" name="companyNumber" placeholder="Company Number" class="form-control" required="required" maxlength="10"value="<?php if (isset($_SESSION['compnum'])) echo $_SESSION['compnum']; $_SESSION["compnum"] = null; ?>">
+                        <input type="text" id="companyNumber" name="companyNumber" placeholder="Company Number" class="form-control" required="required" maxlength="10" value="<?php if (isset($_SESSION['compnum'])) echo $_SESSION['compnum']; $_SESSION["compnum"] = null; ?>">
                         <span name="companyErr1"  class="text-danger"><?php if (isset($_SESSION['companyErr1'])) echo("{$_SESSION['companyErr1']}"); $_SESSION['companyErr1'] = ""; ?></span>
                         <span name="companyErr2"  class="text-danger"><?php if (isset($_SESSION['companyErr2'])) echo("{$_SESSION['companyErr2']}"); $_SESSION['companyErr2'] = ""; ?></span>
                         <p class="help-block">Please enter your company number (Quebec Entreprise Number)</p>

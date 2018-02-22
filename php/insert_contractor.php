@@ -27,7 +27,7 @@ $passwordConfirm = $_POST["passwordConfirm"];
 $nextUrl = '../views/index.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (!is_numeric($companyNumber) && strlen($companyNumber) != 10) {
+    if (!is_numeric($companyNumber) || strlen($companyNumber) != 10) {
         $_SESSION['companyErr1'] = "Company number format is invalid (numbers only), 10 valid digits";
         
         $nextUrl = '../views/signup_contractor.php';
@@ -50,7 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['emailErr2'] = "A user already exists with that email"; 
         $nextUrl = '../views/signup_contractor.php';
     }
-    if (!preg_match("/^(\d[\s-]?)?[\(\[\s-]{0,2}?\d{3}[\)\]\s-]{0,2}?\d{3}[\s-]?\d{4}$/i", $phone) && strlen($phone) > 14){
+    if (!preg_match("/^(\d[\s-]?)?[\(\[\s-]{0,2}?\d{3}[\)\]\s-]{0,2}?\d{3}[\s-]?\d{4}$/i", $phone) || strlen($phone) > 14){
         $_SESSION['phoneErr'] = "Invalid phone number"; 
         $nextUrl = '../views/signup_contractor.php';
     }
