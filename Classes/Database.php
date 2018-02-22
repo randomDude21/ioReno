@@ -101,7 +101,11 @@ class Database {
           public function getProjects()
         {
             $conn=$this->connect();
-            $sql= "SELECT * FROM project";
+            $sql= "SELECT DISTINCT project.Project_ID, project.Customer_Email, project.Project_Description, project.projectType, "
+                    . "project.Project_Budget, project.title, project.address, project.city, project.images, project.date_posted "
+                    . "FROM project, proposal "
+                    . "WHERE (EXISTS(SELECT 1 from proposal where project.Project_ID = proposal.Project_ID AND (proposal.approved <> 1 OR proposal.approved IS NULL)) "
+                    . "OR project.Project_ID not in (SELECT Project_ID FROM proposal));";
             $get_result= $conn->query($sql) or die("Can't connect to the project table");
             $projects=array();
             $i=0;
@@ -881,7 +885,12 @@ class Database {
           public function sortProjects($types)
         {
             $type_string = implode ("', '", $types);
-            $sql= "SELECT * FROM project WHERE projectType IN ('" . $type_string . "')";
+            $sql= "SELECT DISTINCT project.Project_ID, project.Customer_Email, project.Project_Description, project.projectType, "
+                    . "project.Project_Budget, project.title, project.address, project.city, project.images, project.date_posted "
+                    . "FROM project, proposal "
+                    . "WHERE projectType IN ('" . $type_string . "') "
+                    . "AND (EXISTS(SELECT 1 from proposal where project.Project_ID = proposal.Project_ID AND (proposal.approved <> 1 OR proposal.approved IS NULL)) "
+                    . "OR project.Project_ID not in (SELECT Project_ID FROM proposal));";
             $conn=$this->connect();
             $get_result= $conn->query($sql) or die("Can't connect to the project table");
             $projects=array();

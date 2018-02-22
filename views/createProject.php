@@ -16,7 +16,7 @@
                     <!-- Username -->
                     <label class="control-label" for="title">Project Title</label>
                     <div class="controls">
-                        <input type="text" class="form-control" id="title" name="title" placeholder="" class="input-xlarge" required="required" value="<?php if (isset($_SESSION['title'])) echo $_SESSION['title']; $_SESSION[" title "] = null; ?>">
+                        <input type="text" class="form-control" id="title" name="title" placeholder="" class="input-xlarge" required="required" value="<?php if (isset($_SESSION['title'])) echo $_SESSION['title']; $_SESSION["title"] = null; ?>">
 
                         <p class="help-block">Enter a title for your project</p>
                     </div>
@@ -28,7 +28,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">$</span>
                             </div>
-                            <input type="number" required="required" name="budget" value="<?php if (isset($_SESSION['budget'])) echo $_SESSION['budget']; $_SESSION[" budget "] = null; ?>" min="0" step="1" data-number-to-fixed="2" data-number-stepfactor="100" class="form-control currency" id="budget" />
+                            <input type="number" required="required" name="budget" value="<?php if (isset($_SESSION['budget'])) echo $_SESSION['budget']; $_SESSION["budget"] = null; ?>" min="0" step="1" data-number-to-fixed="2" data-number-stepfactor="100" class="form-control currency" id="budget" />
                             <span name="bugetErr" class="text-danger"><?php if (isset($_SESSION['budgetErr'])) echo("{$_SESSION['budgetErr']}"); $_SESSION['budgetErr'] = ""; ?></span>
                         </div>
 
