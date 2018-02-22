@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.2
--- http://www.phpmyadmin.net
+-- version 4.6.4
+-- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 06, 2018 at 08:02 PM
--- Server version: 5.7.9
--- PHP Version: 7.0.0
+-- Generation Time: Feb 22, 2018 at 01:38 AM
+-- Server version: 5.7.14
+-- PHP Version: 7.0.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -26,18 +26,16 @@ SET time_zone = "+00:00";
 -- Table structure for table `contractor`
 --
 
-DROP TABLE IF EXISTS `contractor`;
-CREATE TABLE IF NOT EXISTS `contractor` (
-  `Contractor_CO_Num` int(5) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `contractor` (
+  `Contractor_CO_Num` int(5) NOT NULL,
   `Contractor_CO_Name` varchar(40) NOT NULL,
-  `Contractor_Phone` varchar(10) NOT NULL,
+  `Contractor_Phone` varchar(20) NOT NULL,
   `Contractor_Email` varchar(30) NOT NULL,
   `Contractor_Contact_Name` varchar(30) NOT NULL,
   `Contractor_Password` varchar(40) NOT NULL,
   `Contractor_Date_Registered` date NOT NULL,
-  `Approved` tinyint(1) NOT NULL,
-  PRIMARY KEY (`Contractor_CO_Num`)
-) ENGINE=MyISAM AUTO_INCREMENT=55556 DEFAULT CHARSET=latin1;
+  `Approved` tinyint(1) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `contractor`
@@ -63,8 +61,8 @@ INSERT INTO `contractor` (`Contractor_CO_Num`, `Contractor_CO_Name`, `Contractor
 (12345, ' Dunder Mifflin', '1234567890', 'mscott@dundermifflin.com', 'Michael Scott', '33a9e269dd782e92489a8e547b7ed582e0e1d42b', '2018-01-12', 0),
 (12346, 'jkasdhfk', '5144445555', 'itsnickzomg@gmail.com', 'adhfjkadsh', '3da541559918a808c2402bba5012f6c60b27661c', '2018-01-12', 0),
 (12555, 'jkasdhfk', '5144445555', 'itsnickzomg@gmail.com', 'adhfjkadsh', '3da541559918a808c2402bba5012f6c60b27661c', '2018-01-12', 0),
-(43321, 'Big Tiddies', '5144445555', 'x@x.com', 'Timmy Esteban', 'd4c5108cbc830a44d93a621c1a9f30e7028ce3e7', '2018-02-01', 0),
-(55555, 'Big John''s Reno Inc.', '5144445555', 'w@w.com', 'Big John', '96e057d9d3344c5f3f3cf6be7e63ecaa88866f65', '2018-02-06', 0);
+(43321, 'Big Tiddies', '5144445555', 'x@x.com', 'Timmy Esteban', 'd4c5108cbc830a44d93a621c1a9f30e7028ce3e7', '2018-02-01', 1),
+(55555, 'Big John\'s Reno Inc.', '5144445555', 'w@w.com', 'Big John', '96e057d9d3344c5f3f3cf6be7e63ecaa88866f65', '2018-02-06', 0);
 
 -- --------------------------------------------------------
 
@@ -72,16 +70,14 @@ INSERT INTO `contractor` (`Contractor_CO_Num`, `Contractor_CO_Name`, `Contractor
 -- Table structure for table `customer`
 --
 
-DROP TABLE IF EXISTS `customer`;
-CREATE TABLE IF NOT EXISTS `customer` (
-  `Customer_ID` int(5) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `customer` (
+  `Customer_ID` int(5) NOT NULL,
   `Customer_Name` varchar(40) NOT NULL,
   `Customer_Email` varchar(60) NOT NULL,
   `Customer_Phone` varchar(30) DEFAULT NULL,
   `Customer_Password` varchar(60) NOT NULL,
-  `Customer_Date_Registered` date NOT NULL,
-  PRIMARY KEY (`Customer_ID`)
-) ENGINE=MyISAM AUTO_INCREMENT=36 DEFAULT CHARSET=latin1;
+  `Customer_Date_Registered` date NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `customer`
@@ -122,7 +118,9 @@ INSERT INTO `customer` (`Customer_ID`, `Customer_Name`, `Customer_Email`, `Custo
 (32, 'nicky nick', 'qwe@qwe.com', '5149991234', '042a7cdf849b116e93037cfac0be21557f3cb99f', '2018-01-23'),
 (33, 'Bob Loblah', 't@2.com', '5144445555', '38611cb8bf0cd3fa8fcfacc09b5f07fc03600b77', '2018-01-25'),
 (34, 'adhfjkadsh', '1@1.com', '5144445555', '370eb39d93d03900913e36d607efdcf70c44db9d', '2018-01-25'),
-(35, 'asdf', 'y@y.com', '5144445555', '02a48d67104bf3a465cad28df1cd3ded620da9f3', '2018-02-01');
+(35, 'asdf', 'y@y.com', '5144445555', '02a48d67104bf3a465cad28df1cd3ded620da9f3', '2018-02-01'),
+(36, 'Nick', 'asdf@asdf.com', '15149928449', '835cb4776e97bfb1cecafb1736d2089562fba217', '2018-02-22'),
+(37, 'astase', '2@2.com', '1-(514)-992-8449', '637c99b9621927d1f490728b9b376412219528c2', '2018-02-22');
 
 -- --------------------------------------------------------
 
@@ -130,18 +128,14 @@ INSERT INTO `customer` (`Customer_ID`, `Customer_Name`, `Customer_Email`, `Custo
 -- Table structure for table `payments`
 --
 
-DROP TABLE IF EXISTS `payments`;
-CREATE TABLE IF NOT EXISTS `payments` (
-  `Payment_ID` int(5) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `payments` (
+  `Payment_ID` int(5) NOT NULL,
   `Contractor_CO_Num` int(5) NOT NULL,
   `Payment_Amount` double NOT NULL,
   `Proposal_ID` int(5) NOT NULL,
   `Payment_Status` tinyint(1) DEFAULT NULL,
-  `PAYMENT_DATE` date NOT NULL,
-  PRIMARY KEY (`Payment_ID`),
-  KEY `Contractor_CO_Num` (`Contractor_CO_Num`),
-  KEY `Proposal_ID` (`Proposal_ID`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+  `PAYMENT_DATE` date NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `payments`
@@ -160,9 +154,8 @@ INSERT INTO `payments` (`Payment_ID`, `Contractor_CO_Num`, `Payment_Amount`, `Pr
 -- Table structure for table `project`
 --
 
-DROP TABLE IF EXISTS `project`;
-CREATE TABLE IF NOT EXISTS `project` (
-  `Project_ID` int(5) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `project` (
+  `Project_ID` int(5) NOT NULL,
   `Customer_Email` varchar(30) NOT NULL,
   `Project_Description` varchar(1000) NOT NULL,
   `projectType` varchar(50) NOT NULL,
@@ -171,10 +164,8 @@ CREATE TABLE IF NOT EXISTS `project` (
   `address` varchar(40) NOT NULL,
   `city` varchar(32) NOT NULL,
   `images` varchar(255) DEFAULT NULL,
-  `date_posted` date DEFAULT NULL,
-  PRIMARY KEY (`Project_ID`),
-  KEY `Customer_Email` (`Customer_Email`)
-) ENGINE=MyISAM AUTO_INCREMENT=136 DEFAULT CHARSET=latin1;
+  `date_posted` date DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `project`
@@ -217,11 +208,15 @@ INSERT INTO `project` (`Project_ID`, `Customer_Email`, `Project_Description`, `p
 (125, 'c@c.com', '23423', 'Bathroom', 2342.00, '34234', '234', '2342', '../images/project_images/5ff192c39b55d82a8fb952ad3ead5a97jpg', NULL),
 (126, 'c@c.com', '1231', 'Bathroom', 2314.00, 'dsfdsf', '123', '123', '../images/project_images/8103cbb733da0c4d5a353c5599318e9f.jpg', NULL),
 (129, 'c@c.com', '123', 'Bathroom', 123.00, 'NEWEST PROJ', '123', '123', '../images/project_images/0c16cb46404ea6d4837eb4043e0e92c5.jpg', NULL),
-(131, 'a@a.com', 'sdlkfjasdl;kfjas\r\nfjasd''fkjas\r\ndfasjdklfja\r\n', 'Bathroom', 234.00, 'alskdjfla;skdjfl;kasdjfl;skadj', 'asdf', 'asdf', '../images/project_images/8f33952d52661ee24e576c05688b02c9.png', NULL),
-(132, 'y@y.com', 'I''d liek a new shed in my backyard. Could be made of wood or metal\r\nI''m thinking of something pretty big\r\n9 feet by 10 feet\r\nthank', 'Bathroom', 950.00, 'Build a new shed', '512', 'Vasdf', '../images/project_images/18d615a25b2ec809eed20b2f4c503ebd.jpg', NULL),
+(131, 'a@a.com', 'sdlkfjasdl;kfjas\r\nfjasd\'fkjas\r\ndfasjdklfja\r\n', 'Bathroom', 234.00, 'alskdjfla;skdjfl;kasdjfl;skadj', 'asdf', 'asdf', '../images/project_images/8f33952d52661ee24e576c05688b02c9.png', NULL),
+(132, 'y@y.com', 'I\'d liek a new shed in my backyard. Could be made of wood or metal\r\nI\'m thinking of something pretty big\r\n9 feet by 10 feet\r\nthank', 'Bathroom', 950.00, 'Build a new shed', '512', 'Vasdf', '../images/project_images/18d615a25b2ec809eed20b2f4c503ebd.jpg', NULL),
 (133, 'y@y.com', 'asdfasdfasdf\r\n\r\nasdfasdf\r\n\r\nasdfasdf\r\n\r\nasdfasdf\r\n\r\n', 'Bathroom', 123.00, 'dsfdsf', '123', 'test', '../images/project_images/placeholder.jpg', NULL),
 (134, 'y@y.com', 'adfasldjfal;skdjfas\r\nasdklfj asld;fjasl;kdfja; sldkfa; lsdjfa sl;df                       aslkdjfl;asd\r\nasdflk \r\n     - asdfas\r\n    - asdlkfjasd;\r\n\r\n ----- ad aslkfj\r\n                                             asldkjf', 'Bathroom', 412.00, 'NEW FUCKIN PROJ', 'asdf', 'test', '../images/project_images/87ed389a56a331ca9ec47ac149bdcd4f.jpg', NULL),
-(135, 'c@c.com', 'asdfasd\r\nfas\r\ndfa\r\nsdf\r\nasdf\r\n', 'Bathroom', 123.00, 'TEST DATE PROJECT', 'asdf', 'asdf', '../images/project_images/placeholder.jpg', '2018-02-01');
+(135, 'c@c.com', 'asdfasd\r\nfas\r\ndfa\r\nsdf\r\nasdf\r\n', 'Bathroom', 123.00, 'TEST DATE PROJECT', 'asdf', 'asdf', '../images/project_images/placeholder.jpg', '2018-02-01'),
+(136, 'asdf@asdf.com', 'Looking to put in hardwood floors in my living room. Mahogany. 15\' by 20\'', 'Wood Work', 1500.00, 'Hardwood floor installation', '45 cool', 'Brossard', '../images/project_images/ac6e4b76e45271c17d45f2a02b66fc47.jpg', '2018-02-22'),
+(137, 'asdf@asdf.com', '123', 'Bathroom', 1234.00, 'asdf', '123', '123', '../images/project_images/placeholder.jpg', '2018-02-22'),
+(138, 'asdf@asdf.com', '234', 'Bathroom', 234.00, '2342', '234', '234', '../images/project_images/placeholder.jpg', '2018-02-22'),
+(139, 'asdf@asdf.com', '234', 'Bathroom', 234.00, '234', '234', '234', '../images/project_images/f351ee398008cac1bc3d7ad549965882.jpg', '2018-02-22');
 
 -- --------------------------------------------------------
 
@@ -229,17 +224,13 @@ INSERT INTO `project` (`Project_ID`, `Customer_Email`, `Project_Description`, `p
 -- Table structure for table `proposal`
 --
 
-DROP TABLE IF EXISTS `proposal`;
-CREATE TABLE IF NOT EXISTS `proposal` (
-  `Proposal_ID` int(5) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `proposal` (
+  `Proposal_ID` int(5) NOT NULL,
   `Contractor_CO_Num` int(5) NOT NULL,
   `Project_ID` int(5) NOT NULL,
   `Project_Estimate` double(7,2) NOT NULL,
-  `approved` tinyint(1) DEFAULT NULL,
-  PRIMARY KEY (`Proposal_ID`),
-  KEY `Contractor_CO_Num` (`Contractor_CO_Num`),
-  KEY `Project_ID` (`Project_ID`)
-) ENGINE=MyISAM AUTO_INCREMENT=44 DEFAULT CHARSET=latin1;
+  `approved` tinyint(1) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `proposal`
@@ -290,6 +281,74 @@ INSERT INTO `proposal` (`Proposal_ID`, `Contractor_CO_Num`, `Project_ID`, `Proje
 (42, 55555, 129, 4055.00, NULL),
 (43, 43321, 129, 909.00, NULL);
 
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `contractor`
+--
+ALTER TABLE `contractor`
+  ADD PRIMARY KEY (`Contractor_CO_Num`);
+
+--
+-- Indexes for table `customer`
+--
+ALTER TABLE `customer`
+  ADD PRIMARY KEY (`Customer_ID`);
+
+--
+-- Indexes for table `payments`
+--
+ALTER TABLE `payments`
+  ADD PRIMARY KEY (`Payment_ID`),
+  ADD KEY `Contractor_CO_Num` (`Contractor_CO_Num`),
+  ADD KEY `Proposal_ID` (`Proposal_ID`);
+
+--
+-- Indexes for table `project`
+--
+ALTER TABLE `project`
+  ADD PRIMARY KEY (`Project_ID`),
+  ADD KEY `Customer_Email` (`Customer_Email`);
+
+--
+-- Indexes for table `proposal`
+--
+ALTER TABLE `proposal`
+  ADD PRIMARY KEY (`Proposal_ID`),
+  ADD KEY `Contractor_CO_Num` (`Contractor_CO_Num`),
+  ADD KEY `Project_ID` (`Project_ID`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `contractor`
+--
+ALTER TABLE `contractor`
+  MODIFY `Contractor_CO_Num` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55556;
+--
+-- AUTO_INCREMENT for table `customer`
+--
+ALTER TABLE `customer`
+  MODIFY `Customer_ID` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+--
+-- AUTO_INCREMENT for table `payments`
+--
+ALTER TABLE `payments`
+  MODIFY `Payment_ID` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+--
+-- AUTO_INCREMENT for table `project`
+--
+ALTER TABLE `project`
+  MODIFY `Project_ID` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=140;
+--
+-- AUTO_INCREMENT for table `proposal`
+--
+ALTER TABLE `proposal`
+  MODIFY `Proposal_ID` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
