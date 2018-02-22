@@ -53,7 +53,7 @@ if ($_FILES["image"]["size"] > 1000000) {
     $uploadOk = 0;
     $nextUrl = "../views/createProject.php";
 }
-if (!in_array($imageFileType, $extension)) {
+if (!in_array($imageFileType, $extension) && $imageFileType != "") {
     $_SESSION["imgErr2"] = "File not an image. ";
     $uploadOk = 0;
     $nextUrl = "../views/createProject.php";
