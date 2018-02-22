@@ -47,13 +47,16 @@ if (isset($_FILES["image"])) {
         $uploadOk = 0;
     }
 }
-if ($_FILES["image"]["size"] > 10000000) {
-    echo "File size too large";
+if ($_FILES["image"]["size"] > 1000000) {
+    $_SESSION["imgErr1"] = "Image size too large. ";
+    echo "too big!!!";
     $uploadOk = 0;
+    $nextUrl = "../views/createProject.php";
 }
 if (!in_array($imageFileType, $extension)) {
-    echo "File not an image. ";
+    $_SESSION["imgErr2"] = "File not an image. ";
     $uploadOk = 0;
+    $nextUrl = "../views/createProject.php";
 }
 if ($uploadOk == 0) {
     $imgData = "../images/project_images/placeholder.jpg";
@@ -66,16 +69,21 @@ else {
 }
 
 
+if ($nextUrl == "../views/HomeCustomer.php") {
+    $project = new Project(0, $email, $title, $description, $projectType, $budget, $address, $city, $imgData, $date);
+    $db = new Database();
+    $db->insertProject($project);
+    $_SESSION["title"] = null;
+    $_SESSION["budget"] = null;
+    $_SESSION["description"] = null;
+    $_SESSION["address"] = null;
+    $_SESSION["city"] = null;
+    header("Location: " . "../views/HomeCustomer.php");
+}
+else {
+    header("Location: " . "../views/createProject.php");
+}
 
-$project = new Project(0, $email, $title, $description, $projectType, $budget, $address, $city, $imgData, $date);
-$db = new Database();
-$db->insertProject($project);
-$_SESSION["title"] = null;
-$_SESSION["budget"] = null;
-$_SESSION["description"] = null;
-$_SESSION["address"] = null;
-$_SESSION["city"] = null;
-header("Location: " . "../views/HomeCustomer.php");
 
 
 

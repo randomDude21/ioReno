@@ -29,7 +29,7 @@
                                 <span class="input-group-text">$</span>
                             </div>
                             <input type="number" required="required" name="budget" value="<?php if (isset($_SESSION['budget'])) echo $_SESSION['budget']; $_SESSION[" budget "] = null; ?>" min="0" step="1" data-number-to-fixed="2" data-number-stepfactor="100" class="form-control currency" id="budget" />
-                            <span name="nameErr"><?php if (isset($_SESSION['budgetErr'])) echo("{$_SESSION['budgetErr']}"); $_SESSION['budgetErr'] = ""; ?></span>
+                            <span name="bugetErr" class="text-danger"><?php if (isset($_SESSION['budgetErr'])) echo("{$_SESSION['budgetErr']}"); $_SESSION['budgetErr'] = ""; ?></span>
                         </div>
 
                         <p class="help-block">Enter your budget for the project</p>
@@ -90,6 +90,8 @@
                         <label class="control-label" for="image">Images</label>
                         <div class="custom-file">
                             <input type="file" name="image" class="custom-file-input" id="image">
+                            <span name="imgErr1" class="text-danger"><?php if (isset($_SESSION['imgErr1'])) echo("{$_SESSION['imgErr1']}"); $_SESSION['imgErr1'] = ""; ?></span>
+                            <span name="imgErr2" class="text-danger"><?php if (isset($_SESSION['imgErr2'])) echo("{$_SESSION['imgErr2']}"); $_SESSION['imgErr2'] = ""; ?></span>
                             <label class="custom-file-label" for="image">Choose File</span>
                         </div>
                         <p class="help-block">Select images to upload</p>
