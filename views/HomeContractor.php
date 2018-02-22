@@ -56,8 +56,20 @@ if (!$_SESSION["login"]){
         {
         ?>
     <?php
+        
         foreach ($projects as $pro)
         {
+            $flag=true;
+            $estimates = $db->getProjectProposals($pro->get_id());
+            foreach ($estimates as $estimate) {
+
+            if ($estimate->get_approved() == 1) {
+                
+                $flag=false;
+            }
+            }
+            if($flag)
+            {
             ?>
         <div class="card m-1">
             <div class="row" >
@@ -79,6 +91,7 @@ if (!$_SESSION["login"]){
         </div>
             
         <?php
+            }
         }
         ?>
 </div>
