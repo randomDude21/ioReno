@@ -41,7 +41,7 @@ include("_header.php");
                         <div class="form-group col-md-6">
                             <label for="password">Password</label>
                             <input type="password" id="password" name="password" placeholder="Password" class="form-control" required="required">
-                            <p class="help-block">Password should be at least 4 characters</p>
+                            <p class="help-block">Password should be at least 8 characters and contain at least one letter and number</p>
                         </div>
                         <!-- Password -->
                         <div class="form-group col-md-6">
